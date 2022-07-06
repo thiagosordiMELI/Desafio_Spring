@@ -1,10 +1,12 @@
 package com.desafio_spring.desafio_spring.repository;
 
+import com.desafio_spring.desafio_spring.exception.ExceptionCustom;
 import com.desafio_spring.desafio_spring.model.Product;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.stereotype.Repository;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 
@@ -18,8 +20,11 @@ public class ProductRepo {
         try {
             productsList = Arrays.asList
                     (mapper.readValue(new File(productsFile), Product[].class));
-        } catch (Exception ex) {
-            System.out.println("Não retorna produtos");
+        } catch (ExceptionCustom | IOException ex) {
+//            throw new ResponseStatusException(
+//                    HttpStatus.NOT_FOUND, "Product not found", ex
+//            );
+            throw new ExceptionCustom("Product not found");
         }
         return productsList;
     }
