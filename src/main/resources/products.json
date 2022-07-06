@@ -1,28 +1,23 @@
 [ {
-  "productId" : "5e51c699-dce1-4c0e-bd5f-e2bc7bc2ee29",
-  "name" : "Camiseta",
-  "category" : "Esportes",
-  "brand" : "Topper",
-  "price" : 80.0,
-  "quantity" : 2,
-  "freeShipping" : false,
-  "prestige" : "***"
-}, {
-  "productId" : "ab7e5bf6-afff-4410-9d03-45a9b51249e4",
-  "name" : "Redmi Note 9",
-  "category" : "Celulares",
-  "brand" : "Xiaomi",
-  "price" : 2800.0,
-  "quantity" : 15,
+  "notNullMessage" : "Campo não pode ser nulo.",
+  "notNegativeMessage" : "Valor não pode ser negativo.",
+  "productId" : "69291147-3f9d-4335-bcc1-9c608ad21384",
+  "name" : "Serra de Bancada",
+  "category" : "Ferramentas",
+  "brand" : "FORTGPRO",
+  "price" : 1800.0,
+  "quantity" : 5,
   "freeShipping" : true,
   "prestige" : "****"
 }, {
-  "productId" : "832061f2-45cd-4485-b87d-79ac62ef84e7",
-  "name" : "Smartwatch",
-  "category" : "Celulares",
-  "brand" : "Noga",
-  "price" : 1200.0,
-  "quantity" : 5,
+  "notNullMessage" : "Campo não pode ser nulo.",
+  "notNegativeMessage" : "Valor não pode ser negativo.",
+  "productId" : "ac460278-e875-4fed-8f33-d88c36ffdec4",
+  "name" : "Furadeira",
+  "category" : "Ferramentas",
+  "brand" : "Black & Decker",
+  "price" : 500.0,
+  "quantity" : 7,
   "freeShipping" : true,
-  "prestige" : "**"
+  "prestige" : "****"
 } ]
