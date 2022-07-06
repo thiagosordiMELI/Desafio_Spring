@@ -1,4 +1,4 @@
-package com.desafio_spring.desafio_spring.controler;
+package com.desafio_spring.desafio_spring.controller;
 
 import com.desafio_spring.desafio_spring.dto.ProductDto;
 import com.desafio_spring.desafio_spring.service.ProductService;
