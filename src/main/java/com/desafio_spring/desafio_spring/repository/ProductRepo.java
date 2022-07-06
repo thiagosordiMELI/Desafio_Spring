@@ -20,12 +20,11 @@ public class ProductRepo {
         try {
             productsList = Arrays.asList
                     (mapper.readValue(new File(productsFile), Product[].class));
+            // return productsList;
         } catch (ExceptionCustom | IOException ex) {
-//            throw new ResponseStatusException(
-//                    HttpStatus.NOT_FOUND, "Product not found", ex
-//            );
-            throw new ExceptionCustom("Product not found");
+
         }
+        if (productsList.size() == 0) throw new ExceptionCustom("Product not found");
         return productsList;
     }
 }
