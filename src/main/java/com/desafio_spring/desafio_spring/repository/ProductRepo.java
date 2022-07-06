@@ -13,19 +13,31 @@ import java.util.List;
 
 @Repository
 public class ProductRepo {
-    private final String fileAddress = "src/main/resources/products.json";
+    private final String productsFile = "src/main/resources/products.json";
     public List<Product> saveList(List<Product> productList) {
         ObjectMapper mapper = new ObjectMapper();
         ObjectWriter writer = mapper.writer(new DefaultPrettyPrinter());
         List<Product> listaAtual;
         try {
-            listaAtual = Arrays.asList(mapper.readValue(new File(fileAddress), Product[].class));
+            listaAtual = Arrays.asList(mapper.readValue(new File(productsFile), Product[].class));
             List<Product> novaLista = new ArrayList<>(listaAtual);
             productList.forEach(p -> novaLista.add(p));
-            writer.writeValue(new File(fileAddress), novaLista);
+            writer.writeValue(new File(productsFile), novaLista);
         } catch (Exception err) {
             System.out.println("Erro no save.");
         }
         return productList;
+    }
+
+    public List<Product> getAllProducts() {
+        ObjectMapper mapper = new ObjectMapper();
+        List<Product> productsList = null;
+        try {
+            productsList = Arrays.asList
+                    (mapper.readValue(new File(productsFile), Product[].class));
+        } catch (Exception ex) {
+            System.out.println("Não retorna produtos");
+        }
+        return productsList;
     }
 }
