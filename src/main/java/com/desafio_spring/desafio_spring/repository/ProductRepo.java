@@ -14,19 +14,20 @@ import java.util.List;
 @Repository
 public class ProductRepo {
     private final String productsFile = "src/main/resources/products.json";
-    public List<Product> saveList(List<Product> productList) {
+    public List<Product> saveProducts(List<Product> productList) {
         ObjectMapper mapper = new ObjectMapper();
         ObjectWriter writer = mapper.writer(new DefaultPrettyPrinter());
-        List<Product> listaAtual;
+        List<Product> oldList;
         try {
-            listaAtual = Arrays.asList(mapper.readValue(new File(productsFile), Product[].class));
-            List<Product> novaLista = new ArrayList<>(listaAtual);
-            productList.forEach(p -> novaLista.add(p));
-            writer.writeValue(new File(productsFile), novaLista);
+            oldList = Arrays.asList(mapper.readValue(new File(productsFile), Product[].class));
+            List<Product> newList = new ArrayList<>(oldList);
+            productList.forEach(p -> newList.add(p));
+            writer.writeValue(new File(productsFile), newList);
+            return productList;
         } catch (Exception err) {
-            System.out.println("Erro no save.");
+            System.out.println("Erro ao acessar o arquivo de produtos.");
         }
-        return productList;
+        return null; //TODO Substituir por exceção
     }
 
     public List<Product> getAllProducts() {

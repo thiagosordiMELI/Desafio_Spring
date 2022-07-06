@@ -28,6 +28,6 @@ public class ProductController {
 
     @PostMapping("/insert-articles-request")
     public ResponseEntity<List<ProductDto>> insertArticlesRequest(@RequestBody List<Product> products) {
-        return ResponseEntity.ok(service.saveList(products));
+        return ResponseEntity.ok(service.saveProducts(products));
     }
 }

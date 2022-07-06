@@ -6,6 +6,6 @@ import com.desafio_spring.desafio_spring.dto.ProductDto;
 import java.util.List;
 
 public interface ProductService {
-    List<ProductDto> saveList(List<Product> list);
+    List<ProductDto> saveProducts(List<Product> productList);
     List<ProductDto> getAllProducts();
 }

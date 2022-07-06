@@ -17,10 +17,10 @@ public class ProductServiceImp implements ProductService {
     private ProductRepo productRepo;
 
     @Override
-    public List<ProductDto> saveList(List<Product> productList) {
-        productRepo.saveList(productList);
+    public List<ProductDto> saveProducts(List<Product> productList) {
+        productRepo.saveProducts(productList);
         List<ProductDto> productDto = new ArrayList<>();
-        productList.forEach(p -> productDto.add(new ProductDto(p)));
+        productList.forEach(product -> productDto.add(new ProductDto(product)));
         return productDto;
     }
 
