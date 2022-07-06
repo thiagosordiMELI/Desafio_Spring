@@ -9,6 +9,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
+import java.util.UUID;
 
 @Repository
 public class ProductRepo {
@@ -26,5 +27,10 @@ public class ProductRepo {
         }
         if (productsList.size() == 0) throw new ExceptionCustom("Product not found");
         return productsList;
+    }
+
+    public Product findById(UUID id) {
+        List<Product> products = getAllProducts();
+        return products.stream().filter(p -> p.getProductId().equals(id)).findFirst().orElse(null);
     }
 }
