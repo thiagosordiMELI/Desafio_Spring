@@ -30,7 +30,7 @@ public class ProductRepo {
         } catch (Exception err) {
             System.out.println("Erro ao acessar o arquivo de produtos.");
         }
-        return null; //TODO Substituir por exceção
+        throw new ExceptionCustom("Erro ao salvar lista de produtos.");
     }
 
     public List<Product> getAllProducts() {
