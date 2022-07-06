@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Repository
-public class PurchaseRepository {
+public class PurchaseRepo {
     private static final String dbPath = "src/main/resources/purchases.json";
 
     public List<Purchase> all() {

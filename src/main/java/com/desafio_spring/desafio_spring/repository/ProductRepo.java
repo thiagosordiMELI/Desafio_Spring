@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 import java.io.File;
 import java.util.Arrays;
 import java.util.List;
+import java.util.UUID;
 
 @Repository
 public class ProductRepo {
@@ -22,5 +23,10 @@ public class ProductRepo {
             System.out.println("Não retorna produtos");
         }
         return productsList;
+    }
+
+    public Product findById(UUID id) {
+        var products = getAllProducts();
+        return products.stream().filter(p -> p.getProductId().equals(id)).findFirst().orElse(null);
     }
 }
