@@ -5,12 +5,14 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.UUID;
+
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class Product {
-    private long productId;
+    private UUID productId = UUID.randomUUID();
     private String name;
     private String category;
     private String brand;
