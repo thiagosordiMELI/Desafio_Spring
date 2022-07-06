@@ -15,7 +15,7 @@ import java.util.UUID;
 @AllArgsConstructor
 public class Product {
     private static final String notNullMessage = "Campo não pode ser nulo.";
-    private static final String notNegativeMessage = "Valor não pode ser negativo.";
+    private static final String valueMessage = "Valor inválido.";
 
     private UUID productId = UUID.randomUUID();
 
@@ -28,10 +28,10 @@ public class Product {
     @NotBlank(message = notNullMessage)
     private String brand;
 
-    @Min(value= 0, message = notNegativeMessage)
+    @Min(value= 0, message = valueMessage)
     private double price;
 
-    @Min(value= 1, message = notNegativeMessage)
+    @Min(value= 1, message = valueMessage)
     private int quantity;
 
     private boolean freeShipping;
