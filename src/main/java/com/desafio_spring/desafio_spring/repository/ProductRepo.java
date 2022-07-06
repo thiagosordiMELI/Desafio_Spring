@@ -26,7 +26,7 @@ public class ProductRepo {
     }
 
     public Product findById(UUID id) {
-        var products = getAllProducts();
+        List<Product> products = getAllProducts();
         return products.stream().filter(p -> p.getProductId().equals(id)).findFirst().orElse(null);
     }
 }

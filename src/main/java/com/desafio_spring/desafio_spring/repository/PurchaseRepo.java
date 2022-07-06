@@ -14,24 +14,24 @@ import java.util.List;
 public class PurchaseRepo {
     private static final String dbPath = "src/main/resources/purchases.json";
 
-    public List<Purchase> getAllPursaches() {
+    public List<Purchase> getAllPurchases() {
         try {
-            var mapper = new ObjectMapper();
-            var purchases = mapper.readValue(new File(dbPath), Purchase[].class);
+            ObjectMapper mapper = new ObjectMapper();
+            Purchase[] purchases = mapper.readValue(new File(dbPath), Purchase[].class);
             return new ArrayList<>(List.of(purchases));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
 
-    public Purchase savePurschase(Purchase purchase) {
+    public Purchase savePurchase(Purchase purchase) {
         try {
-            var allPursaches = getAllPursaches();
-            allPursaches.add(purchase);
+            List<Purchase> allPurchases = getAllPurchases();
+            allPurchases.add(purchase);
 
-            var mapper = new ObjectMapper();
+            ObjectMapper mapper = new ObjectMapper();
             mapper.enable(SerializationFeature.INDENT_OUTPUT);
-            mapper.writeValue(new File(dbPath), allPursaches);
+            mapper.writeValue(new File(dbPath), allPurchases);
 
             return purchase;
         } catch (IOException e) {

@@ -2,6 +2,7 @@ package com.desafio_spring.desafio_spring.service;
 
 import com.desafio_spring.desafio_spring.dto.PurchaseResponseDto;
 import com.desafio_spring.desafio_spring.dto.PurchaseProductRequestDto;
+import com.desafio_spring.desafio_spring.model.Product;
 import com.desafio_spring.desafio_spring.model.Purchase;
 import com.desafio_spring.desafio_spring.repository.ProductRepo;
 import com.desafio_spring.desafio_spring.repository.PurchaseRepo;
@@ -27,17 +28,17 @@ public class PurchaseServiceImp implements PurchaseService {
 
     @Override
     public PurchaseResponseDto savePurchases(List<PurchaseProductRequestDto> purchases) {
-        var products = purchases.stream()
+        List<Product> products = purchases.stream()
                 .map(x -> {
-                    var product = productRepository.findById(x.getId());
+                    Product product = productRepository.findById(x.getId());
                     product.setQuantity(x.getQuantity());
                     return product;
                 })
                 .collect(Collectors.toList());
 
-        var purchase = new Purchase(UUID.randomUUID(), products);
+        Purchase purchase = new Purchase(UUID.randomUUID(), products);
 
-        purchaseRepo.savePurschase(purchase);
+        purchaseRepo.savePurchase(purchase);
 
         return new PurchaseResponseDto(
                 purchase.getId(),
