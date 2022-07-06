@@ -5,6 +5,7 @@ import com.desafio_spring.desafio_spring.dto.PurchaseProductRequestDto;
 import com.desafio_spring.desafio_spring.model.Purchase;
 import com.desafio_spring.desafio_spring.repository.ProductRepo;
 import com.desafio_spring.desafio_spring.repository.PurchaseRepo;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,21 +14,19 @@ import java.util.stream.Collectors;
 
 @Service
 public class PurchaseServiceImp implements PurchaseService {
-    private final PurchaseRepo purchaseRepo;
-    private final ProductRepo productRepository;
+    @Autowired
+    private PurchaseRepo purchaseRepo;
 
-    public PurchaseServiceImp(PurchaseRepo purchaseRepo, ProductRepo productRepository) {
-        this.purchaseRepo = purchaseRepo;
-        this.productRepository = productRepository;
-    }
+    @Autowired
+    private ProductRepo productRepository;
 
     @Override
-    public List<Purchase> all() {
+    public List<Purchase> getAllPurchases() {
         return null;
     }
 
     @Override
-    public PurchaseResponseDto save(List<PurchaseProductRequestDto> purchases) {
+    public PurchaseResponseDto savePurchases(List<PurchaseProductRequestDto> purchases) {
         var products = purchases.stream()
                 .map(x -> {
                     var product = productRepository.findById(x.getId());
@@ -38,7 +37,7 @@ public class PurchaseServiceImp implements PurchaseService {
 
         var purchase = new Purchase(UUID.randomUUID(), products);
 
-        purchaseRepo.save(purchase);
+        purchaseRepo.savePurschase(purchase);
 
         return new PurchaseResponseDto(
                 purchase.getId(),

@@ -7,6 +7,6 @@ import com.desafio_spring.desafio_spring.model.Purchase;
 import java.util.List;
 
 public interface PurchaseService {
-    List<Purchase> all();
-    PurchaseResponseDto save(List<PurchaseProductRequestDto> purchase);
+    List<Purchase> getAllPurchases();
+    PurchaseResponseDto savePurchases(List<PurchaseProductRequestDto> purchases);
 }

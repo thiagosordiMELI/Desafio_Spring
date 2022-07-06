@@ -1,1 +1,22 @@
-[]
+[ {
+  "id" : "24bb9bb7-e736-4a0e-b795-6a6a32b1e7a8",
+  "products" : [ {
+    "productId" : "82e5d50b-fee9-4560-9c6a-d672fa4fbaa8",
+    "name" : "Serra de Bancada",
+    "category" : "Ferramentas",
+    "brand" : "FORTGPRO",
+    "price" : 1800.0,
+    "quantity" : 5,
+    "freeShipping" : true,
+    "prestige" : "****"
+  }, {
+    "productId" : "6f034210-a547-40b2-91d8-02647029feb3",
+    "name" : "Furadeira",
+    "category" : "Ferramentas",
+    "brand" : "Black & Decker",
+    "price" : 500.0,
+    "quantity" : 7,
+    "freeShipping" : true,
+    "prestige" : "****"
+  } ]
+} ]
