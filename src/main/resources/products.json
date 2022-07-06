@@ -1,0 +1,46 @@
+[ {
+  "productId" : 1,
+  "name" : "Serra de Bancada",
+  "category" : "Ferramentas",
+  "brand" : "FORTGPRO",
+  "price" : 1800.0,
+  "quantity" : 5,
+  "freeShipping" : true,
+  "prestige" : "****"
+}, {
+  "productId" : 2,
+  "name" : "Furadeira",
+  "category" : "Ferramentas",
+  "brand" : "Black & Decker",
+  "price" : 500.0,
+  "quantity" : 7,
+  "freeShipping" : true,
+  "prestige" : "****"
+}, {
+  "productId" : 6,
+  "name" : "Camiseta",
+  "category" : "Esportes",
+  "brand" : "Topper",
+  "price" : 80.0,
+  "quantity" : 2,
+  "freeShipping" : false,
+  "prestige" : "***"
+}, {
+  "productId" : 7,
+  "name" : "Redmi Note 9",
+  "category" : "Celulares",
+  "brand" : "Xiaomi",
+  "price" : 2800.0,
+  "quantity" : 15,
+  "freeShipping" : true,
+  "prestige" : "****"
+}, {
+  "productId" : 8,
+  "name" : "Smartwatch",
+  "category" : "Celulares",
+  "brand" : "Noga",
+  "price" : 1200.0,
+  "quantity" : 5,
+  "freeShipping" : true,
+  "prestige" : "**"
+} ]
