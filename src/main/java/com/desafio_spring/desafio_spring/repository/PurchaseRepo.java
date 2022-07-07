@@ -14,6 +14,10 @@ import java.util.List;
 public class PurchaseRepo {
     private static final String dbPath = "src/main/resources/purchases.json";
 
+    /**
+     * Metódo do Repository que retorna todas compras salvas em um arquivo JSON.
+     * @return Uma lista de objetos Purchase.
+     */
     public List<Purchase> getAllPurchases() {
         try {
             ObjectMapper mapper = new ObjectMapper();
@@ -24,6 +28,11 @@ public class PurchaseRepo {
         }
     }
 
+    /**
+     * Metódo do Repository que salva uma compra em um arquivo JSON.
+     * @param purchase objeto Purchase
+     * @return O objeto Purchase que foi salvo no arquivo JSON.
+     */
     public Purchase savePurchase(Purchase purchase) {
         try {
             List<Purchase> allPurchases = getAllPurchases();

@@ -21,6 +21,11 @@ public class PurchaseController {
     private PurchaseService service;
 
     @PostMapping
+    /**
+     * Metódo do Controller que recebe uma lista de produtos e envia ao service para criar a compra.
+     * @param products lista de objetos PurchaseProductRequestDto
+     * @return Um objeto PurchaseResponseDto contendo todas informações dos produtos na compra além do valor total.
+     */
     public ResponseEntity<PurchaseResponseDto> createPurchase(@RequestBody PurchaseProductRequestDto[] products) {
         return ResponseEntity.status(HttpStatus.CREATED).body(service.savePurchases(List.of(products)));
     }

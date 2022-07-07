@@ -19,6 +19,12 @@ import java.util.stream.Collectors;
 @Repository
 public class ProductRepo {
     private final String productsFile = "src/main/resources/products.json";
+
+    /**
+     * Metódo do Repository que salva um lote de produtos em um arquivo JSON.
+     * @param newProducts lista de objetos Product
+     * @return Uma lista de objetos Product que foram salvos no arquivo JSON.
+     */
     public List<Product> saveProducts(List<Product> newProducts) {
         ObjectMapper mapper = new ObjectMapper();
         ObjectWriter writer = mapper.writer(new DefaultPrettyPrinter());
@@ -35,6 +41,10 @@ public class ProductRepo {
         throw new ExceptionCustom("Erro ao salvar lista de produtos.");
     }
 
+    /**
+     * Metódo do Repository que retorna todos os produtos salvos em um arquivo JSON.
+     * @return Uma lista de objetos Product.
+     */
     public List<Product> getAllProducts() {
         ObjectMapper mapper = new ObjectMapper();
         List<Product> productsList = null;
