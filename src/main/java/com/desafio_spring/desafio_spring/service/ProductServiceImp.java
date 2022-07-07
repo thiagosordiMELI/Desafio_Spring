@@ -38,40 +38,48 @@ public class ProductServiceImp implements ProductService {
     }
 
     @Override
-    public List<ProductDto> getOrderedProducts(int order) {
-        List<Product> productList;
-        List<ProductDto> productDtoList = new ArrayList<>();
-        switch (order) {
-            case 0: {
-                productList = productRepo.getAllOrderByName();
-                productList.forEach(product -> productDtoList.add(new ProductDto(product)));
-                return productDtoList;
-            }
-            case 1: {
-                productList = productRepo.getAllOrderByName();
-                productList.forEach(product -> productDtoList.add(new ProductDto(product)));
-                Collections.reverse(productDtoList);
-                return productDtoList;
-            }
-            case 2: {
-                productList = productRepo.getAllOrderByPrice();
-                productList.forEach(product -> productDtoList.add(new ProductDto(product)));
-                Collections.reverse(productDtoList);
-                return productDtoList;
-            }
-            case 3: {
-                productList = productRepo.getAllOrderByPrice();
-                productList.forEach(product -> productDtoList.add(new ProductDto(product)));
-                return productDtoList;
-            }
-            default:
-                throw new UnsupportedOperationException();
-        }
+    public List<ProductDto> getAllProductsByCategory(String category) {
+        List<Product> productsCategory = productRepo.getAllProductsByCategory(category);
+        List<ProductDto> lista = productsCategory.stream()
+                .map(ProductDto::new)
+                .collect(Collectors.toList());
+        return lista;
     }
 
-    public ProductDto updateProduct(UUID id, ProductRequestDto productDto) {
-        Product product = new Product(productDto);
-        product.setProductId(id);
-        return new ProductDto(productRepo.updateProduct(product));
+        public List<ProductDto> getOrderedProducts(int order) {
+            List<Product> productList;
+            List<ProductDto> productDtoList = new ArrayList<>();
+            switch (order) {
+                case 0: {
+                    productList = productRepo.getAllOrderByName();
+                    productList.forEach(product -> productDtoList.add(new ProductDto(product)));
+                    return productDtoList;
+                }
+                case 1: {
+                    productList = productRepo.getAllOrderByName();
+                    productList.forEach(product -> productDtoList.add(new ProductDto(product)));
+                    Collections.reverse(productDtoList);
+                    return productDtoList;
+                }
+                case 2: {
+                    productList = productRepo.getAllOrderByPrice();
+                    productList.forEach(product -> productDtoList.add(new ProductDto(product)));
+                    Collections.reverse(productDtoList);
+                    return productDtoList;
+                }
+                case 3: {
+                    productList = productRepo.getAllOrderByPrice();
+                    productList.forEach(product -> productDtoList.add(new ProductDto(product)));
+                    return productDtoList;
+                }
+                default:
+                    throw new UnsupportedOperationException();
+            }
+        }
+
+        public ProductDto updateProduct (UUID id, ProductRequestDto productDto){
+            Product product = new Product(productDto);
+            product.setProductId(id);
+            return new ProductDto(productRepo.updateProduct(product));
+        }
     }
-}

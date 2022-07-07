@@ -1,7 +1,5 @@
 package com.desafio_spring.desafio_spring.repository;
 
-import com.desafio_spring.desafio_spring.dto.ProductDto;
-import com.desafio_spring.desafio_spring.dto.ProductRequestDto;
 import com.desafio_spring.desafio_spring.exception.ExceptionCustom;
 import com.desafio_spring.desafio_spring.model.Product;
 import com.fasterxml.jackson.core.util.DefaultPrettyPrinter;
@@ -18,9 +16,11 @@ import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
+
 @Repository
 public class ProductRepo {
     private final String productsFile = "src/main/resources/products.json";
+
     public List<Product> saveProducts(List<Product> newProducts) {
         ObjectMapper mapper = new ObjectMapper();
         ObjectWriter writer = mapper.writer(new DefaultPrettyPrinter());
@@ -53,45 +53,57 @@ public class ProductRepo {
 
     public Product findById(UUID id) {
         List<Product> products = getAllProducts();
-        Product product =  products.stream().filter(p -> p.getProductId().equals(id)).findFirst().orElse(null);
-        if(product == null){
-            throw new ExceptionCustom("Não foi achado produto com id "+id);
+        Product product = products.stream().filter(p -> p.getProductId().equals(id)).findFirst().orElse(null);
+        if (product == null) {
+            throw new ExceptionCustom("Não foi achado produto com id " + id);
         }
         return product;
     }
 
-    public List<Product> getAllOrderByName() {
-        return this.getAllProducts()
-                .stream()
-                .sorted(Comparator.comparing((Product::getName)))
+
+    public List<Product> getAllProductsByCategory(String category) {
+        List<Product> productsList = getAllProducts();
+        List<Product> productCategory = null;
+
+        productCategory = productsList.stream()
+                .filter(p -> p.getCategory().equals(category))
                 .collect(Collectors.toList());
+
+        return productCategory;
     }
 
-    public List<Product> getAllOrderByPrice() {
-        return this.getAllProducts()
-                .stream()
-                .sorted(Comparator.comparing((Product::getPrice)))
-                .collect(Collectors.toList());
-    }
-
-    public Product updateProduct(Product product) {
-        if(findById(product.getProductId()) != null) {
-            ObjectMapper mapper = new ObjectMapper();
-            try {
-                List<Product> products = Arrays.asList(mapper.readValue(new File(productsFile), Product[].class));
-                products = products.stream().map(p -> {
-                            if (p.getProductId().equals(product.getProductId()))
-                                return product;
-                            return p;
-                        }
-                ).collect(Collectors.toList());
-                mapper.enable(SerializationFeature.INDENT_OUTPUT);
-                mapper.writeValue(new File(productsFile), products);
-                return product;
-            } catch (Exception err) {
-                System.out.println("Erro ao acessar o arquivo de produtos.");
-            }
+        public List<Product> getAllOrderByName () {
+            return this.getAllProducts()
+                    .stream()
+                    .sorted(Comparator.comparing((Product::getName)))
+                    .collect(Collectors.toList());
         }
-        throw new ExceptionCustom("Erro ao atualizar produto.");
+
+        public List<Product> getAllOrderByPrice () {
+            return this.getAllProducts()
+                    .stream()
+                    .sorted(Comparator.comparing((Product::getPrice)))
+                    .collect(Collectors.toList());
+        }
+
+        public Product updateProduct (Product product){
+            if (findById(product.getProductId()) != null) {
+                ObjectMapper mapper = new ObjectMapper();
+                try {
+                    List<Product> products = Arrays.asList(mapper.readValue(new File(productsFile), Product[].class));
+                    products = products.stream().map(p -> {
+                                if (p.getProductId().equals(product.getProductId()))
+                                    return product;
+                                return p;
+                            }
+                    ).collect(Collectors.toList());
+                    mapper.enable(SerializationFeature.INDENT_OUTPUT);
+                    mapper.writeValue(new File(productsFile), products);
+                    return product;
+                } catch (Exception err) {
+                    System.out.println("Erro ao acessar o arquivo de produtos.");
+                }
+            }
+            throw new ExceptionCustom("Erro ao atualizar produto.");
+        }
     }
-}
