@@ -94,6 +94,35 @@
 			"response": []
 		},
 		{
+			"name": "Atualizar produto",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"productId\" : \"5047d093-ae08-4f2c-98a9-030ba47746e3\",\n    \"name\":\"Serra de Bancada\",\n    \"category\":\"Ferramentas\",\n    \"brand\":\"FORTGPRO\",\n    \"price\":1900.00,\n    \"quantity\":8,\n    \"freeShipping\":true,\n    \"prestige\":\"****\"\n}\n\n\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base}}/api/v1/update-article-request",
+					"host": [
+						"{{base}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"update-article-request"
+					]
+				},
+				"description": "Endpoint para inserção de produtos em lote."
+			},
+			"response": []
+		},
+		{
 			"name": "Lista de produtos",
 			"request": {
 				"method": "GET",
