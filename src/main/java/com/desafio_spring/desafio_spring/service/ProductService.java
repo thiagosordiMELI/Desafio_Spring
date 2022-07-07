@@ -36,7 +36,6 @@ public interface ProductService {
     /**
      * Método do Service que cuida da lógica de pegar a lista de todos os produtos, ordenados conforme parâmetro recebido.
      * @param orderBy parâmetro que definirá a ordenação escolhida
-     * @author Felipe Ticiani
      * @return Lista de ProductDto com a ordenação escolhida
      */
     List<ProductDto> getOrderedProducts(int orderBy);
