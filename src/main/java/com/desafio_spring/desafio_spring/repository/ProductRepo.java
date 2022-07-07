@@ -69,9 +69,6 @@ public class ProductRepo {
                 .filter(p -> p.getCategory().equals(category))
                 .collect(Collectors.toList());
 
-        if (productCategory.size() == 0) {
-            throw new ExceptionCustom("A categoria não foi encontrada");
-        }
         return productCategory;
     }
 
