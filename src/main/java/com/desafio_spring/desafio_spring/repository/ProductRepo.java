@@ -67,7 +67,7 @@ public class ProductRepo {
 
 
     public List<Product> getAllProductsByCategory(String category) {
-        List<Product> ProductsList = getAllProducts();
+        List<Product> productsList = getAllProducts();
         List<Product> productCategory = null;
         try {
             productCategory = ProductsList.stream()
