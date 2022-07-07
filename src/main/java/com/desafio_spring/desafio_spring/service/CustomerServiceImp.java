@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
@@ -41,17 +40,7 @@ public class CustomerServiceImp implements CustomerService {
             throw new CustomerAlreadyExistsException();
         }
 
-        Customer customer = Customer.builder()
-                .id(UUID.randomUUID())
-                .name(customerDto.getName())
-                .email(customerDto.getEmail())
-                .city(customerDto.getCity())
-                .state(customerDto.getState())
-                .build();
-
-        customer = repo.saveCustomer(customer);
-
-        return customer;
+        return repo.saveCustomer(new Customer(customerDto));
     }
 
     private static boolean statesAreEqual(String state1, String state2) {

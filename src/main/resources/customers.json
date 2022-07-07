@@ -1,1 +1,7 @@
-[]
+[ {
+  "id" : "f8db2192-e495-42d5-b12d-571c5d368c2f",
+  "name" : "pedro",
+  "email" : "pedro@example.com",
+  "city" : "Santo Ângelo",
+  "state" : "RS"
+} ]
