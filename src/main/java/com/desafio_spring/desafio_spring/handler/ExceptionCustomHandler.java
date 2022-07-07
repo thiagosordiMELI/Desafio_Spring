@@ -1,15 +1,20 @@
 package com.desafio_spring.desafio_spring.handler;
 
+import com.desafio_spring.desafio_spring.exception.CustomerAlreadyExistsException;
 import com.desafio_spring.desafio_spring.exception.ExceptionCustom;
 import com.desafio_spring.desafio_spring.exception.ExceptionCustomDetails;
+import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 
 import javax.validation.ConstraintViolationException;
 import java.time.LocalDateTime;
+import java.util.stream.Collectors;
 
 @ControllerAdvice
 public class ExceptionCustomHandler {
@@ -50,6 +55,32 @@ public class ExceptionCustomHandler {
                 HttpStatus.BAD_REQUEST);
     }
 
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public ResponseEntity<ExceptionCustomDetails> requestBodyInvalidHandler(MethodArgumentNotValidException ex) {
+        return new ResponseEntity<>(
+                ExceptionCustomDetails
+                        .builder()
+                        .title("Dados inválidos")
+                        .status(HttpStatus.BAD_REQUEST.value())
+                        .message(ex.getAllErrors().stream().map(DefaultMessageSourceResolvable::getDefaultMessage).collect(Collectors.joining("; ")))
+                        .timestamp(LocalDateTime.now())
+                        .build(),
+                HttpStatus.BAD_REQUEST
+        );
+    }
+
+    @ExceptionHandler(CustomerAlreadyExistsException.class)
+    public ResponseEntity<ExceptionCustomDetails> customerAlreadyExistsExceptionHandler(CustomerAlreadyExistsException ex) {
+        return new ResponseEntity<>(
+                ExceptionCustomDetails.builder()
+                        .title("Cliente já existe")
+                        .status(HttpStatus.BAD_REQUEST.value())
+                        .message(ex.getMessage())
+                        .timestamp(LocalDateTime.now())
+                        .build(),
+                HttpStatus.BAD_REQUEST);
+    }
+
     @ExceptionHandler(Exception.class)
     public ResponseEntity exceptionHandler(Exception ex) {
         return new ResponseEntity<>(
@@ -60,6 +91,22 @@ public class ExceptionCustomHandler {
                         .timestamp(LocalDateTime.now())
                         .build(),
                 HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+    @ExceptionHandler({UnsupportedOperationException.class, MethodArgumentTypeMismatchException.class})
+    public ResponseEntity invalidOrderHandler() {
+        return new ResponseEntity<>(
+                ExceptionCustomDetails.builder()
+                        .title("Ordem não suportada.")
+                        .status(HttpStatus.BAD_REQUEST.value())
+                        .message(new Throwable("Ordens suportadas: " +
+                                "0: Alfabética crescente | " +
+                                "1: Alfabética decrescente | " +
+                                "2: Maior a menor preço | " +
+                                "3: Menor a maior preço.").getMessage())
+                        .timestamp(LocalDateTime.now())
+                        .build(),
+                HttpStatus.BAD_REQUEST);
     }
 
 }

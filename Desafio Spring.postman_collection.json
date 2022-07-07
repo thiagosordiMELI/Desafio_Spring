@@ -1,10 +1,69 @@
 {
 	"info": {
-		"_postman_id": "f97468e4-ea8a-46cb-81c0-0511e679d471",
+		"_postman_id": "758b9e53-7a1b-4b8e-8181-d0d02286cc80",
 		"name": "Desafio Spring",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
+		{
+			"name": "Clientes",
+			"item": [
+				{
+					"name": "Cadastro de clientes",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"pedro\",\n  \"email\": \"pedro@example.com\",\n  \"city\": \"Santo Ângelo\",\n  \"state\": \"RS\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base}}/api/v1/customers",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"customers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Lista de clientes",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base}}/api/v1/customers",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"customers"
+							],
+							"query": [
+								{
+									"key": "state",
+									"value": "RS",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
 		{
 			"name": "Cadastro de produtos",
 			"request": {
@@ -28,6 +87,35 @@
 						"api",
 						"v1",
 						"insert-articles-request"
+					]
+				},
+				"description": "Endpoint para inserção de produtos em lote."
+			},
+			"response": []
+		},
+		{
+			"name": "Atualizar produto",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"productId\" : \"5047d093-ae08-4f2c-98a9-030ba47746e3\",\n    \"name\":\"Serra de Bancada\",\n    \"category\":\"Ferramentas\",\n    \"brand\":\"FORTGPRO\",\n    \"price\":1900.00,\n    \"quantity\":8,\n    \"freeShipping\":true,\n    \"prestige\":\"****\"\n}\n\n\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base}}/api/v1/update-article-request",
+					"host": [
+						"{{base}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"update-article-request"
 					]
 				},
 				"description": "Endpoint para inserção de produtos em lote."
