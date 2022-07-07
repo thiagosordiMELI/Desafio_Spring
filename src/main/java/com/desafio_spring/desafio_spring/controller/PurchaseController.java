@@ -2,6 +2,7 @@ package com.desafio_spring.desafio_spring.controller;
 
 import com.desafio_spring.desafio_spring.dto.PurchaseProductRequestDto;
 import com.desafio_spring.desafio_spring.dto.PurchaseResponseDto;
+import com.desafio_spring.desafio_spring.model.PurchaseProduct;
 import com.desafio_spring.desafio_spring.service.PurchaseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -21,7 +22,7 @@ public class PurchaseController {
     private PurchaseService service;
 
     @PostMapping
-    public ResponseEntity<PurchaseResponseDto> createPurchase(@RequestBody PurchaseProductRequestDto[] products) {
+    public ResponseEntity<PurchaseResponseDto> createPurchase(@RequestBody PurchaseProduct[] products) {
         return ResponseEntity.status(HttpStatus.CREATED).body(service.savePurchases(List.of(products)));
     }
 }
