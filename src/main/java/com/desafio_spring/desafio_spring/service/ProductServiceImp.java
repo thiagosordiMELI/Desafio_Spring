@@ -12,7 +12,6 @@ import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 @Service
 public class ProductServiceImp implements ProductService {
@@ -84,4 +83,3 @@ public class ProductServiceImp implements ProductService {
             return new ProductDto(productRepo.updateProduct(product));
         }
     }
-}

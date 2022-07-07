@@ -33,7 +33,7 @@ public class ProductController {
         return ResponseEntity.ok(productsList);
     }
 
-    @GetMapping("/teste")
+    @GetMapping("/")
     public ResponseEntity<List<ProductDto>> getAllProductsByCategory(@RequestParam String category) {
         List<ProductDto> productsList = service.getAllProductsByCategory(category);
         return ResponseEntity.ok(productsList);

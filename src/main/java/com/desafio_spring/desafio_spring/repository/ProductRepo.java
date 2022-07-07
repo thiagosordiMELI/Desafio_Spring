@@ -1,8 +1,5 @@
 package com.desafio_spring.desafio_spring.repository;
 
-//import com.desafio_spring.desafio_spring.dto.ProductRequestDto;
-//import com.desafio_spring.desafio_spring.dto.ProductDto;
-//import com.desafio_spring.desafio_spring.dto.ProductRequestDto;
 import com.desafio_spring.desafio_spring.exception.ExceptionCustom;
 import com.desafio_spring.desafio_spring.model.Product;
 import com.fasterxml.jackson.core.util.DefaultPrettyPrinter;
@@ -18,9 +15,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
-//import java.util.stream.Stream;
-//import java.util.stream.Stream;
-//import java.util.stream.Collectors;
+
 
 @Repository
 public class ProductRepo {
@@ -69,12 +64,11 @@ public class ProductRepo {
     public List<Product> getAllProductsByCategory(String category) {
         List<Product> ProductsList = getAllProducts();
         List<Product> productCategory = null;
-        try {
-            productCategory = ProductsList.stream()
-                    .filter(p -> p.getCategory().equals(category))
-                    .collect(Collectors.toList());
-        } catch (Exception ex) {
-        }
+
+        productCategory = ProductsList.stream()
+                .filter(p -> p.getCategory().equals(category))
+                .collect(Collectors.toList());
+
         if (productCategory.size() == 0) {
             throw new ExceptionCustom("A categoria não foi encontrada");
         }
