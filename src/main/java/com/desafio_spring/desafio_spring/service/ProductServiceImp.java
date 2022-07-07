@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -37,6 +38,37 @@ public class ProductServiceImp implements ProductService {
     }
 
     @Override
+    public List<ProductDto> getOrderedProducts(int order) {
+        List<Product> productList;
+        List<ProductDto> productDtoList = new ArrayList<>();
+        switch (order) {
+            case 0: {
+                productList = productRepo.getAllOrderByName();
+                productList.forEach(product -> productDtoList.add(new ProductDto(product)));
+                return productDtoList;
+            }
+            case 1: {
+                productList = productRepo.getAllOrderByName();
+                productList.forEach(product -> productDtoList.add(new ProductDto(product)));
+                Collections.reverse(productDtoList);
+                return productDtoList;
+            }
+            case 2: {
+                productList = productRepo.getAllOrderByPrice();
+                productList.forEach(product -> productDtoList.add(new ProductDto(product)));
+                Collections.reverse(productDtoList);
+                return productDtoList;
+            }
+            case 3: {
+                productList = productRepo.getAllOrderByPrice();
+                productList.forEach(product -> productDtoList.add(new ProductDto(product)));
+                return productDtoList;
+            }
+            default:
+                throw new UnsupportedOperationException();
+        }
+    }
+
     public ProductDto updateProduct(UUID id, ProductRequestDto productDto) {
         Product product = new Product(productDto);
         product.setProductId(id);

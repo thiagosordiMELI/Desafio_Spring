@@ -1,5 +1,6 @@
 package com.desafio_spring.desafio_spring.repository;
 
+import com.desafio_spring.desafio_spring.dto.ProductDto;
 import com.desafio_spring.desafio_spring.dto.ProductRequestDto;
 import com.desafio_spring.desafio_spring.exception.ExceptionCustom;
 import com.desafio_spring.desafio_spring.model.Product;
@@ -10,7 +11,7 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 import org.springframework.stereotype.Repository;
 
 import java.io.File;
-import java.util.ArrayList;
+import java.util.*;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
@@ -57,6 +58,20 @@ public class ProductRepo {
             throw new ExceptionCustom("Não foi achado produto com id "+id);
         }
         return product;
+    }
+
+    public List<Product> getAllOrderByName() {
+        return this.getAllProducts()
+                .stream()
+                .sorted(Comparator.comparing((Product::getName)))
+                .collect(Collectors.toList());
+    }
+
+    public List<Product> getAllOrderByPrice() {
+        return this.getAllProducts()
+                .stream()
+                .sorted(Comparator.comparing((Product::getPrice)))
+                .collect(Collectors.toList());
     }
 
     public Product updateProduct(Product product) {
