@@ -65,7 +65,7 @@ public class ProductRepo {
         List<Product> productsList = getAllProducts();
         List<Product> productCategory = null;
 
-        productCategory = ProductsList.stream()
+        productCategory = productsList.stream()
                 .filter(p -> p.getCategory().equals(category))
                 .collect(Collectors.toList());
 
