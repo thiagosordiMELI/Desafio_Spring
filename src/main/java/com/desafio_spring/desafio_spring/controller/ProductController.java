@@ -1,6 +1,7 @@
 package com.desafio_spring.desafio_spring.controller;
 
 import com.desafio_spring.desafio_spring.dto.ProductDto;
+import com.desafio_spring.desafio_spring.dto.ProductRequestDto;
 import com.desafio_spring.desafio_spring.model.Product;
 import com.desafio_spring.desafio_spring.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +27,7 @@ public class ProductController {
     }
 
     @PostMapping("/insert-articles-request")
-    public ResponseEntity<List<ProductDto>> insertArticlesRequest(@RequestBody @Valid List<Product> products) {
+    public ResponseEntity<List<ProductDto>> insertArticlesRequest(@RequestBody @Valid List<ProductRequestDto> products) {
         return ResponseEntity.ok(service.saveProducts(products));
     }
 
