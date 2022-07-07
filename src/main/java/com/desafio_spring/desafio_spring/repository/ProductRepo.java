@@ -31,6 +31,10 @@ public class ProductRepo {
 
     public Product findById(UUID id) {
         List<Product> products = getAllProducts();
-        return products.stream().filter(p -> p.getProductId().equals(id)).findFirst().orElse(null);
+        Product product =  products.stream().filter(p -> p.getProductId().equals(id)).findFirst().orElse(null);
+        if(product == null){
+            throw new ExceptionCustom("Não foi achado produto com id "+id);
+        }
+        return product;
     }
 }
