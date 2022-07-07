@@ -1,5 +1,6 @@
 package com.desafio_spring.desafio_spring.model;
 
+import com.desafio_spring.desafio_spring.dto.ProductRequestDto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -38,4 +39,14 @@ public class Product {
 
     @NotBlank(message = notNullMessage)
     private String prestige;
+
+    public Product(ProductRequestDto product) {
+        name = product.getName();
+        category = product.getCategory();
+        brand = product.getBrand();
+        price = product.getPrice();
+        quantity = product.getQuantity();
+        freeShipping = product.isFreeShipping();
+        prestige = product.getPrestige();
+    }
 }
