@@ -13,6 +13,6 @@ import java.util.UUID;
 @AllArgsConstructor
 public class PurchaseResponseDto {
     private UUID id;
-    private List<Product> products;
+    private List<PurchaseProductResponseDto> products;
     private double total;
 }
