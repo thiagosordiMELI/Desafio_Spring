@@ -1,19 +1,39 @@
 package com.desafio_spring.desafio_spring.repository;
 
+import com.desafio_spring.desafio_spring.dto.ProductRequestDto;
 import com.desafio_spring.desafio_spring.exception.ExceptionCustom;
 import com.desafio_spring.desafio_spring.model.Product;
+import com.fasterxml.jackson.core.util.DefaultPrettyPrinter;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectWriter;
 import org.springframework.stereotype.Repository;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Repository
 public class ProductRepo {
     private final String productsFile = "src/main/resources/products.json";
+    public List<Product> saveProducts(List<Product> newProducts) {
+        ObjectMapper mapper = new ObjectMapper();
+        ObjectWriter writer = mapper.writer(new DefaultPrettyPrinter());
+        List<Product> oldList;
+        try {
+            oldList = Arrays.asList(mapper.readValue(new File(productsFile), Product[].class));
+            List<Product> newList = new ArrayList<>(oldList);
+            newProducts.forEach(p -> newList.add(p));
+            writer.writeValue(new File(productsFile), newList);
+            return newProducts;
+        } catch (Exception err) {
+            System.out.println("Erro ao acessar o arquivo de produtos.");
+        }
+        throw new ExceptionCustom("Erro ao salvar lista de produtos.");
+    }
 
     public List<Product> getAllProducts() {
         ObjectMapper mapper = new ObjectMapper();

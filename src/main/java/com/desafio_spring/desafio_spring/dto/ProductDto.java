@@ -5,7 +5,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
 import java.util.UUID;
 
 @Getter
@@ -16,7 +15,6 @@ public class ProductDto {
     private UUID productId;
     private String name;
     private int quantity;
-
 
     public ProductDto(Product product) {
         this.productId = product.getProductId();
