@@ -19,7 +19,10 @@ public class ProductServiceImp implements ProductService {
 
     @Override
     public List<ProductDto> saveProducts(List<ProductRequestDto> productList) {
-        List<Product> savedProducts = productRepo.saveProducts(productList);
+        List<Product> newProducts = productList.stream()
+                .map(product -> new Product(product))
+                .collect(Collectors.toUnmodifiableList());
+        List<Product> savedProducts = productRepo.saveProducts(newProducts);
         List<ProductDto> productDto = new ArrayList<>();
         savedProducts.forEach(product -> productDto.add(new ProductDto(product)));
         return productDto;

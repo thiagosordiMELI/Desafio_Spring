@@ -19,13 +19,10 @@ import java.util.stream.Collectors;
 @Repository
 public class ProductRepo {
     private final String productsFile = "src/main/resources/products.json";
-    public List<Product> saveProducts(List<ProductRequestDto> productRequestDtoList) {
+    public List<Product> saveProducts(List<Product> newProducts) {
         ObjectMapper mapper = new ObjectMapper();
         ObjectWriter writer = mapper.writer(new DefaultPrettyPrinter());
         List<Product> oldList;
-        List<Product> newProducts = productRequestDtoList.stream()
-                .map(product -> new Product(product))
-                .collect(Collectors.toUnmodifiableList());
         try {
             oldList = Arrays.asList(mapper.readValue(new File(productsFile), Product[].class));
             List<Product> newList = new ArrayList<>(oldList);
