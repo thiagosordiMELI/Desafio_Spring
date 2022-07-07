@@ -1,10 +1,69 @@
 {
 	"info": {
-		"_postman_id": "98d59ea2-00ef-4c42-a049-b0ce4599d79b",
+		"_postman_id": "758b9e53-7a1b-4b8e-8181-d0d02286cc80",
 		"name": "Desafio Spring",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
+		{
+			"name": "Clientes",
+			"item": [
+				{
+					"name": "Cadastro de clientes",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"pedro\",\n  \"email\": \"pedro@example.com\",\n  \"city\": \"Santo Ângelo\",\n  \"state\": \"RS\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base}}/api/v1/customers",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"customers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Lista de clientes",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base}}/api/v1/customers",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"customers"
+							],
+							"query": [
+								{
+									"key": "state",
+									"value": "RS",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
 		{
 			"name": "Cadastro de produtos",
 			"request": {
