@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "f3bc0e65-d056-4aff-b020-61d31acf1cd5",
+		"_postman_id": "f97468e4-ea8a-46cb-81c0-0511e679d471",
 		"name": "Desafio Spring",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -12,7 +12,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "[\n      {\n         \"productId\":1,\n         \"name\":\"Serra de Bancada\",\n         \"category\":\"Ferramentas\",\n         \"brand\":\"FORTGPRO\",\n         \"price\":1800.00,\n         \"quantity\":5,\n         \"freeShipping\":true,\n         \"prestige\":\"****\"\n      },     \n      {\n         \"productId\":2,\n         \"name\":\"Furadeira\",\n         \"category\":\"Ferramentas\",\n         \"brand\":\"Black & Decker\",\n         \"price\":500.00,\n         \"quantity\":7,\n         \"freeShipping\":true,\n         \"prestige\":\"****\"\n      }\n   ]\n",
+					"raw": "[\n    {\n        \"name\":\"Serra de Bancada\",\n        \"category\":\"Ferramentas\",\n        \"brand\":\"FORTGPRO\",\n        \"price\":1800.00,\n        \"quantity\":5,\n        \"freeShipping\":true,\n        \"prestige\":\"****\"\n    },\n    {\n        \"name\":\"Furadeira\",\n        \"category\":\"Ferramentas\",\n        \"brand\":\"Black & Decker\",\n        \"price\":500.00,\n        \"quantity\":7,\n        \"freeShipping\":true,\n        \"prestige\":\"****\"\n    }\n]\n",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -253,7 +253,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "[\n      {\n         \"id\":1,\n         \"quantity\":5\n       },\n      {\n         \"id\":2,\n          \"quantity\":7\n       }\n     ]",
+					"raw": "[\n    {\n        \"id\": \"99d724d7-8bb4-4b19-94f2-c6441ddcb23f\",\n        \"quantity\":5\n    },\n    {\n        \"id\":\"e96a6f9c-b0fe-42f8-b25d-a32d3a118eea\",\n        \"quantity\":7\n    }\n]",
 					"options": {
 						"raw": {
 							"language": "json"
