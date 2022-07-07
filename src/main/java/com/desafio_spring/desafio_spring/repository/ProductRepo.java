@@ -58,4 +58,11 @@ public class ProductRepo {
                 .collect(Collectors.toList());
     }
 
+    public List<Product> getAllOrderByPrice() {
+        return this.getAllProducts()
+                .stream()
+                .sorted(Comparator.comparing((Product::getPrice)))
+                .collect(Collectors.toList());
+    }
+
 }

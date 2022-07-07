@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -46,12 +47,22 @@ public class ProductServiceImp implements ProductService {
             case 1: {
                 productList = productRepo.getAllOrderByName();
                 productList.forEach(product -> productDtoList.add(new ProductDto(product)));
-                return productDtoList.stream()
-                        .sorted(Comparator.comparing(ProductDto::getName)
-                                .reversed())
-                        .collect(Collectors.toList());
+                Collections.reverse(productDtoList);
+                return productDtoList;
             }
-            default: throw new ExceptionCustom("Ordem não permitida.");
+            case 2: {
+                productList = productRepo.getAllOrderByPrice();
+                productList.forEach(product -> productDtoList.add(new ProductDto(product)));
+                Collections.reverse(productDtoList);
+                return productDtoList;
+            }
+            case 3: {
+                productList = productRepo.getAllOrderByPrice();
+                productList.forEach(product -> productDtoList.add(new ProductDto(product)));
+                return productDtoList;
+            }
+            default:
+                throw new UnsupportedOperationException();
         }
     }
 

@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 
 import javax.validation.ConstraintViolationException;
 import java.time.LocalDateTime;
@@ -60,6 +61,22 @@ public class ExceptionCustomHandler {
                         .timestamp(LocalDateTime.now())
                         .build(),
                 HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+    @ExceptionHandler({UnsupportedOperationException.class, MethodArgumentTypeMismatchException.class})
+    public ResponseEntity invalidOrderHandler() {
+        return new ResponseEntity<>(
+                ExceptionCustomDetails.builder()
+                        .title("Ordem não suportada.")
+                        .status(HttpStatus.BAD_REQUEST.value())
+                        .message(new Throwable("Ordens suportadas: " +
+                                "0: Alfabética crescente | " +
+                                "1: Alfabética decrescente | " +
+                                "2: Maior a menor preço | " +
+                                "3: Menor a maior preço.").getMessage())
+                        .timestamp(LocalDateTime.now())
+                        .build(),
+                HttpStatus.BAD_REQUEST);
     }
 
 }
