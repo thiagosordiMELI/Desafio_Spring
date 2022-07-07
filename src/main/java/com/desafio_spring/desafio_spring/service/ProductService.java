@@ -8,4 +8,5 @@ import java.util.List;
 public interface ProductService {
     List<ProductDto> saveProducts(List<Product> productList);
     List<ProductDto> getAllProducts();
+    List<ProductDto> getOrderedProducts(int orderBy);
 }

@@ -1,5 +1,6 @@
 package com.desafio_spring.desafio_spring.repository;
 
+import com.desafio_spring.desafio_spring.dto.ProductDto;
 import com.desafio_spring.desafio_spring.exception.ExceptionCustom;
 import com.desafio_spring.desafio_spring.model.Product;
 import com.fasterxml.jackson.core.util.DefaultPrettyPrinter;
@@ -8,11 +9,9 @@ import com.fasterxml.jackson.databind.ObjectWriter;
 import org.springframework.stereotype.Repository;
 
 import java.io.File;
-import java.util.ArrayList;
+import java.util.*;
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.List;
-import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Repository
 public class ProductRepo {
@@ -51,4 +50,12 @@ public class ProductRepo {
         List<Product> products = getAllProducts();
         return products.stream().filter(p -> p.getProductId().equals(id)).findFirst().orElse(null);
     }
+
+    public List<Product> getAllOrderByName() {
+        return this.getAllProducts()
+                .stream()
+                .sorted(Comparator.comparing((Product::getName)))
+                .collect(Collectors.toList());
+    }
+
 }
