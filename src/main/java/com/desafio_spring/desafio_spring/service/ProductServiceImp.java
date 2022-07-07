@@ -38,6 +38,8 @@ public class ProductServiceImp implements ProductService {
 
     @Override
     public ProductDto updateProduct(UUID id, ProductRequestDto productDto) {
-        return new ProductDto(productRepo.updateProduct(id, new Product(productDto)));
+        Product product = new Product(productDto);
+        product.setProductId(id);
+        return new ProductDto(productRepo.updateProduct(product));
     }
 }

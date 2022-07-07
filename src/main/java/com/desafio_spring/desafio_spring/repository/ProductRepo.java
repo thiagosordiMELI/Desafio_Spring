@@ -59,13 +59,13 @@ public class ProductRepo {
         return product;
     }
 
-    public Product updateProduct(UUID id, Product product) {
-        if(findById(id) != null) {
+    public Product updateProduct(Product product) {
+        if(findById(product.getProductId()) != null) {
             ObjectMapper mapper = new ObjectMapper();
             try {
                 List<Product> products = Arrays.asList(mapper.readValue(new File(productsFile), Product[].class));
                 products = products.stream().map(p -> {
-                            if (p.getProductId().equals(id))
+                            if (p.getProductId().equals(product.getProductId()))
                                 return product;
                             return p;
                         }
