@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.UUID;
 
 @Validated
 @RestController
@@ -32,7 +33,12 @@ public class ProductController {
 
     @GetMapping("/articles/")
     public ResponseEntity<List<ProductDto>> getAllOrdered(@RequestParam int order) {
-        List<ProductDto> productsList =  service.getOrderedProducts(order);
+        List<ProductDto> productsList = service.getOrderedProducts(order);
         return ResponseEntity.ok(productsList);
+    }
+
+    @PutMapping("/update-article-request/{id}")
+    public ResponseEntity<ProductDto> updateArticleRequest(@PathVariable UUID id, @RequestBody @Valid ProductRequestDto productDto) {
+        return ResponseEntity.ok(service.updateProduct(id, productDto));
     }
 }

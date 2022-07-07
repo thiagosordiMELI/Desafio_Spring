@@ -7,6 +7,7 @@ import com.desafio_spring.desafio_spring.model.Product;
 import com.fasterxml.jackson.core.util.DefaultPrettyPrinter;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import com.fasterxml.jackson.databind.SerializationFeature;
 import org.springframework.stereotype.Repository;
 
 import java.io.File;
@@ -73,4 +74,24 @@ public class ProductRepo {
                 .collect(Collectors.toList());
     }
 
+    public Product updateProduct(Product product) {
+        if(findById(product.getProductId()) != null) {
+            ObjectMapper mapper = new ObjectMapper();
+            try {
+                List<Product> products = Arrays.asList(mapper.readValue(new File(productsFile), Product[].class));
+                products = products.stream().map(p -> {
+                            if (p.getProductId().equals(product.getProductId()))
+                                return product;
+                            return p;
+                        }
+                ).collect(Collectors.toList());
+                mapper.enable(SerializationFeature.INDENT_OUTPUT);
+                mapper.writeValue(new File(productsFile), products);
+                return product;
+            } catch (Exception err) {
+                System.out.println("Erro ao acessar o arquivo de produtos.");
+            }
+        }
+        throw new ExceptionCustom("Erro ao atualizar produto.");
+    }
 }
