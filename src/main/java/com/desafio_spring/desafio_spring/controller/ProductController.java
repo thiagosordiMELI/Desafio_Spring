@@ -7,11 +7,7 @@ import com.desafio_spring.desafio_spring.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -33,5 +29,10 @@ public class ProductController {
     @PostMapping("/insert-articles-request")
     public ResponseEntity<List<ProductDto>> insertArticlesRequest(@RequestBody @Valid List<ProductRequestDto> products) {
         return ResponseEntity.ok(service.saveProducts(products));
+    }
+
+    @PutMapping("/update-article-request")
+    public ResponseEntity<ProductDto> updateArticleRequest(@RequestBody @Valid Product product) {
+        return ResponseEntity.ok(service.updateProduct(product));
     }
 }

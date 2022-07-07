@@ -34,4 +34,9 @@ public class ProductServiceImp implements ProductService {
         return productList.stream()
                 .map(ProductDto::new).collect(Collectors.toList());
     }
+
+    @Override
+    public ProductDto updateProduct(Product product) {
+        return new ProductDto(productRepo.updateProduct(product));
+    }
 }
