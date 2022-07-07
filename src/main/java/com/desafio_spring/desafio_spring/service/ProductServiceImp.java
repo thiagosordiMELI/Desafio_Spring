@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Service
 public class ProductServiceImp implements ProductService {
@@ -37,12 +38,10 @@ public class ProductServiceImp implements ProductService {
 
     @Override
     public List<ProductDto> getAllProductsByCategory(String category) {
-        List<Product> ProductsList = productRepo.getAllProducts();
-        List<ProductDto> lista = ProductsList.stream()
-                .filter(p -> p.getCategory().equals(category))
+        List<Product> productsCategory = productRepo.getAllProductsByCategory(category);
+        List<ProductDto> lista = productsCategory.stream()
                 .map(ProductDto::new)
                 .collect(Collectors.toList());
-        System.out.println(lista);
         return lista;
     }
 }
