@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface ProductService {
     List<ProductDto> getAllProducts();
+    List<ProductDto> getAllProductsByCategory(String category);
 }

@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
 
 import java.util.List;
 
@@ -20,6 +22,12 @@ public class ProductController {
     @GetMapping("/articles")
     public ResponseEntity<List<ProductDto>> getAllProducts() {
         List<ProductDto> productsList =  service.getAllProducts();
+        return ResponseEntity.ok(productsList);
+    }
+
+    @GetMapping("/teste")
+    public ResponseEntity<List<ProductDto>> getAllProductsByCategory(@RequestParam String category) {
+        List<ProductDto> productsList = service.getAllProductsByCategory(category);
         return ResponseEntity.ok(productsList);
     }
 }

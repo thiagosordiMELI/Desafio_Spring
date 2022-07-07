@@ -21,4 +21,15 @@ public class ProductServiceImp implements ProductService{
         return productList.stream()
                 .map(ProductDto::new).collect(Collectors.toList());
     }
+
+    @Override
+    public List<ProductDto> getAllProductsByCategory(String category) {
+        List<Product> ProductsList = productRepo.getAllProducts();
+        List<ProductDto> lista = ProductsList.stream()
+                .filter(p -> p.getCategory().equals(category))
+                .map(ProductDto::new)
+                .collect(Collectors.toList());
+        System.out.println(lista);
+        return lista;
+    }
 }
