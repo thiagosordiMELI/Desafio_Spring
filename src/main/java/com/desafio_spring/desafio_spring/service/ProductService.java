@@ -5,9 +5,10 @@ import com.desafio_spring.desafio_spring.dto.ProductDto;
 import com.desafio_spring.desafio_spring.model.Product;
 
 import java.util.List;
+import java.util.UUID;
 
 public interface ProductService {
     List<ProductDto> saveProducts(List<ProductRequestDto> productList);
-    ProductDto updateProduct(Product product);
+    ProductDto updateProduct(UUID id, ProductRequestDto productDto);
     List<ProductDto> getAllProducts();
 }

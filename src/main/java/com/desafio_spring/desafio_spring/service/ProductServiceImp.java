@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
@@ -36,7 +37,7 @@ public class ProductServiceImp implements ProductService {
     }
 
     @Override
-    public ProductDto updateProduct(Product product) {
-        return new ProductDto(productRepo.updateProduct(product));
+    public ProductDto updateProduct(UUID id, ProductRequestDto productDto) {
+        return new ProductDto(productRepo.updateProduct(id, new Product(productDto)));
     }
 }

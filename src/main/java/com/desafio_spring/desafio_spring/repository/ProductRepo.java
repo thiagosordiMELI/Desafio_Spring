@@ -59,21 +59,23 @@ public class ProductRepo {
         return product;
     }
 
-    public Product updateProduct(Product product) {
-        ObjectMapper mapper = new ObjectMapper();
-        try {
-            List<Product> products = Arrays.asList(mapper.readValue(new File(productsFile), Product[].class));
-            products = products.stream().map(p -> {
-                if(p.getProductId().equals(product.getProductId()))
-                    return product;
-                return p;
-                }
+    public Product updateProduct(UUID id, Product product) {
+        if(findById(id) != null) {
+            ObjectMapper mapper = new ObjectMapper();
+            try {
+                List<Product> products = Arrays.asList(mapper.readValue(new File(productsFile), Product[].class));
+                products = products.stream().map(p -> {
+                            if (p.getProductId().equals(id))
+                                return product;
+                            return p;
+                        }
                 ).collect(Collectors.toList());
-            mapper.enable(SerializationFeature.INDENT_OUTPUT);
-            mapper.writeValue(new File(productsFile), products);
-            return product;
-        } catch (Exception err) {
-            System.out.println("Erro ao acessar o arquivo de produtos.");
+                mapper.enable(SerializationFeature.INDENT_OUTPUT);
+                mapper.writeValue(new File(productsFile), products);
+                return product;
+            } catch (Exception err) {
+                System.out.println("Erro ao acessar o arquivo de produtos.");
+            }
         }
         throw new ExceptionCustom("Erro ao atualizar produto.");
     }
