@@ -37,10 +37,10 @@ public class ProductServiceImp implements ProductService {
     }
 
     @Override
-    public List<ProductDto> getOrderedProducts(int orderBy) {
+    public List<ProductDto> getOrderedProducts(int order) {
         List<Product> productList;
         List<ProductDto> productDtoList = new ArrayList<>();
-        switch (orderBy) {
+        switch (order) {
             case 0: {
                 productList = productRepo.getAllOrderByName();
                 productList.forEach(product -> productDtoList.add(new ProductDto(product)));

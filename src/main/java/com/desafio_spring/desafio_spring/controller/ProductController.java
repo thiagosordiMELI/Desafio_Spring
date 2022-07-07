@@ -2,7 +2,6 @@ package com.desafio_spring.desafio_spring.controller;
 
 import com.desafio_spring.desafio_spring.dto.ProductDto;
 import com.desafio_spring.desafio_spring.dto.ProductRequestDto;
-import com.desafio_spring.desafio_spring.model.Product;
 import com.desafio_spring.desafio_spring.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -32,8 +31,8 @@ public class ProductController {
     }
 
     @GetMapping("/articles/")
-    public ResponseEntity<List<ProductDto>> getAllOrdered(@RequestParam int orderBy) {
-        List<ProductDto> productsList =  service.getOrderedProducts(orderBy);
+    public ResponseEntity<List<ProductDto>> getAllOrdered(@RequestParam int order) {
+        List<ProductDto> productsList =  service.getOrderedProducts(order);
         return ResponseEntity.ok(productsList);
     }
 }
