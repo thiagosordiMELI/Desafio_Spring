@@ -57,4 +57,26 @@ public class ProductRepo {
         }
         return product;
     }
+
+    public List<Product> filterMultiples(String category, String prestige, Boolean freeShipping )  {
+        List<Product> products = getAllProducts();
+        List<Product> productFiltered = null;
+        if (category != null && freeShipping != null) {
+            productFiltered = products.stream()
+                    .filter(p -> p.getCategory().equals(category))
+                    .filter(p -> p.isFreeShipping() == freeShipping)
+                    .collect(Collectors.toList());
+        }
+        if(prestige != null && freeShipping != null) {
+            productFiltered = products.stream()
+                    .filter(p -> p.isFreeShipping() == freeShipping)
+                    .filter(p -> p.getPrestige().equals(prestige))
+                    .collect(Collectors.toList());
+        }
+        if(productFiltered.size() == 0) {
+            // preciso mudar a forma do throw para status 200 com a msg abaixo
+            throw new ExceptionCustom("Não há produtos com os filtros selecionados");
+        }
+        return productFiltered;
+    }
 }

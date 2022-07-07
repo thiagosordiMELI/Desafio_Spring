@@ -20,7 +20,7 @@ public class ProductServiceImp implements ProductService {
     @Override
     public List<ProductDto> saveProducts(List<ProductRequestDto> productList) {
         List<Product> newProducts = productList.stream()
-                .map(product -> new Product(product))
+                .map(Product::new)
                 .collect(Collectors.toUnmodifiableList());
         List<Product> savedProducts = productRepo.saveProducts(newProducts);
         List<ProductDto> productDto = new ArrayList<>();
@@ -33,5 +33,13 @@ public class ProductServiceImp implements ProductService {
         List<Product> productList = productRepo.getAllProducts();
         return productList.stream()
                 .map(ProductDto::new).collect(Collectors.toList());
+    }
+
+    @Override
+    public List<ProductDto> filterMultiples(String category, String prestige, Boolean freeShipping) {
+        List<Product> filteredProducts = productRepo.filterMultiples(category, prestige, freeShipping);
+        return filteredProducts
+                .stream().map(ProductDto::new)
+                .collect(Collectors.toList());
     }
 }

@@ -8,4 +8,6 @@ import java.util.List;
 public interface ProductService {
     List<ProductDto> saveProducts(List<ProductRequestDto> productList);
     List<ProductDto> getAllProducts();
+
+    List<ProductDto> filterMultiples(String category, String prestige, Boolean freeShipping);
 }
