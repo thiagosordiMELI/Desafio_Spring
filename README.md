@@ -226,7 +226,6 @@ Adiciona um novo cliente. Devolve um objeto com os dados básicos do cliente.<br
 
 
 `GET /api/v1/customers`<br name="getCustomers">
-
 Lista de todos os clientes cadastrados.
 <br>
 <pre><code><b>Response:</b>
