@@ -1,8 +1,6 @@
 package com.desafio_spring.desafio_spring.handler;
 
-import com.desafio_spring.desafio_spring.exception.CustomerAlreadyExistsException;
-import com.desafio_spring.desafio_spring.exception.ExceptionCustom;
-import com.desafio_spring.desafio_spring.exception.ExceptionCustomDetails;
+import com.desafio_spring.desafio_spring.exception.*;
 import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,10 +17,10 @@ import java.util.stream.Collectors;
 @ControllerAdvice
 public class ExceptionCustomHandler {
 
-    @ExceptionHandler(ExceptionCustom.class)
-    public ResponseEntity<ExceptionCustomDetails> handlerNotFoundException(ExceptionCustom ex) {
+    @ExceptionHandler(CustomException.class)
+    public ResponseEntity<CustomExceptionDetails> handlerNotFoundException(CustomException ex) {
         return new ResponseEntity<>(
-                ExceptionCustomDetails.builder()
+                CustomExceptionDetails.builder()
                         .title("Not found")
                         .status(HttpStatus.NOT_FOUND.value())
                         .message(ex.getMessage())
@@ -31,10 +29,22 @@ public class ExceptionCustomHandler {
                 HttpStatus.NOT_FOUND);
     }
 
+    @ExceptionHandler(ParamInvalidException.class)
+    public ResponseEntity paramInvalidException(ParamInvalidException ex) {
+        return new ResponseEntity<>(
+                CustomExceptionDetails.builder()
+                        .title("Invalid parameter")
+                        .status(HttpStatus.BAD_REQUEST.value())
+                        .message(ex.getMessage())
+                        .timestamp(LocalDateTime.now())
+                        .build(),
+                HttpStatus.BAD_REQUEST);
+    }
+
     @ExceptionHandler(ConstraintViolationException.class)
     public ResponseEntity invalidProductHandler(ConstraintViolationException ex) {
         return new ResponseEntity<>(
-                ExceptionCustomDetails.builder()
+                CustomExceptionDetails.builder()
                         .title("Invalid Product")
                         .status(HttpStatus.BAD_REQUEST.value())
                         .message(ex.getMessage().replace(", ", " | "))
@@ -46,7 +56,7 @@ public class ExceptionCustomHandler {
     @ExceptionHandler(HttpMessageNotReadableException.class)
     public ResponseEntity badResquestHandler(HttpMessageNotReadableException ex) {
         return new ResponseEntity<>(
-                ExceptionCustomDetails.builder()
+                CustomExceptionDetails.builder()
                         .title("Bad request")
                         .status(HttpStatus.BAD_REQUEST.value())
                         .message(ex.getMessage())
@@ -56,11 +66,11 @@ public class ExceptionCustomHandler {
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ResponseEntity<ExceptionCustomDetails> requestBodyInvalidHandler(MethodArgumentNotValidException ex) {
+    public ResponseEntity<CustomExceptionDetails> requestBodyInvalidHandler(MethodArgumentNotValidException ex) {
         return new ResponseEntity<>(
-                ExceptionCustomDetails
+                CustomExceptionDetails
                         .builder()
-                        .title("Dados inválidos")
+                        .title("Invalid Data")
                         .status(HttpStatus.BAD_REQUEST.value())
                         .message(ex.getAllErrors().stream().map(DefaultMessageSourceResolvable::getDefaultMessage).collect(Collectors.joining("; ")))
                         .timestamp(LocalDateTime.now())
@@ -70,10 +80,10 @@ public class ExceptionCustomHandler {
     }
 
     @ExceptionHandler(CustomerAlreadyExistsException.class)
-    public ResponseEntity<ExceptionCustomDetails> customerAlreadyExistsExceptionHandler(CustomerAlreadyExistsException ex) {
+    public ResponseEntity<CustomExceptionDetails> customerAlreadyExistsExceptionHandler(CustomerAlreadyExistsException ex) {
         return new ResponseEntity<>(
-                ExceptionCustomDetails.builder()
-                        .title("Cliente já existe")
+                CustomExceptionDetails.builder()
+                        .title("Client already exists")
                         .status(HttpStatus.BAD_REQUEST.value())
                         .message(ex.getMessage())
                         .timestamp(LocalDateTime.now())
@@ -84,7 +94,7 @@ public class ExceptionCustomHandler {
     @ExceptionHandler(Exception.class)
     public ResponseEntity exceptionHandler(Exception ex) {
         return new ResponseEntity<>(
-                ExceptionCustomDetails.builder()
+                CustomExceptionDetails.builder()
                         .title("Unknown error")
                         .status(HttpStatus.INTERNAL_SERVER_ERROR.value())
                         .message(ex.getMessage())
@@ -96,8 +106,8 @@ public class ExceptionCustomHandler {
     @ExceptionHandler({UnsupportedOperationException.class, MethodArgumentTypeMismatchException.class})
     public ResponseEntity invalidOrderHandler() {
         return new ResponseEntity<>(
-                ExceptionCustomDetails.builder()
-                        .title("Ordem não suportada.")
+                CustomExceptionDetails.builder()
+                        .title("Order not supported")
                         .status(HttpStatus.BAD_REQUEST.value())
                         .message(new Throwable("Ordens suportadas: " +
                                 "0: Alfabética crescente | " +

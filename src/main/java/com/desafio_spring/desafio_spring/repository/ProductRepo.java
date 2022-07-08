@@ -1,6 +1,6 @@
 package com.desafio_spring.desafio_spring.repository;
 
-import com.desafio_spring.desafio_spring.exception.ExceptionCustom;
+import com.desafio_spring.desafio_spring.exception.CustomException;
 import com.desafio_spring.desafio_spring.model.Product;
 import com.fasterxml.jackson.core.util.DefaultPrettyPrinter;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -34,7 +34,7 @@ public class ProductRepo {
         } catch (Exception err) {
             System.out.println("Erro ao acessar o arquivo de produtos.");
         }
-        throw new ExceptionCustom("Erro ao salvar lista de produtos.");
+        throw new RuntimeException("Erro ao salvar lista de produtos.");
     }
 
     public List<Product> getAllProducts() {
@@ -44,10 +44,10 @@ public class ProductRepo {
             productsList = Arrays.asList
                     (mapper.readValue(new File(productsFile), Product[].class));
             // return productsList;
-        } catch (ExceptionCustom | IOException ex) {
-
+        } catch (CustomException | IOException ex) {
+            throw new RuntimeException("Erro ao pegar lista de produtos.");
         }
-        if (productsList.size() == 0) throw new ExceptionCustom("Product not found");
+        if (productsList.size() == 0) throw new CustomException("Product not found");
         return productsList;
     }
 
@@ -55,7 +55,7 @@ public class ProductRepo {
         List<Product> products = getAllProducts();
         Product product = products.stream().filter(p -> p.getProductId().equals(id)).findFirst().orElse(null);
         if (product == null) {
-            throw new ExceptionCustom("Não foi achado produto com id " + id);
+            throw new CustomException("Não foi achado produto com id " + id);
         }
         return product;
     }
@@ -104,6 +104,6 @@ public class ProductRepo {
                     System.out.println("Erro ao acessar o arquivo de produtos.");
                 }
             }
-            throw new ExceptionCustom("Erro ao atualizar produto.");
+            throw new RuntimeException("Erro ao atualizar produto.");
         }
     }

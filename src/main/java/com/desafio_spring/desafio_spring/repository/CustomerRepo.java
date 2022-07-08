@@ -20,7 +20,7 @@ public class CustomerRepo {
             ObjectMapper mapper = new ObjectMapper();
             return new ArrayList<>(List.of(mapper.readValue(new File(dbFile), Customer[].class)));
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new RuntimeException("Erro ao pegar lista de clientes");
         }
     }
 
@@ -35,7 +35,7 @@ public class CustomerRepo {
 
             return customer;
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new RuntimeException("Erro ao salvar cliente.");
         }
     }
 }
