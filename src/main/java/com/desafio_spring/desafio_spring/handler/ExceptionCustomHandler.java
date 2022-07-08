@@ -58,11 +58,17 @@ public class ExceptionCustomHandler {
 
     @ExceptionHandler(HttpMessageNotReadableException.class)
     public ResponseEntity badResquestHandler(HttpMessageNotReadableException ex) {
+        String message = ex.getMessage();
+
+        if (message.contains("java.util.UUID")) {
+            message = "O ID fornecido é inválido";
+        }
+
         return new ResponseEntity<>(
                 CustomExceptionDetails.builder()
                         .title("Bad request")
                         .status(HttpStatus.BAD_REQUEST.value())
-                        .message(ex.getMessage())
+                        .message(message)
                         .timestamp(LocalDateTime.now())
                         .build(),
                 HttpStatus.BAD_REQUEST);
