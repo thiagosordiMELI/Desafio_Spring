@@ -101,7 +101,7 @@ Lista de todos os produtos disponíveis.
     }
 ]</code></pre>
 
-Permite também a utilização e combinação dos seguintes parâmetros no GET:
+Permite também a utilização e combinação dos seguintes parâmetros no GET:<br>
 `GET /api/v1/articles?category=Ferramentas`<br>
 Produtos filtrados por categoria.
 
@@ -161,4 +161,43 @@ Adiciona uma nova solicitação de compra com uma lista de produtos. Devolve a s
     "total": 12500.0
 }</code></pre>
 
+`GET /api/v1/cart`<br>
+Devolve uma lista com os produtos adicionados no carrinho de compras. 
+<br>
+<pre><code>Response:</b>
+</code></pre>
+
 ### Clientes
+`POST api/v1/customers`<br>
+Adiciona um novo cliente. Devolve um objeto com os dados básicos do cliente.<br>
+<pre><code><b>Payload example:</b>
+{
+  "name": "Pedro",
+  "email": "pedro@example.com",
+  "city": "Santo Ângelo",
+  "state": "RS"
+}
+
+<b>Response:</b>
+{
+    "id": "b93726e6-2e52-4932-a5e6-096e097a0a96",
+    "name": "Pedro",
+    "email": "pedro@example.com",
+    "city": "Santo Ângelo",
+    "state": "RS"
+}</code></pre>
+
+`GET /api/v1/articles`<br>
+Lista de todos os clientes cadastrados.
+<br>
+<pre><code>Response:</b>
+{
+    "id": "b93726e6-2e52-4932-a5e6-096e097a0a96",
+    "name": "Pedro",
+    "email": "pedro@example.com",
+    "city": "Santo Ângelo",
+    "state": "RS"
+}</code></pre>
+
+`GET /api/v1/customers?state=RS`<br>
+Clientes filtrados por Estado.
