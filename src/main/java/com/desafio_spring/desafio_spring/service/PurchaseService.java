@@ -1,9 +1,7 @@
 package com.desafio_spring.desafio_spring.service;
 
-import com.desafio_spring.desafio_spring.dto.PurchaseProductRequestDto;
 import com.desafio_spring.desafio_spring.dto.CartDto;
 import com.desafio_spring.desafio_spring.dto.PurchaseResponseDto;
-import com.desafio_spring.desafio_spring.model.Purchase;
 import com.desafio_spring.desafio_spring.model.PurchaseProduct;
 
 import java.util.List;
