@@ -35,8 +35,8 @@ API REST desenvolvida pelo grupo Beta Campers para o Desafio Spring durante o IT
   - [Get - Lista todos os clientes](#getCustomers)
   - [Get - Filtra clientes por estado](#getCustomersByState)
 - [Compras](#compras)
-  - [Post - Adiciona uma solicitação de compra a lista de produtos](#postPurchase)
-  - [Get - Lista produtos adicionados ao carrinho](#getCart)
+  - [Post - Adiciona uma solicitação de compra](#postPurchase)
+  - [Get - Retorna o valor total do carrinho](#getCart)
  
 # Observações
 **ID**<br>
@@ -52,7 +52,10 @@ Acrescentamos a rota [update-article-request](#putProduct) que recebe um PUT par
 Criamos a rota [articles](#getFilters) de forma que possa receber diversas combinações de filtros e ordenações definadas nos parâmetros da URL.<br>
 <br>
 **Solicitações de compras**<br>
-Adaptamos para que a [solicitação de compra](#postPurchase) seja enviada apenas com o ID do produto e sua quantidade. As demais informações do produto serão obtidas pelo próprio servidor.
+Adaptamos para que a [solicitação de compra](#postPurchase) seja enviada apenas com o ID do cliente, ID do produto e sua quantidade. As demais informações do produto serão obtidas pelo próprio servidor.<br>
+<br>
+**Compras vinculadas ao cliente**<br>
+Incluímos o ID do [cliente](#clientes) nas [solicitações de compras](#postPurchase).
 
 # Funcionalidades
 
