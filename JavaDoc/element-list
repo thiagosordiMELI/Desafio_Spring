@@ -1,0 +1,8 @@
+com.desafio_spring.desafio_spring
+com.desafio_spring.desafio_spring.controller
+com.desafio_spring.desafio_spring.dto
+com.desafio_spring.desafio_spring.exception
+com.desafio_spring.desafio_spring.handler
+com.desafio_spring.desafio_spring.model
+com.desafio_spring.desafio_spring.repository
+com.desafio_spring.desafio_spring.service

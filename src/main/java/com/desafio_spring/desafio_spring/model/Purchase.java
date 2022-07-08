@@ -8,14 +8,16 @@ import lombok.Setter;
 import java.util.List;
 import java.util.UUID;
 
+/**
+ * Representa uma compra
+ *
+ * @version 1.0
+ * @since 1.0
+ */
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-/** Representa uma compra
- * @version 1.0
- * @since 1.0
- */
 public class Purchase {
     private UUID id;
     private List<PurchaseProduct> products;

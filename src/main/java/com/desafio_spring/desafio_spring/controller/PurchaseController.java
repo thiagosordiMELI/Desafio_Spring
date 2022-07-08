@@ -11,12 +11,12 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController
-@RequestMapping("api/v1/purchase-request")
 /** Controller do Purchase.
  * @version 1.0
  * @since 1.0
  */
+@RestController
+@RequestMapping("api/v1/purchase-request")
 public class PurchaseController {
 
     @Autowired
@@ -32,11 +32,11 @@ public class PurchaseController {
         return ResponseEntity.status(HttpStatus.CREATED).body(service.savePurchases(List.of(products)));
     }
 
-    @GetMapping("cart")
     /**
      * Metódo do Controller que retorna o valor total do carrinho.
      * @return Um objeto CartResponseDto contendo o valor total.
      */
+    @GetMapping("cart")
     public ResponseEntity<CartResponseDto> getTotalInCart() {
         return ResponseEntity.ok(service.getTotalInCart());
     }

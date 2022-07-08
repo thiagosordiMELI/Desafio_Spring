@@ -8,14 +8,16 @@ import lombok.Setter;
 
 import java.util.UUID;
 
+/**
+ * Representa um produto
+ *
+ * @version 1.0
+ * @since 1.0
+ */
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-/** Representa um produto
- * @version 1.0
- * @since 1.0
- */
 public class Product {
     private UUID productId = UUID.randomUUID();
     private String name;

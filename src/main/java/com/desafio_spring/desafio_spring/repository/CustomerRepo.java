@@ -10,11 +10,13 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-@Repository
-/** Repository do Customer.
+/**
+ * Repository do Customer.
+ *
  * @version 1.0
  * @since 1.0
  */
+@Repository
 public class CustomerRepo {
 
     private static final String dbFile = "src/main/resources/customers.json";

@@ -6,13 +6,15 @@ import lombok.NoArgsConstructor;
 
 import java.util.UUID;
 
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
-/** Representa um produto de uma compra
+/**
+ * Representa um produto de uma compra
+ *
  * @version 1.0
  * @since 1.0
  */
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class PurchaseProduct {
     private UUID productId;
     private int quantity;

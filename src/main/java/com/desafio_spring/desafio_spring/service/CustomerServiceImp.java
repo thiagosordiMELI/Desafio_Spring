@@ -11,11 +11,13 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-@Service
-/** Service do Customer, implementa Interface CustomerService.
+/**
+ * Service do Customer, implementa Interface CustomerService.
+ *
  * @version 1.0
  * @since 1.0
  */
+@Service
 public class CustomerServiceImp implements CustomerService {
     @Autowired
     private CustomerRepo repo;

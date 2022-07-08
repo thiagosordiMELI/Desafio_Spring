@@ -6,6 +6,9 @@ import com.desafio_spring.desafio_spring.model.PurchaseProduct;
 
 import java.util.List;
 
+/**
+ * Interface para a camada Service dos Carrinhos de Compra(Purchases).
+ */
 public interface PurchaseService {
 
     /**

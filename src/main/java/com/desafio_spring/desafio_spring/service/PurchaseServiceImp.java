@@ -18,11 +18,13 @@ import java.util.Map;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
-@Service
-/** Service do Purchase, implementa Interface PurchaseService.
+/**
+ * Service do Purchase, implementa Interface PurchaseService.
+ *
  * @version 1.0
  * @since 1.0
  */
+@Service
 public class PurchaseServiceImp implements PurchaseService {
     @Autowired
     private PurchaseRepo purchaseRepo;
