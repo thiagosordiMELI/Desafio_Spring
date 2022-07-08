@@ -32,15 +32,18 @@ API REST desenvolvida para o Desafio Spring durante o Bootcamp IT Backend Java.
   - [Get - Filtra por parâmetro](#getFilters)
 - [Compras](#compras)
   - [Post - Adiciona uma solicitação de compra a lista de produtos](#postPurchase)
+  - [Get - Lista produtos adicionados ao carrinho](#getCart)
 - [Clientes](#clientes)
-
+  - [Post - Adiciona um novo cliente](#postCustomer)
+  - [Get - Lista todos os clientes](#getCustomers)
+  - [Get - Filtra clientes por estado](#getCustomersByState)
 ## Observações
 
 # Funcionalidades
 
 ## Produtos
-<p name="postProduct"></p>
-`POST /api/v1/insert-articles-request`<br>
+
+`POST /api/v1/insert-articles-request`<br name="postProduct">
 Adiciona uma nova lista de produtos. Devolve uma lista com o resumo dos produtos cadastrados.<br>
 <pre><code><b>Payload example:</b>
 [
@@ -78,8 +81,7 @@ Adiciona uma nova lista de produtos. Devolve uma lista com o resumo dos produtos
     }
 ]</code></pre>
 
-<p name="putProduct"></p>
-`PUT /api/v1/update-article-request/4f8da5ec-7dd0-456f-b0a7-1b5e3129ce36`<br>
+`PUT /api/v1/update-article-request/4f8da5ec-7dd0-456f-b0a7-1b5e3129ce36`<br name="putProduct">
 Atualiza as informações de um produto já cadastrado, enviando como parâmetro o ID do produto e no payload as novas informações do produto. Devolve um objeto com as novas informações básicas do produto.<br>
 <pre><code><b>Payload example:</b>
 {
@@ -99,8 +101,7 @@ Atualiza as informações de um produto já cadastrado, enviando como parâmetro
     "quantity": 5
 }</code></pre>
 
-<p name="getAllProduct"></p>
-`GET /api/v1/articles`<br>
+`GET /api/v1/articles`<br name="getAllProduct">
 Lista de todos os produtos disponíveis.
 <br>
 <pre><code><b>Response:</b>
@@ -117,9 +118,7 @@ Lista de todos os produtos disponíveis.
     }
 ]</code></pre>
 
-
-<p name="getFilters"></p>
-Permite também a utilização e combinação dos seguintes parâmetros no GET:<br>
+Permite também a utilização e combinação dos seguintes parâmetros no GET:<br name="getFilters">
 
 `GET /api/v1/articles?category=Ferramentas`<br>
 Produtos filtrados por categoria.
@@ -138,8 +137,8 @@ Devolve uma lista de produtos ordenados.<br>
 3: Preço (menor ao maior).<br>
 
 ## Compras
-<p name="postPurchase"></p>
-`POST /api/v1/purchase-request`<br>
+
+`POST /api/v1/purchase-request`<br name="postPurchase">
 Adiciona uma nova solicitação de compra com uma lista de produtos. Devolve a solicitação com o valor total da compra.<br>
 <pre><code><b>Payload example:</b>
 [
@@ -181,7 +180,7 @@ Adiciona uma nova solicitação de compra com uma lista de produtos. Devolve a s
     "total": 12500.0
 }</code></pre>
 
-`GET api/v1/purchase-request/cart`<br>
+`GET api/v1/purchase-request/cart`<br name="getCart">
 Devolve o valor total dos produtos adicionados no carrinho de compras. 
 <br>
 <pre><code>Response:</b>
@@ -191,7 +190,8 @@ Devolve o valor total dos produtos adicionados no carrinho de compras.
 </code></pre>
 
 ### Clientes
-`POST api/v1/customers`<br>
+
+`POST api/v1/customers`<br name="postCustomer">
 Adiciona um novo cliente. Devolve um objeto com os dados básicos do cliente.<br>
 <pre><code><b>Payload example:</b>
 {
@@ -210,7 +210,9 @@ Adiciona um novo cliente. Devolve um objeto com os dados básicos do cliente.<br
     "state": "RS"
 }</code></pre>
 
-`GET /api/v1/customers`<br>
+
+`GET /api/v1/articles`<br name="getCustomers">
+
 Lista de todos os clientes cadastrados.
 <br>
 <pre><code>Response:</b>
@@ -222,5 +224,5 @@ Lista de todos os clientes cadastrados.
     "state": "RS"
 }</code></pre>
 
-`GET /api/v1/customers?state=RS`<br>
+`GET /api/v1/customers?state=RS`<br name="getCustomersByState">
 Clientes filtrados por Estado.
