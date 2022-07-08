@@ -37,7 +37,7 @@ API REST desenvolvida pelo grupo Beta Campers para o Desafio Spring durante o IT
   - [Post - Adiciona um novo cliente](#postCustomer)
   - [Get - Lista todos os clientes](#getCustomers)
   - [Get - Filtra clientes por estado](#getCustomersByState)
-## Observações
+# Observações
 **ID**<br>
 Considerando que não é aconselhável que o cliente defina qual será o ID de um determinado objeto, optamos por gerar o ID dos objetos nos métodos POST. Para isso utilizamos a classe UUID [(java.util.UUID)](https://docs.oracle.com/javase/7/docs/api/java/util/UUID.html), que gera um identificador único universal.<br>
 <br>
