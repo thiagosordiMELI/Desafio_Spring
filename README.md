@@ -143,7 +143,7 @@ Produtos com frete grátis.
 `GET /api/v1/articles?prestige=*****`<br>
 Produtos filtrados por avaliação (* a *****).<br>
 
-`GET /api/v1/articles/?order=2`<br>
+`GET /api/v1/articles?order=2`<br>
 Devolve uma lista de produtos ordenados.<br>
 0: Alfabético crescente.<br>
 1: Alfabético descrescente.<br>
