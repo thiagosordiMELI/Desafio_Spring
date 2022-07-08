@@ -12,5 +12,5 @@ public interface ProductService {
     ProductDto updateProduct(UUID id, ProductRequestDto productDto);
     List<ProductDto> getAllProducts();
     List<ProductDto> getAllProductsByCategory(String category);
-    List<ProductDto> getOrderedProducts(int orderBy);
+    List<Product> orderProducts(List<Product> productList, int order);
 }

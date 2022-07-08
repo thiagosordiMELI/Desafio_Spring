@@ -7,10 +7,7 @@ import com.desafio_spring.desafio_spring.repository.ProductRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -46,31 +43,29 @@ public class ProductServiceImp implements ProductService {
         return lista;
     }
 
-        public List<ProductDto> getOrderedProducts(int order) {
-            List<Product> productList;
-            List<ProductDto> productDtoList = new ArrayList<>();
+        public List<Product> orderProducts(List<Product> productList, int order) {
             switch (order) {
                 case 0: {
-                    productList = productRepo.getAllOrderByName();
-                    productList.forEach(product -> productDtoList.add(new ProductDto(product)));
-                    return productDtoList;
+                    return productList.stream()
+                            .sorted(Comparator.comparing((Product::getName)))
+                            .collect(Collectors.toList());
                 }
                 case 1: {
-                    productList = productRepo.getAllOrderByName();
-                    productList.forEach(product -> productDtoList.add(new ProductDto(product)));
-                    Collections.reverse(productDtoList);
-                    return productDtoList;
+                    return productList.stream()
+                            .sorted(Comparator.comparing((Product::getName))
+                                    .reversed())
+                            .collect(Collectors.toList());
                 }
                 case 2: {
-                    productList = productRepo.getAllOrderByPrice();
-                    productList.forEach(product -> productDtoList.add(new ProductDto(product)));
-                    Collections.reverse(productDtoList);
-                    return productDtoList;
+                    return productList.stream()
+                            .sorted(Comparator.comparing((Product::getPrice))
+                                    .reversed())
+                            .collect(Collectors.toList());
                 }
                 case 3: {
-                    productList = productRepo.getAllOrderByPrice();
-                    productList.forEach(product -> productDtoList.add(new ProductDto(product)));
-                    return productDtoList;
+                    return productList.stream()
+                            .sorted(Comparator.comparing((Product::getPrice)))
+                            .collect(Collectors.toList());
                 }
                 default:
                     throw new UnsupportedOperationException();

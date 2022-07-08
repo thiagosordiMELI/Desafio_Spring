@@ -44,12 +44,6 @@ public class ProductController {
         return ResponseEntity.ok(service.saveProducts(products));
     }
 
-    @GetMapping("/articles/")
-    public ResponseEntity<List<ProductDto>> getAllOrdered(@RequestParam int order) {
-        List<ProductDto> productsList = service.getOrderedProducts(order);
-        return ResponseEntity.ok(productsList);
-    }
-
     @PutMapping("/update-article-request/{id}")
     public ResponseEntity<ProductDto> updateArticleRequest(@PathVariable UUID id, @RequestBody @Valid ProductRequestDto productDto) {
         return ResponseEntity.ok(service.updateProduct(id, productDto));
