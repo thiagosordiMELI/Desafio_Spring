@@ -150,59 +150,6 @@ Devolve uma lista de produtos ordenados.<br>
 2: Preço (maior ao menor).<br>
 3: Preço (menor ao maior).<br>
 
-## Compras
-
-`POST /api/v1/purchase-request`<br name="postPurchase">
-Adiciona uma nova solicitação de compra com uma lista de produtos. Devolve a solicitação com o valor total da compra.<br>
-<pre><code><b>Payload example:</b>
-[
-    {
-        "id": "3e510112-db30-41dc-969e-95112b1110f0",
-        "quantity":5
-    },
-    {
-        "id":"ebc1f417-5e27-4e88-b484-8bc7c1685b8e",
-        "quantity":7
-    }
-]
-
-<b>Response:</b>
-{
-    "id": "b51803ce-f6e7-4b49-84a6-eecfb86afe18",
-    "products": [
-        {
-            "productId": "3e510112-db30-41dc-969e-95112b1110f0",
-            "name": "Serra de Bancada",
-            "category": "Ferramentas",
-            "brand": "FORTGPRO",
-            "price": 1800.0,
-            "quantity": 5,
-            "freeShipping": true,
-            "prestige": "****"
-        },
-        {
-            "productId": "ebc1f417-5e27-4e88-b484-8bc7c1685b8e",
-            "name": "Furadeira",
-            "category": "Ferramentas",
-            "brand": "Black & Decker",
-            "price": 500.0,
-            "quantity": 7,
-            "freeShipping": true,
-            "prestige": "****"
-        }
-    ],
-    "total": 12500.0
-}</code></pre>
-
-`GET api/v1/purchase-request/cart`<br name="getCart">
-Devolve o valor total dos produtos adicionados no carrinho de compras. 
-<br>
-<pre><code><b>Response:</b>
-{
-    "total": 9000.0
-}
-</code></pre>
-
 ## Clientes
 
 `POST api/v1/customers`<br name="postCustomer">
@@ -239,3 +186,66 @@ Lista de todos os clientes cadastrados.
 
 `GET /api/v1/customers?state=RS`<br name="getCustomersByState">
 Clientes filtrados por Estado.
+
+## Compras
+
+`POST /api/v1/purchase-request`<br name="postPurchase">
+Adiciona uma nova solicitação de compra para um cliente com uma lista de produtos. Devolve a solicitação com o valor total da compra e o cliente.<br>
+<pre><code><b>Payload example:</b>
+{
+  "customerId": "b93726e6-2e52-4932-a5e6-096e097a0a96",
+  "products": [
+      {
+          "id": "3e510112-db30-41dc-969e-95112b1110f0",
+          "quantity":5
+      },
+      {
+          "id":"ebc1f417-5e27-4e88-b484-8bc7c1685b8e",
+          "quantity":7
+      }
+  ]
+}
+
+<b>Response:</b>
+{
+    "id": "b51803ce-f6e7-4b49-84a6-eecfb86afe18",
+    "customer": {
+        "id": "b93726e6-2e52-4932-a5e6-096e097a0a96",
+        "name": "pedro",
+        "email": "pedro@example.com",
+        "city": "Santo Ângelo",
+        "state": "RS"
+    },
+    "products": [
+        {
+            "productId": "3e510112-db30-41dc-969e-95112b1110f0",
+            "name": "Serra de Bancada",
+            "category": "Ferramentas",
+            "brand": "FORTGPRO",
+            "price": 1800.0,
+            "quantity": 5,
+            "freeShipping": true,
+            "prestige": "****"
+        },
+        {
+            "productId": "ebc1f417-5e27-4e88-b484-8bc7c1685b8e",
+            "name": "Furadeira",
+            "category": "Ferramentas",
+            "brand": "Black & Decker",
+            "price": 500.0,
+            "quantity": 7,
+            "freeShipping": true,
+            "prestige": "****"
+        }
+    ],
+    "total": 12500.0
+}</code></pre>
+
+`GET api/v1/purchase-request/cart/b93726e6-2e52-4932-a5e6-096e097a0a96`<br name="getCart">
+Devolve o valor total dos produtos adicionados no carrinho de compras de um cliente. 
+<br>
+<pre><code><b>Response:</b>
+{
+    "total": 9000.0
+}
+</code></pre>
