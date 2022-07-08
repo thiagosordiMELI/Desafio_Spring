@@ -2,6 +2,7 @@ package com.desafio_spring.desafio_spring.service;
 
 import com.desafio_spring.desafio_spring.dto.ProductDto;
 import com.desafio_spring.desafio_spring.dto.ProductRequestDto;
+import com.desafio_spring.desafio_spring.exception.ParamInvalidException;
 import com.desafio_spring.desafio_spring.model.Product;
 import com.desafio_spring.desafio_spring.repository.ProductRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,9 @@ public class ProductServiceImp implements ProductService {
 
     @Override
     public List<ProductDto> saveProducts(List<ProductRequestDto> productList) {
+        if (productList.size() == 0) {
+            throw new ParamInvalidException("Lista não pode ser vazia.");
+        }
         List<Product> newProducts = productList.stream()
                 .map(Product::new)
                 .collect(Collectors.toUnmodifiableList());
