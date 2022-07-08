@@ -1112,8 +1112,8 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									"pm.test(\"Teste de status 201\", function() {",
-									"    pm.response.to.have.status(201);",
+									"pm.test(\"Teste de status 400\", function() {",
+									"    pm.response.to.have.status(400);",
 									"})"
 								],
 								"type": "text/javascript"
