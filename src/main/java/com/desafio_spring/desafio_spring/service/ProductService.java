@@ -12,7 +12,7 @@ public interface ProductService {
     ProductDto updateProduct(UUID id, ProductRequestDto productDto);
     List<ProductDto> getAllProducts();
 
-    List<ProductDto> filterMultiples(String category, Boolean freeShipping, String prestige);
+    List<ProductDto> filterMultiples(String category, Boolean freeShipping, String prestige, Integer order);
     List<ProductDto> getAllProductsByCategory(String category);
     List<Product> orderProducts(List<Product> productList, int order);
 }

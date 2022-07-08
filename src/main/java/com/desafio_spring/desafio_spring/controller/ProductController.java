@@ -30,9 +30,10 @@ public class ProductController {
     public ResponseEntity<List<ProductDto>> multipleFilters
             (@RequestParam(required = false) String category,
              @RequestParam(required = false) Boolean freeShipping,
-             @RequestParam(required = false) String prestige) {
+             @RequestParam(required = false) String prestige,
+            @RequestParam(required= false) Integer order) {
         List<ProductDto> filteredResult;
-        filteredResult = service.filterMultiples(category, freeShipping, prestige);
+        filteredResult = service.filterMultiples(category, freeShipping, prestige, order);
         return ResponseEntity.ok(filteredResult);
     }
 

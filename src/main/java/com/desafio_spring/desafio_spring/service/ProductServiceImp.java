@@ -35,7 +35,7 @@ public class ProductServiceImp implements ProductService {
     }
 
     @Override
-    public List<ProductDto> filterMultiples(String category, Boolean freeShipping, String prestige) {
+    public List<ProductDto> filterMultiples(String category, Boolean freeShipping, String prestige, Integer order) {
         List<Product> products = productRepo.getAllProducts();
         if (category != null) {
             products = products.stream()
@@ -51,6 +51,9 @@ public class ProductServiceImp implements ProductService {
             products = products.stream()
                     .filter(p -> p.isFreeShipping() == freeShipping)
                     .collect(Collectors.toList());
+        }
+        if(order != null) {
+            products = orderProducts(products, order);
         }
         return products.stream().map(ProductDto::new).collect(Collectors.toList());
     }
