@@ -203,7 +203,7 @@ Devolve o valor total dos produtos adicionados no carrinho de compras.
 }
 </code></pre>
 
-### Clientes
+## Clientes
 
 `POST api/v1/customers`<br name="postCustomer">
 Adiciona um novo cliente. Devolve um objeto com os dados básicos do cliente.<br>
