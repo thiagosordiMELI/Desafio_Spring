@@ -1,8 +1,6 @@
 package com.desafio_spring.desafio_spring.repository;
 
-import com.desafio_spring.desafio_spring.dto.ProductDto;
-import com.desafio_spring.desafio_spring.dto.ProductRequestDto;
-import com.desafio_spring.desafio_spring.exception.ExceptionCustom;
+import com.desafio_spring.desafio_spring.exception.CustomException;
 import com.desafio_spring.desafio_spring.model.Product;
 import com.fasterxml.jackson.core.util.DefaultPrettyPrinter;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -17,6 +15,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
+
 
 @Repository
 /** Repository do Product.
@@ -44,7 +43,7 @@ public class ProductRepo {
         } catch (Exception err) {
             System.out.println("Erro ao acessar o arquivo de produtos.");
         }
-        throw new ExceptionCustom("Erro ao salvar lista de produtos.");
+        throw new RuntimeException("Erro ao salvar lista de produtos.");
     }
 
     /**
@@ -58,10 +57,9 @@ public class ProductRepo {
             productsList = Arrays.asList
                     (mapper.readValue(new File(productsFile), Product[].class));
             // return productsList;
-        } catch (ExceptionCustom | IOException ex) {
-
+        } catch (CustomException | IOException ex) {
+            throw new RuntimeException("Erro ao pegar lista de produtos.");
         }
-        if (productsList.size() == 0) throw new ExceptionCustom("Product not found");
         return productsList;
     }
 
@@ -72,42 +70,36 @@ public class ProductRepo {
      */
     public Product findById(UUID id) {
         List<Product> products = getAllProducts();
-        Product product =  products.stream().filter(p -> p.getProductId().equals(id)).findFirst().orElse(null);
-        if(product == null){
-            throw new ExceptionCustom("Não foi achado produto com id "+id);
+        Product product = products.stream().filter(p -> p.getProductId().equals(id)).findFirst().orElse(null);
+        if (product == null) {
+            throw new CustomException("Não foi achado produto com id " + id);
         }
         return product;
     }
 
     /**
-     * Metódo do Repository que retorna uma lista de produtos ordenada pelo nome.
+     * Metódo do Repository que retorna uma lista de produtos filtrados pela categoria.
+     * @param category categoria de produtos para fazer filtragem
      * @return Uma lista de objetos Product.
      */
-    public List<Product> getAllOrderByName() {
-        return this.getAllProducts()
-                .stream()
-                .sorted(Comparator.comparing((Product::getName)))
+    public List<Product> getAllProductsByCategory(String category) {
+        List<Product> productsList = getAllProducts();
+        List<Product> productCategory = null;
+
+        productCategory = productsList.stream()
+                .filter(p -> p.getCategory().equals(category))
                 .collect(Collectors.toList());
+
+        return productCategory;
     }
 
     /**
-     * Metódo do Repository que retorna uma lista de produtos ordenada pelo preço.
-     * @return Uma lista de objetos Product.
-     */
-    public List<Product> getAllOrderByPrice() {
-        return this.getAllProducts()
-                .stream()
-                .sorted(Comparator.comparing((Product::getPrice)))
-                .collect(Collectors.toList());
-    }
-
-    /**
-     * Metódo do Repository que atualiza um produto existente dentro do arquivo JSON.
-     * @param product objeto Product com as informações novas
-     * @return O objeto Product que foi atualizado no arquivo JSON.
-     */
-    public Product updateProduct(Product product) {
-        if(findById(product.getProductId()) != null) {
+    * Metódo do Repository que atualiza um produto existente dentro do arquivo JSON.
+    * @param product objeto Product com as informações novas
+    * @return O objeto Product que foi atualizado no arquivo JSON.
+    */
+    public Product updateProduct (Product product){
+        if (findById(product.getProductId()) != null) {
             ObjectMapper mapper = new ObjectMapper();
             try {
                 List<Product> products = Arrays.asList(mapper.readValue(new File(productsFile), Product[].class));
@@ -124,6 +116,6 @@ public class ProductRepo {
                 System.out.println("Erro ao acessar o arquivo de produtos.");
             }
         }
-        throw new ExceptionCustom("Erro ao atualizar produto.");
+        throw new RuntimeException("Erro ao atualizar produto.");
     }
-}
+    }

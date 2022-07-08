@@ -34,9 +34,27 @@ public interface ProductService {
     List<ProductDto> getAllProducts();
 
     /**
-     * Método do Service que cuida da lógica de pegar a lista de todos os produtos, ordenados conforme parâmetro recebido.
-     * @param orderBy parâmetro que definirá a ordenação escolhida
+     * Método do Service que cuida da lógica de filtrar na lista de produtos conforme parâmetros recebidos.
+     * @param category categoria do produto (opcional)
+     * @param freeShipping flag de frete grátis (opcional)
+     * @param prestige avaliacao em "*" do produto (opcional)
+     * @param order opção de ordenação (opcional)
+     * @return Lista de ProductDto com filtragem e ordenação escolhida
+     */
+    List<ProductDto> filterMultiples(String category, Boolean freeShipping, String prestige, Integer order);
+
+    /**
+     * Método do Service que cuida da lógica de filtrar na lista de produtos pela categoria.
+     * @param category categoria do produto
+     * @return Lista de ProductDto filtrados pela categoria
+     */
+    List<ProductDto> getAllProductsByCategory(String category);
+
+    /**
+     * Método do Service que cuida da lógica de ordenar lista de produtos conforme parâmetro recebido.
+     * @param productList lista de produtos a serem ordenados
+     * @param order parâmetro que definirá a ordenação escolhida
      * @return Lista de ProductDto com a ordenação escolhida
      */
-    List<ProductDto> getOrderedProducts(int orderBy);
+    List<Product> orderProducts(List<Product> productList, int order);
 }

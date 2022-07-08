@@ -28,7 +28,7 @@ public class PurchaseRepo {
             Purchase[] purchases = mapper.readValue(new File(dbPath), Purchase[].class);
             return new ArrayList<>(List.of(purchases));
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new RuntimeException("Erro ao pegar lista de compras.");
         }
     }
 
@@ -48,7 +48,7 @@ public class PurchaseRepo {
 
             return purchase;
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new RuntimeException("Erro ao salvar compra.");
         }
     }
 }

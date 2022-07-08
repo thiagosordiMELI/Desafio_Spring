@@ -7,6 +7,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -26,11 +32,31 @@ public class ProductController {
 
     @GetMapping("/articles")
     /**
-     * Metódo do Controller que retorna a lista de produtos salvos.
-     * @return Uma lista de objetos ProductDto apenas com informações essenciais.
+     * Metódo do Controller que retorna a lista de produtos salvos com combinação de filtros e ordenação opcionais.
+     * @param category categoria do produto (opcional)
+     * @param freeShipping flag de frete grátis (opcional)
+     * @param prestige avaliacao em "*" do produto (opcional)
+     * @param order opção de ordenação (opcional)
+     * @return Uma lista de objetos ProductDto filtrada e ordenada apenas com informações essenciais.
      */
-    public ResponseEntity<List<ProductDto>> getAllProducts() {
-        List<ProductDto> productsList =  service.getAllProducts();
+    public ResponseEntity<List<ProductDto>> multipleFilters
+            (@RequestParam(required = false) String category,
+             @RequestParam(required = false) Boolean freeShipping,
+             @RequestParam(required = false) String prestige,
+            @RequestParam(required= false) Integer order) {
+        List<ProductDto> filteredResult;
+        filteredResult = service.filterMultiples(category, freeShipping, prestige, order);
+        return ResponseEntity.ok(filteredResult);
+    }
+
+    @GetMapping("/")
+    /**
+     * Metódo do Controller que retorna a lista de produtos filtrados por categoria.
+     * @param category categoria de produto para filtro
+     * @return Uma lista de objetos ProductDto filtrada por categoria e apenas com informações essenciais.
+     */
+    public ResponseEntity<List<ProductDto>> getAllProductsByCategory(@RequestParam String category) {
+        List<ProductDto> productsList = service.getAllProductsByCategory(category);
         return ResponseEntity.ok(productsList);
     }
 
@@ -40,28 +66,18 @@ public class ProductController {
      * @param products lista de objetos ProductRequestDto
      * @return Uma lista de objetos ProductDto apenas com informações essenciais.
      */
-    public ResponseEntity<List<ProductDto>> insertArticlesRequest(@RequestBody @Valid List<ProductRequestDto> products) {
+    public ResponseEntity<List<ProductDto>> insertArticlesRequest(
+            @RequestBody @Valid List<ProductRequestDto> products) {
         return ResponseEntity.ok(service.saveProducts(products));
     }
 
-    /**
-     * Metódo do Controller que retorna a lista de produtos ordenada.
-     * @param order parâmetro que definirá a ordenação escolhida.
-     * @return Uma lista de objetos ProductDto ordenados, com informações essenciais.
-     */
-    @GetMapping("/articles/")
-    public ResponseEntity<List<ProductDto>> getAllOrdered(@RequestParam int order) {
-        List<ProductDto> productsList = service.getOrderedProducts(order);
-        return ResponseEntity.ok(productsList);
-    }
-
+    @PutMapping("/update-article-request/{id}")
     /**
      * Metódo do Controller que recebe um produto para ser atualizazado através de um método PUT.
      * @param id UUID do produto que será alterado.
      * @param productDto objeto ProductRequestDto com os novos dados do produto.
      * @return Um objeto ProductDto com as novas informações básicas do produto que foi atualizado.
      */
-    @PutMapping("/update-article-request/{id}")
     public ResponseEntity<ProductDto> updateArticleRequest(@PathVariable UUID id, @RequestBody @Valid ProductRequestDto productDto) {
         return ResponseEntity.ok(service.updateProduct(id, productDto));
     }
