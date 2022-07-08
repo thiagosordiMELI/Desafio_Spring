@@ -13,17 +13,30 @@ import java.util.List;
 
 @RestController
 @RequestMapping("api/v1/purchase-request")
+/** Controller do Purchase.
+ * @version 1.0
+ * @since 1.0
+ */
 public class PurchaseController {
 
     @Autowired
     private PurchaseService service;
 
+    /**
+     * Metódo do Controller que recebe uma lista de produtos e envia ao service para criar a compra.
+     * @param products lista de objetos PurchaseProduct
+     * @return Um objeto PurchaseResponseDto contendo todas informações dos produtos na compra além do valor total.
+     */
     @PostMapping
     public ResponseEntity<PurchaseResponseDto> createPurchase(@RequestBody PurchaseProduct[] products) {
         return ResponseEntity.status(HttpStatus.CREATED).body(service.savePurchases(List.of(products)));
     }
 
     @GetMapping("cart")
+    /**
+     * Metódo do Controller que retorna o valor total do carrinho.
+     * @return Um objeto CartResponseDto contendo o valor total.
+     */
     public ResponseEntity<CartResponseDto> getTotalInCart() {
         return ResponseEntity.ok(service.getTotalInCart());
     }

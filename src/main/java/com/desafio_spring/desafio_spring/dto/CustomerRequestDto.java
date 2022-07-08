@@ -10,6 +10,10 @@ import javax.validation.constraints.NotBlank;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+/** DTO de requisição para inserir cliente
+ * @version 1.0
+ * @since 1.0
+ */
 public class CustomerRequestDto {
     @NotBlank(message = "Campo nome não pode ser vazio")
     private String name;

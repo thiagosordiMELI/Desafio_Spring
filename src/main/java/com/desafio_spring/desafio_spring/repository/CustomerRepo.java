@@ -11,10 +11,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Repository
+/** Repository do Customer.
+ * @version 1.0
+ * @since 1.0
+ */
 public class CustomerRepo {
 
     private static final String dbFile = "src/main/resources/customers.json";
 
+    /**
+     * Metódo do Repository que retorna todos clientes salvos em um arquivo JSON.
+     * @return Uma lista de objetos Customer.
+     */
     public List<Customer> getAllCustomers() {
         try {
             ObjectMapper mapper = new ObjectMapper();
@@ -24,6 +32,11 @@ public class CustomerRepo {
         }
     }
 
+    /**
+     * Metódo do Repository que salva uma cliente em um arquivo JSON.
+     * @param customer objeto Customer
+     * @return O objeto Customer que foi salvo no arquivo JSON.
+     */
     public Customer saveCustomer(Customer customer) {
         try {
             List<Customer> customers = getAllCustomers();
