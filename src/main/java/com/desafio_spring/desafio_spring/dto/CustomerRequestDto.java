@@ -15,16 +15,16 @@ import javax.validation.constraints.NotBlank;
 @AllArgsConstructor
 @NoArgsConstructor
 public class CustomerRequestDto {
-    @NotBlank(message = "Campo nome não pode ser vazio")
+    @NotBlank(message = "Campo 'name' não pode ser vazio")
     private String name;
 
-    @NotBlank(message = "Campo e-mail não pode ser vazio")
-    @Email(message = "Campo e-mail inválido")
+    @NotBlank(message = "Campo 'email' não pode ser vazio")
+    @Email(message = "Campo 'email' inválido")
     private String email;
 
-    @NotBlank(message = "Campo cidade não pode ser vazio")
+    @NotBlank(message = "Campo 'city' não pode ser vazio")
     private String city;
 
-    @NotBlank(message = "Campo estado não pode ser vazio")
+    @NotBlank(message = "Campo 'state' não pode ser vazio")
     private String state;
 }

@@ -12,7 +12,6 @@ import com.desafio_spring.desafio_spring.repository.PurchaseRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -36,38 +35,23 @@ public class PurchaseServiceImp implements PurchaseService {
 
     @Override
     public PurchaseResponseDto savePurchases(PurchaseRequestDto purchaseRequest) {
-        // Lógica para controle de estoque
-        Map<UUID, Product> productMap = getProductMap();
-
-        for (PurchaseProduct pp : purchaseRequest.getProducts()) {
-            Product product = productMap.get(pp.getProductId());
-            if (product == null) {
-                throw new CustomException("Produto(s) inexistente(s)");
-            }
-            if (product.getQuantity() >= pp.getQuantity()) {
-                product.setQuantity(product.getQuantity() - pp.getQuantity());
-            } else {
-                throw new ParamInvalidException("Sem estoque para o produto: " + product.getName() + " id: " + product.getProductId());
-            }
-        }
+        Map<UUID, Product> productsAfterSale = preBookProducts(purchaseRequest);
 
         // Atualiza o registro de Produto no arquivo
-        purchaseRequest.getProducts().forEach(p -> productRepo.updateProduct(productMap.get(p.getProductId())));
+        purchaseRequest.getProducts().forEach(p -> productRepo.updateProduct(productsAfterSale.get(p.getProductId())));
         Purchase purchase = new Purchase(UUID.randomUUID(), purchaseRequest.getCustomerId(), purchaseRequest.getProducts());
         purchaseRepo.savePurchase(purchase);
 
-        // Soma o total da compra
         double total = purchaseRequest.getProducts()
                 .stream()
-                .mapToDouble(p -> productMap.get(p.getProductId()).getPrice() * p.getQuantity())
+                .mapToDouble(p -> productsAfterSale.get(p.getProductId()).getPrice() * p.getQuantity())
                 .sum();
 
         return new PurchaseResponseDto(
                 purchase.getId(),
                 customerRepo.findById(purchaseRequest.getCustomerId()),
-                purchaseRequest.getProducts()
-                        .stream()
-                        .map(x -> new PurchaseProductResponseDto(productMap.get(x.getProductId()), x.getQuantity()))
+                purchaseRequest.getProducts().stream()
+                        .map(x -> new PurchaseProductResponseDto(productsAfterSale.get(x.getProductId()), x.getQuantity()))
                         .collect(Collectors.toList()),
                 total);
     }
@@ -93,5 +77,21 @@ public class PurchaseServiceImp implements PurchaseService {
         return productRepo.getAllProducts()
                 .stream()
                 .collect(Collectors.toMap(Product::getProductId, item -> item));
+    }
+
+    private Map<UUID, Product> preBookProducts(PurchaseRequestDto purchaseRequest) {
+        Map<UUID, Product> productMap = getProductMap();
+        for (PurchaseProduct pp : purchaseRequest.getProducts()) {
+            Product product = productMap.get(pp.getProductId());
+            if (product == null) {
+                throw new CustomException("Produto(s) inexistente(s)");
+            }
+            if (product.getQuantity() >= pp.getQuantity()) {
+                product.setQuantity(product.getQuantity() - pp.getQuantity());
+            } else {
+                throw new ParamInvalidException("Sem estoque para o produto: " + product.getName() + " id: " + product.getProductId());
+            }
+        }
+        return productMap;
     }
 }
