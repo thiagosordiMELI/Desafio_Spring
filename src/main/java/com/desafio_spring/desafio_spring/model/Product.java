@@ -35,4 +35,5 @@ public class Product {
         freeShipping = productRequest.isFreeShipping();
         prestige = productRequest.getPrestige();
     }
+
 }

@@ -7,8 +7,7 @@ import com.desafio_spring.desafio_spring.repository.ProductRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -48,11 +47,55 @@ public class ProductServiceImp implements ProductService {
                     .filter(p -> p.getPrestige().equals(prestige))
                     .collect(Collectors.toList());
         }
-        if(freeShipping != null) {
+        if (freeShipping != null) {
             products = products.stream()
                     .filter(p -> p.isFreeShipping() == freeShipping)
                     .collect(Collectors.toList());
         }
         return products.stream().map(ProductDto::new).collect(Collectors.toList());
+    }
+
+
+    public List<ProductDto> getAllProductsByCategory(String category) {
+        List<Product> productsCategory = productRepo.getAllProductsByCategory(category);
+        List<ProductDto> lista = productsCategory.stream()
+                .map(ProductDto::new)
+                .collect(Collectors.toList());
+        return lista;
+    }
+
+    public List<Product> orderProducts(List<Product> productList, int order) {
+        switch (order) {
+            case 0: {
+                return productList.stream()
+                        .sorted(Comparator.comparing((Product::getName)))
+                        .collect(Collectors.toList());
+            }
+            case 1: {
+                return productList.stream()
+                        .sorted(Comparator.comparing((Product::getName))
+                                .reversed())
+                        .collect(Collectors.toList());
+            }
+            case 2: {
+                return productList.stream()
+                        .sorted(Comparator.comparing((Product::getPrice))
+                                .reversed())
+                        .collect(Collectors.toList());
+            }
+            case 3: {
+                return productList.stream()
+                        .sorted(Comparator.comparing((Product::getPrice)))
+                        .collect(Collectors.toList());
+            }
+            default:
+                throw new UnsupportedOperationException();
+        }
+    }
+
+    public ProductDto updateProduct(UUID id, ProductRequestDto productDto) {
+        Product product = new Product(productDto);
+        product.setProductId(id);
+        return new ProductDto(productRepo.updateProduct(product));
     }
 }
