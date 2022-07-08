@@ -5,18 +5,19 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
 import java.util.UUID;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class ProductDto {
+public class ProductResponseDto {
     private UUID productId;
     private String name;
     private int quantity;
 
-    public ProductDto(Product product) {
+    public ProductResponseDto(Product product) {
         this.productId = product.getProductId();
         this.name = product.getName();
         this.quantity = product.getQuantity();
