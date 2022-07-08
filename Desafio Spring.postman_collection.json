@@ -1,7 +1,7 @@
 {
 	"info": {
-		"_postman_id": "719368d3-fdc1-4f1f-9d86-02afad79ed71",
-		"name": "Desafio Spring",
+		"_postman_id": "297d814a-8619-4a00-b4c4-eee89174a07c",
+		"name": "Desafio Spring Copy",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
@@ -28,7 +28,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "[\n  {\n    \"name\": \"Serra de Bancada\",\n    \"category\": {{categoria}},\n    \"brand\": \"FORTGPRO\",\n    \"price\": 1800.00,\n    \"quantity\": 5,\n    \"freeShipping\": true,\n    \"prestige\": \"****\"\n  },\n  {\n    \"name\": \"Furadeira\",\n    \"category\": {{categoria}},\n    \"brand\": \"Black & Decker\",\n    \"price\": 500,\n    \"quantity\": 7,\n    \"freeShipping\": true,\n    \"prestige\": \"****\"\n  },\n  {\n    \"name\": \"Soldadora\",\n    \"category\": {{categoria}},\n    \"brand\": \"Black & Decker\",\n    \"price\": 350.00,\n    \"quantity\": 10,\n    \"freeShipping\": true,\n    \"prestige\": \"***\"\n  },\n  {\n    \"name\": \"Chuteira\",\n    \"category\": \"Esportes\",\n    \"brand\": \"Adidas\",\n    \"price\": 235.00,\n    \"quantity\": 6,\n    \"freeShipping\": true,\n    \"prestige\": \"*****\"\n  },\n  {\n    \"name\": \"Mini Cama elastica\",\n    \"category\": \"Esportes\",\n    \"brand\": \"Starboard\",\n    \"price\": 183.00,\n    \"quantity\": 4,\n    \"freeShipping\": true,\n    \"prestige\": \"*****\"\n  },\n  {\n    \"name\": \"Camiseta\",\n    \"category\": \"Esportes\",\n    \"brand\": \"Topper\",\n    \"price\": 80.00,\n    \"quantity\": 2,\n    \"freeShipping\": false,\n    \"prestige\": \"***\"\n  },\n  {\n    \"name\": \"Redmi Note 9\",\n    \"category\": \"Celulares\",\n    \"brand\": \"Xiaomi\",\n    \"price\": 2800.00,\n    \"quantity\": 15,\n    \"freeShipping\": true,\n    \"prestige\": \"****\"\n  },\n  {\n    \"name\": \"Smartwatch\",\n    \"category\": \"Celulares\",\n    \"brand\": \"Noga\",\n    \"price\": 1200.00,\n    \"quantity\": 5,\n    \"freeShipping\": true,\n    \"prestige\": \"**\"\n  },\n  {\n    \"name\": \"Camisa\",\n    \"category\": \"Roupas\",\n    \"brand\": \"Fila\",\n    \"price\": 79.00,\n    \"quantity\": 2,\n    \"freeShipping\": false,\n    \"prestige\": \"***\"\n  },\n  {\n    \"name\": \"Calcas\",\n    \"category\": \"Roupas\",\n    \"brand\": \"Oakley\",\n    \"price\": 73.00,\n    \"quantity\": 6,\n    \"freeShipping\": false,\n    \"prestige\": \"***\"\n  },\n  {\n    \"name\": \"Meias\",\n    \"category\": \"Roupas\",\n    \"brand\": \"Gonew\",\n    \"price\": 10.00,\n    \"quantity\": 8,\n    \"freeShipping\": false,\n    \"prestige\": \"*\"\n  },\n  {\n    \"name\": \"Shorts\",\n    \"category\": \"Roupas\",\n    \"brand\": \"Lacoste\",\n    \"price\": 275.00,\n    \"quantity\": 9,\n    \"freeShipping\": true,\n    \"prestige\": \"***\"\n  }\n]",
+							"raw": "[\n  {\n    \"name\": \"Serra de Bancada\",\n    \"category\": \"{{categoria}}\",\n    \"brand\": \"FORTGPRO\",\n    \"price\": 1800.00,\n    \"quantity\": 5,\n    \"freeShipping\": true,\n    \"prestige\": \"****\"\n  },\n  {\n    \"name\": \"Furadeira\",\n    \"category\": \"{{categoria}}\",\n    \"brand\": \"Black & Decker\",\n    \"price\": 500,\n    \"quantity\": 7,\n    \"freeShipping\": true,\n    \"prestige\": \"****\"\n  },\n  {\n    \"name\": \"Soldadora\",\n    \"category\": \"{{categoria}}\",\n    \"brand\": \"Black & Decker\",\n    \"price\": 350.00,\n    \"quantity\": 10,\n    \"freeShipping\": false,\n    \"prestige\": \"***\"\n  },\n  {\n    \"name\": \"Chuteira\",\n    \"category\": \"Esportes\",\n    \"brand\": \"Adidas\",\n    \"price\": 235.00,\n    \"quantity\": 6,\n    \"freeShipping\": true,\n    \"prestige\": \"*****\"\n  },\n  {\n    \"name\": \"Mini Cama elastica\",\n    \"category\": \"Esportes\",\n    \"brand\": \"Starboard\",\n    \"price\": 183.00,\n    \"quantity\": 4,\n    \"freeShipping\": true,\n    \"prestige\": \"*****\"\n  },\n  {\n    \"name\": \"Camiseta\",\n    \"category\": \"Esportes\",\n    \"brand\": \"Topper\",\n    \"price\": 80.00,\n    \"quantity\": 2,\n    \"freeShipping\": false,\n    \"prestige\": \"***\"\n  },\n  {\n    \"name\": \"Redmi Note 9\",\n    \"category\": \"Celulares\",\n    \"brand\": \"Xiaomi\",\n    \"price\": 2800.00,\n    \"quantity\": 15,\n    \"freeShipping\": true,\n    \"prestige\": \"****\"\n  },\n  {\n    \"name\": \"Smartwatch\",\n    \"category\": \"Celulares\",\n    \"brand\": \"Noga\",\n    \"price\": 1200.00,\n    \"quantity\": 5,\n    \"freeShipping\": true,\n    \"prestige\": \"**\"\n  },\n  {\n    \"name\": \"Camisa\",\n    \"category\": \"Roupas\",\n    \"brand\": \"Fila\",\n    \"price\": 79.00,\n    \"quantity\": 2,\n    \"freeShipping\": false,\n    \"prestige\": \"***\"\n  },\n  {\n    \"name\": \"Calcas\",\n    \"category\": \"Roupas\",\n    \"brand\": \"Oakley\",\n    \"price\": 73.00,\n    \"quantity\": 6,\n    \"freeShipping\": false,\n    \"prestige\": \"***\"\n  },\n  {\n    \"name\": \"Meias\",\n    \"category\": \"Roupas\",\n    \"brand\": \"Gonew\",\n    \"price\": 10.00,\n    \"quantity\": 8,\n    \"freeShipping\": false,\n    \"prestige\": \"*\"\n  },\n  {\n    \"name\": \"Shorts\",\n    \"category\": \"Roupas\",\n    \"brand\": \"Lacoste\",\n    \"price\": 275.00,\n    \"quantity\": 9,\n    \"freeShipping\": true,\n    \"prestige\": \"***\"\n  }\n]",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -75,10 +75,10 @@
 									]
 								}
 							},
-							"_postman_previewlanguage": null,
-							"header": null,
+							"_postman_previewlanguage": "Text",
+							"header": [],
 							"cookie": [],
-							"body": null
+							"body": ""
 						}
 					]
 				},
@@ -417,6 +417,86 @@
 						"description": "Endpoint para inserção de produtos em lote."
 					},
 					"response": []
+				},
+				{
+					"name": "Atualizar produto",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"const echoPostRequest = {",
+									"  ",
+									"  url: 'localhost:8080/api/v1/insert-articles-request',",
+									"  method: 'POST',",
+									"  header: {",
+									"        'content-type': 'application/json',",
+									"    },",
+									"  body: {",
+									"        mode: 'raw',",
+									"        raw: JSON.stringify([{",
+									"            \"name\": \"Regata\",",
+									"            \"category\": \"Roupas\",",
+									"            \"brand\": \"Nike\",",
+									"            \"price\": 1025.00,",
+									"            \"quantity\": 2,",
+									"            \"freeShipping\": true,",
+									"            \"prestige\": \"****\"",
+									"        }])",
+									"    }",
+									"};",
+									"pm.sendRequest(echoPostRequest, function (err, response) {",
+									"    var data = response.json();",
+									"    pm.environment.set(\"productId\", data[0].productId);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Teste de status 200\", function() {",
+									"    pm.response.to.have.status(200);",
+									"})",
+									"",
+									"pm.test(\"Teste de lista vazia\", function() {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.quantity).to.eql(9);",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Regata\",\n    \"category\": \"Roupas\",\n    \"brand\": \"Nike\",\n    \"price\": 125.00,\n    \"quantity\": 9,\n    \"freeShipping\": true,\n    \"prestige\": \"*****\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base}}/api/v1/update-article-request/{{productId}}",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"update-article-request",
+								"{{productId}}"
+							]
+						},
+						"description": "Endpoint para inserção de produtos em lote."
+					},
+					"response": []
 				}
 			]
 		},
@@ -465,6 +545,11 @@
 								"exec": [
 									"pm.test(\"Teste de status 200\", function() {",
 									"    pm.response.to.have.status(200);",
+									"})",
+									"",
+									"pm.test(\"Teste de lista vazia\", function() {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.length).to.eql(3);",
 									"})"
 								],
 								"type": "text/javascript"
@@ -496,6 +581,50 @@
 					"response": []
 				},
 				{
+					"name": "Filtro por categoria inexistente",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Teste de status 200\", function() {",
+									"    pm.response.to.have.status(200);",
+									"})",
+									"",
+									"pm.test(\"Teste de lista vazia\", function() {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.length).to.eql(0);",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base}}/api/v1/articles?category=inexistente",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"articles"
+							],
+							"query": [
+								{
+									"key": "category",
+									"value": "inexistente"
+								}
+							]
+						},
+						"description": "Endpoint para retornar uma lista de produtos filtrados por uma categoria."
+					},
+					"response": []
+				},
+				{
 					"name": "Filtro categoria e frete grátis",
 					"event": [
 						{
@@ -504,6 +633,11 @@
 								"exec": [
 									"pm.test(\"Teste de status 200\", function() {",
 									"    pm.response.to.have.status(200);",
+									"})",
+									"",
+									"pm.test(\"Teste de lista vazia\", function() {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.length).to.eql(2);",
 									"})"
 								],
 								"type": "text/javascript"
@@ -531,6 +665,54 @@
 								{
 									"key": "freeShipping",
 									"value": "true"
+								}
+							]
+						},
+						"description": "Endpoint para retornar uma lista de produtos com mais de um filtro."
+					},
+					"response": []
+				},
+				{
+					"name": "Filtro frete grátis e avaliação",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Teste de status 200\", function() {",
+									"    pm.response.to.have.status(200);",
+									"})",
+									"",
+									"pm.test(\"Teste de lista vazia\", function() {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.length).to.eql(3);",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base}}/api/v1/articles?freeShipping=true&prestige=****",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"articles"
+							],
+							"query": [
+								{
+									"key": "freeShipping",
+									"value": "true"
+								},
+								{
+									"key": "prestige",
+									"value": "****"
 								}
 							]
 						},
@@ -738,8 +920,8 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									"pm.test(\"Teste de status 200\", function() {",
-									"    pm.response.to.have.status(200);",
+									"pm.test(\"Teste de status 201\", function() {",
+									"    pm.response.to.have.status(201);",
 									"})"
 								],
 								"type": "text/javascript"
@@ -981,7 +1163,7 @@
 			"name": "Compras",
 			"item": [
 				{
-					"name": "Solicitação de compra",
+					"name": "Solicitação de compra válida",
 					"event": [
 						{
 							"listen": "prerequest",
@@ -1057,37 +1239,156 @@
 						"description": "Endpoint para realizar o cadastro de uma compra dada uma lista de produtos."
 					},
 					"response": []
+				},
+				{
+					"name": "Solicitação de compra sem estoque",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"const echoPostRequest = {",
+									"  ",
+									"  url: 'localhost:8080/api/v1/insert-articles-request',",
+									"  method: 'POST',",
+									"  header: {",
+									"        'content-type': 'application/json',",
+									"    },",
+									"  body: {",
+									"        mode: 'raw',",
+									"        raw: JSON.stringify([{",
+									"            \"name\":\"Serra de Bancada\",",
+									"            \"category\":\"Ferramentas\",",
+									"            \"brand\":\"FORTGPRO\",",
+									"            \"price\":1800.00,",
+									"            \"quantity\":5,",
+									"            \"freeShipping\":true,",
+									"            \"prestige\":\"****\"",
+									"        }])",
+									"    }",
+									"};",
+									"pm.sendRequest(echoPostRequest, function (err, response) {",
+									"    var data = response.json();",
+									"    pm.environment.set(\"productId\", data[0].productId);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Teste de status 404\", function() {",
+									"    pm.response.to.have.status(404);",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\n    {\n        \"productId\":\"{{productId}}\",\n        \"quantity\": 8\n    }\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base}}/api/v1/purchase-request",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"purchase-request"
+							]
+						},
+						"description": "Endpoint para realizar o cadastro de uma compra dada uma lista de produtos."
+					},
+					"response": []
+				},
+				{
+					"name": "Solicitação de compra com id errado",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"const echoPostRequest = {",
+									"  ",
+									"  url: 'localhost:8080/api/v1/insert-articles-request',",
+									"  method: 'POST',",
+									"  header: {",
+									"        'content-type': 'application/json',",
+									"    },",
+									"  body: {",
+									"        mode: 'raw',",
+									"        raw: JSON.stringify([{",
+									"            \"name\":\"Serra de Bancada\",",
+									"            \"category\":\"Ferramentas\",",
+									"            \"brand\":\"FORTGPRO\",",
+									"            \"price\":1800.00,",
+									"            \"quantity\":1,",
+									"            \"freeShipping\":true,",
+									"            \"prestige\":\"****\"",
+									"        }])",
+									"    }",
+									"};",
+									"pm.sendRequest(echoPostRequest, function (err, response) {",
+									"    var data = response.json();",
+									"    pm.environment.set(\"productId\", data[0].productId);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Teste de status 404\", function() {",
+									"    pm.response.to.have.status(404);",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\n    {\n        \"productId\":\"d56e0010-1afd-4df5-b2a1-6dfbac8c0a3e\",\n        \"quantity\": 1\n    }\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base}}/api/v1/purchase-request",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"purchase-request"
+							]
+						},
+						"description": "Endpoint para realizar o cadastro de uma compra dada uma lista de produtos."
+					},
+					"response": []
 				}
 			]
-		},
-		{
-			"name": "Atualizar produto",
-			"request": {
-				"method": "PUT",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"productId\" : \"5047d093-ae08-4f2c-98a9-030ba47746e3\",\n    \"name\":\"Serra de Bancada\",\n    \"category\":\"Ferramentas\",\n    \"brand\":\"FORTGPRO\",\n    \"price\":1900.00,\n    \"quantity\":8,\n    \"freeShipping\":true,\n    \"prestige\":\"****\"\n}\n",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{base}}/api/v1/update-article-request",
-					"host": [
-						"{{base}}"
-					],
-					"path": [
-						"api",
-						"v1",
-						"update-article-request"
-					]
-				},
-				"description": "Endpoint para inserção de produtos em lote."
-			},
-			"response": []
 		}
 	],
 	"event": [
@@ -1117,7 +1418,7 @@
 		},
 		{
 			"key": "categoria",
-			"value": "\"Ferramentas\""
+			"value": "Ferramentas"
 		}
 	]
 }

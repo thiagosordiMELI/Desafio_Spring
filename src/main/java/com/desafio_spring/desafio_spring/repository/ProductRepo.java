@@ -47,7 +47,6 @@ public class ProductRepo {
         } catch (CustomException | IOException ex) {
             throw new RuntimeException("Erro ao pegar lista de produtos.");
         }
-        if (productsList.size() == 0) throw new CustomException("Product not found");
         return productsList;
     }
 
@@ -71,20 +70,6 @@ public class ProductRepo {
 
         return productCategory;
     }
-
-        public List<Product> getAllOrderByName () {
-            return this.getAllProducts()
-                    .stream()
-                    .sorted(Comparator.comparing((Product::getName)))
-                    .collect(Collectors.toList());
-        }
-
-        public List<Product> getAllOrderByPrice () {
-            return this.getAllProducts()
-                    .stream()
-                    .sorted(Comparator.comparing((Product::getPrice)))
-                    .collect(Collectors.toList());
-        }
 
         public Product updateProduct (Product product){
             if (findById(product.getProductId()) != null) {
