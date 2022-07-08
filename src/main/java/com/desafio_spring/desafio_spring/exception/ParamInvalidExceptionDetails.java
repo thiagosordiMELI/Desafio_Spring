@@ -5,12 +5,12 @@ import lombok.Data;
 
 import java.time.LocalDateTime;
 
-@Data
-@Builder
 /** Exception de parâmetros inválidos passados com detalhes para retorno
  * @version 1.0
  * @since 1.0
  */
+@Data
+@Builder
 public class ParamInvalidExceptionDetails {
     private String title;
     private int status;

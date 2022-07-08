@@ -7,13 +7,15 @@ import lombok.NoArgsConstructor;
 
 import java.util.UUID;
 
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
-/** Representa um cliente
+/**
+ * Representa um cliente
+ *
  * @version 1.0
  * @since 1.0
  */
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Customer {
     private UUID id;
     private String name;

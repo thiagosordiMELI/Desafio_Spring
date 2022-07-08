@@ -8,14 +8,14 @@ import lombok.Setter;
 
 import java.util.UUID;
 
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
 /** DTO de resposta para produto(s) dentro da compra
  * @version 1.0
  * @since 1.0
  */
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class PurchaseProductResponseDto {
     private UUID productId;
     private String name;

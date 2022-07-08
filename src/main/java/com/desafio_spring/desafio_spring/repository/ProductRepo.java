@@ -17,11 +17,13 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 
 
-@Repository
-/** Repository do Product.
+/**
+ * Repository do Product.
+ *
  * @version 1.0
  * @since 1.0
  */
+@Repository
 public class ProductRepo {
     private final String productsFile = "src/main/resources/products.json";
 

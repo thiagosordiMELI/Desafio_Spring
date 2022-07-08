@@ -10,11 +10,13 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-@Repository
-/** Repository do Purchase.
+/**
+ * Repository do Purchase.
+ *
  * @version 1.0
  * @since 1.0
  */
+@Repository
 public class PurchaseRepo {
     private static final String dbPath = "src/main/resources/purchases.json";
 

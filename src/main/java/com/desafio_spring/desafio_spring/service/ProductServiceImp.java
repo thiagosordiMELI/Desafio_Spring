@@ -1,7 +1,7 @@
 package com.desafio_spring.desafio_spring.service;
 
-import com.desafio_spring.desafio_spring.dto.ProductResponseDto;
 import com.desafio_spring.desafio_spring.dto.ProductRequestDto;
+import com.desafio_spring.desafio_spring.dto.ProductResponseDto;
 import com.desafio_spring.desafio_spring.exception.ParamInvalidException;
 import com.desafio_spring.desafio_spring.model.Product;
 import com.desafio_spring.desafio_spring.repository.ProductRepo;
@@ -14,11 +14,13 @@ import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
-@Service
-/** Service do Product, implementa Interface ProductService.
+/**
+ * Service do Product, implementa Interface ProductService.
+ *
  * @version 1.0
  * @since 1.0
  */
+@Service
 public class ProductServiceImp implements ProductService {
 
     @Autowired

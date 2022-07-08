@@ -5,6 +5,9 @@ import com.desafio_spring.desafio_spring.model.Customer;
 
 import java.util.List;
 
+/**
+ * Interface para a camada Service dos Clientes(Customers).
+ */
 public interface CustomerService {
 
     /**
