@@ -10,7 +10,7 @@ import javax.validation.constraints.NotBlank;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class CustomerDto {
+public class CustomerRequestDto {
     @NotBlank(message = "Campo nome não pode ser vazio")
     private String name;
 
