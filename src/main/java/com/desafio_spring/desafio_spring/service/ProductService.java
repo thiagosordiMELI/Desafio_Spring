@@ -9,5 +9,5 @@ public interface ProductService {
     List<ProductDto> saveProducts(List<ProductRequestDto> productList);
     List<ProductDto> getAllProducts();
 
-    List<ProductDto> filterMultiples(String category, String prestige, Boolean freeShipping);
+    List<ProductDto> filterMultiples(String category, Boolean freeShipping, String prestige);
 }

@@ -36,10 +36,23 @@ public class ProductServiceImp implements ProductService {
     }
 
     @Override
-    public List<ProductDto> filterMultiples(String category, String prestige, Boolean freeShipping) {
-        List<Product> filteredProducts = productRepo.filterMultiples(category, prestige, freeShipping);
-        return filteredProducts
-                .stream().map(ProductDto::new)
-                .collect(Collectors.toList());
+    public List<ProductDto> filterMultiples(String category, Boolean freeShipping, String prestige) {
+        List<Product> products = productRepo.getAllProducts();
+        if (category != null) {
+            products = products.stream()
+                    .filter(p -> p.getCategory().equals(category))
+                    .collect(Collectors.toList());
+        }
+        if (prestige != null) {
+            products = products.stream()
+                    .filter(p -> p.getPrestige().equals(prestige))
+                    .collect(Collectors.toList());
+        }
+        if(freeShipping != null) {
+            products = products.stream()
+                    .filter(p -> p.isFreeShipping() == freeShipping)
+                    .collect(Collectors.toList());
+        }
+        return products.stream().map(ProductDto::new).collect(Collectors.toList());
     }
 }

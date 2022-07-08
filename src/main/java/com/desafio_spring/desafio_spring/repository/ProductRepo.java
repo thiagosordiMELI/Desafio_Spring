@@ -45,7 +45,6 @@ public class ProductRepo {
         } catch (ExceptionCustom | IOException ex) {
 
         }
-        if (productsList.size() == 0) throw new ExceptionCustom("Product not found");
         return productsList;
     }
 
@@ -56,23 +55,5 @@ public class ProductRepo {
             throw new ExceptionCustom("Não foi achado produto com id "+id);
         }
         return product;
-    }
-
-    public List<Product> filterMultiples(String category, String prestige, Boolean freeShipping )  {
-        List<Product> products = getAllProducts();
-        List<Product> productFiltered = null;
-        if (category != null && freeShipping != null) {
-            productFiltered = products.stream()
-                    .filter(p -> p.getCategory().equals(category))
-                    .filter(p -> p.isFreeShipping() == freeShipping)
-                    .collect(Collectors.toList());
-        }
-        if(prestige != null && freeShipping != null) {
-            productFiltered = products.stream()
-                    .filter(p -> p.isFreeShipping() == freeShipping)
-                    .filter(p -> p.getPrestige().equals(prestige))
-                    .collect(Collectors.toList());
-        }
-        return productFiltered;
     }
 }

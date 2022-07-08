@@ -20,19 +20,19 @@ public class ProductController {
     @Autowired
     private ProductService service;
 
-    @GetMapping("/articles")
-    public ResponseEntity<List<ProductDto>> getAllProducts() {
-        List<ProductDto> productsList =  service.getAllProducts();
-        return ResponseEntity.ok(productsList);
-    }
+//    @GetMapping("/articles")
+//    public ResponseEntity<List<ProductDto>> getAllProducts() {
+//        List<ProductDto> productsList =  service.getAllProducts();
+//        return ResponseEntity.ok(productsList);
+//    }
 
     @GetMapping("/articles")
     public ResponseEntity<List<ProductDto>> multipleFilters
             (@RequestParam(required = false) String category,
-             @RequestParam(required = false) String prestige,
-             @RequestParam(required = false) Boolean freeShipping) {
+             @RequestParam(required = false) Boolean freeShipping,
+             @RequestParam(required = false) String prestige) {
         List<ProductDto> filteredResult;
-        filteredResult = service.filterMultiples(prestige, category, freeShipping);
+        filteredResult = service.filterMultiples(category, freeShipping, prestige);
         return ResponseEntity.ok(filteredResult);
     }
 
