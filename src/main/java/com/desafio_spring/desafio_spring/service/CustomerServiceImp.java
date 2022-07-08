@@ -12,6 +12,10 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
+/** Service do Customer, implementa Interface CustomerService.
+ * @version 1.0
+ * @since 1.0
+ */
 public class CustomerServiceImp implements CustomerService {
     @Autowired
     private CustomerRepo repo;

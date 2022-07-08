@@ -11,6 +11,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Repository
+/** Repository do Customer.
+ * @version 1.0
+ * @since 1.0
+ */
 public class CustomerRepo {
 
     private static final String dbFile = "src/main/resources/customers.json";

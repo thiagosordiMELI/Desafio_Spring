@@ -13,6 +13,10 @@ import java.util.List;
 
 @RestController
 @RequestMapping("api/v1/customers")
+/** Controller do Customer.
+ * @version 1.0
+ * @since 1.0
+ */
 public class CustomerController {
 
     @Autowired

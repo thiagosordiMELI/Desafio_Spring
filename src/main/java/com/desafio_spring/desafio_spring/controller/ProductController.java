@@ -15,6 +15,10 @@ import java.util.UUID;
 @Validated
 @RestController
 @RequestMapping("/api/v1")
+/** Controller do Product.
+ * @version 1.0
+ * @since 1.0
+ */
 public class ProductController {
 
     @Autowired

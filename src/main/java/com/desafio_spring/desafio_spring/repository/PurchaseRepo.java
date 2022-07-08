@@ -11,6 +11,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Repository
+/** Repository do Purchase.
+ * @version 1.0
+ * @since 1.0
+ */
 public class PurchaseRepo {
     private static final String dbPath = "src/main/resources/purchases.json";
 

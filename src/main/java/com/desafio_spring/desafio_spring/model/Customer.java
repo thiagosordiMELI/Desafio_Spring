@@ -10,6 +10,10 @@ import java.util.UUID;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+/** Representa um cliente
+ * @version 1.0
+ * @since 1.0
+ */
 public class Customer {
     private UUID id;
     private String name;
