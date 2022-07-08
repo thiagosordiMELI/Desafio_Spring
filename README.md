@@ -1,5 +1,5 @@
 # Desafio_Spring
-API REST desenvolvida para o Desafio Spring durante o Bootcamp IT Backend Java. 
+API REST desenvolvida pelo grupo Beta Campers para o Desafio Spring durante o IT Bootcamp Backend Java (wave 6). 
 
 ## Autores
 <a href="https://github.com/vfreitasmeli">
@@ -38,6 +38,20 @@ API REST desenvolvida para o Desafio Spring durante o Bootcamp IT Backend Java.
   - [Get - Lista todos os clientes](#getCustomers)
   - [Get - Filtra clientes por estado](#getCustomersByState)
 ## Observações
+**ID**<br>
+Considerando que não é aconselhável que o cliente defina qual será o ID de um determinado objeto, optamos por gerar o ID dos objetos nos métodos POST. Para isso utilizamos a classe UUID [(java.util.UUID)](https://docs.oracle.com/javase/7/docs/api/java/util/UUID.html), que gera um identificador único universal.<br>
+<br>
+**Validações**<br>
+Utilizamos o [Spring Validation](https://docs.spring.io/spring-framework/docs/4.1.x/spring-framework-reference/html/validation.html#validation-beanvalidation) para os atributos obrigatórios dos objetos, dessa forma a aplicação não aceitará a criação de objetos com informações faltantes.<br>
+<br>
+**Edição de produtos**<br>
+Acrescentamos a rota [update-article-request](#putProduct) que recebe um PUT para atualizar as informações de um determinado produto.<br>
+<br>
+**Filtros e ordenações**<br>
+Criamos a rota [articles](#getFilters) de forma que possa receber diversas combinações de filtros e ordenações definadas nos parâmetros da URL.<br>
+<br>
+**Solicitações de compras**<br>
+Adaptamos para que a [solicitação de compra](#postPurchase) seja enviada apenas com o ID do produto e sua quantidade. As demais informações do produto serão obtidas pelo próprio servidor.
 
 # Funcionalidades
 
@@ -118,7 +132,7 @@ Lista de todos os produtos disponíveis.
     }
 ]</code></pre>
 
-Permite também a utilização e combinação dos seguintes parâmetros no GET:<br name="getFilters">
+Permite também a utilização e diferentes combinações com os seguintes parâmetros no GET:<br name="getFilters">
 
 `GET /api/v1/articles?category=Ferramentas`<br>
 Produtos filtrados por categoria.
