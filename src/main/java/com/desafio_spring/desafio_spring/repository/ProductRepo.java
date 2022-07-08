@@ -47,7 +47,6 @@ public class ProductRepo {
         } catch (ExceptionCustom | IOException ex) {
 
         }
-        if (productsList.size() == 0) throw new ExceptionCustom("Product not found");
         return productsList;
     }
 
