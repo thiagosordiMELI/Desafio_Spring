@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "6cdec3a0-0731-4e2c-8a4c-6bcc451a8822",
+		"_postman_id": "6531c587-d1b0-4a71-a3f0-159fd6b78950",
 		"name": "Desafio Spring",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -1334,7 +1334,7 @@
 									"            \"category\":\"Ferramentas\",",
 									"            \"brand\":\"FORTGPRO\",",
 									"            \"price\":1800.00,",
-									"            \"quantity\":5,",
+									"            \"quantity\":25,",
 									"            \"freeShipping\":true,",
 									"            \"prestige\":\"****\"",
 									"        }])",
@@ -1342,7 +1342,7 @@
 									"};",
 									"pm.sendRequest(echoPostRequest, function (err, response) {",
 									"    var data = response.json();",
-									"    pm.environment.set(\"productId\", data[0].productId);",
+									"    pm.globals.set(\"productId\", data[0].productId);",
 									"});",
 									"",
 									"const echoPostCustomerRequest = {",
@@ -1355,16 +1355,16 @@
 									"  body: {",
 									"        mode: 'raw',",
 									"        raw: JSON.stringify({",
-									"                            \"name\": \"pedro\",",
-									"                            \"email\": \"pedro@example.com\",",
-									"                            \"city\": \"Santo Ângelo\",",
+									"                            \"name\": \"Thiago\",",
+									"                            \"email\":  \"thiago@example.com\",",
+									"                            \"city\": \"Santa Maria\",",
 									"                            \"state\": \"RS\"",
 									"                            })",
 									"    }",
 									"};",
 									"pm.sendRequest(echoPostCustomerRequest, function (err, response) {",
 									"    var data = response.json();",
-									"    pm.environment.set(\"customerId\", data.id);",
+									"    pm.globals.set(\"customerId\", data.id);",
 									"});"
 								],
 								"type": "text/javascript"
@@ -1420,30 +1420,7 @@
 							"listen": "prerequest",
 							"script": {
 								"exec": [
-									"const echoPostRequest = {",
-									"  ",
-									"  url: 'localhost:8080/api/v1/insert-articles-request',",
-									"  method: 'POST',",
-									"  header: {",
-									"        'content-type': 'application/json',",
-									"    },",
-									"  body: {",
-									"        mode: 'raw',",
-									"        raw: JSON.stringify([{",
-									"            \"name\":\"Serra de Bancada\",",
-									"            \"category\":\"Ferramentas\",",
-									"            \"brand\":\"FORTGPRO\",",
-									"            \"price\":1800.00,",
-									"            \"quantity\":5,",
-									"            \"freeShipping\":true,",
-									"            \"prestige\":\"****\"",
-									"        }])",
-									"    }",
-									"};",
-									"pm.sendRequest(echoPostRequest, function (err, response) {",
-									"    var data = response.json();",
-									"    pm.environment.set(\"productId\", data[0].productId);",
-									"});"
+									""
 								],
 								"type": "text/javascript"
 							}
@@ -1465,7 +1442,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "[\n    {\n        \"productId\":\"{{productId}}\",\n        \"quantity\": 8\n    }\n]",
+							"raw": "{\n    \"customerId\": \"{{customerId}}\",\n    \"products\": [\n        {\n            \"productId\":\"{{productId}}\",\n            \"quantity\": 50\n        }\n    ]\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1494,30 +1471,7 @@
 							"listen": "prerequest",
 							"script": {
 								"exec": [
-									"const echoPostRequest = {",
-									"  ",
-									"  url: 'localhost:8080/api/v1/insert-articles-request',",
-									"  method: 'POST',",
-									"  header: {",
-									"        'content-type': 'application/json',",
-									"    },",
-									"  body: {",
-									"        mode: 'raw',",
-									"        raw: JSON.stringify([{",
-									"            \"name\":\"Serra de Bancada\",",
-									"            \"category\":\"Ferramentas\",",
-									"            \"brand\":\"FORTGPRO\",",
-									"            \"price\":1800.00,",
-									"            \"quantity\":1,",
-									"            \"freeShipping\":true,",
-									"            \"prestige\":\"****\"",
-									"        }])",
-									"    }",
-									"};",
-									"pm.sendRequest(echoPostRequest, function (err, response) {",
-									"    var data = response.json();",
-									"    pm.environment.set(\"productId\", data[0].productId);",
-									"});"
+									""
 								],
 								"type": "text/javascript"
 							}
@@ -1539,7 +1493,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "[\n    {\n        \"productId\":\"d56e0010-1afd-4df5-b2a1-6dfbac8c0a3e\",\n        \"quantity\": 1\n    }\n]",
+							"raw": "{\n    \"customerId\": \"{{customerId}}\",\n    \"products\": [\n        {\n            \"productId\":\"d56e0010-1afd-4df5-b2a1-6dfbac8c0a3e\",\n            \"quantity\": 50\n        }\n    ]\n}",
 							"options": {
 								"raw": {
 									"language": "json"
