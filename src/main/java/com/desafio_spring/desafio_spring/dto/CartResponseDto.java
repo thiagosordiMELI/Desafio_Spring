@@ -5,6 +5,6 @@ import lombok.Data;
 
 @Data
 @AllArgsConstructor
-public class CartDto {
+public class CartResponseDto {
     private double total;
 }
