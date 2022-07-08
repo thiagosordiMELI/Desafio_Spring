@@ -21,9 +21,9 @@ public interface ProductService {
 
     /**
      * Método do Service que cuida da lógica de editar as informações de um produto já existente.
-     * @param id id do produto que será editado.
-     * @param productDto DTO(Request) com as novas informações do produto.
-     * @return productDto(Response) com as novas informações.
+     * @param id UUID do produto que será editado.
+     * @param productDto objeto ProductRequestDto com as novas informações do produto.
+     * @return Um objeto ProductDto com as novas informações.
      */
     ProductDto updateProduct(UUID id, ProductRequestDto productDto);
 

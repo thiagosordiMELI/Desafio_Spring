@@ -23,7 +23,7 @@ public class PurchaseController {
 
     /**
      * Metódo do Controller que recebe uma lista de produtos e envia ao service para criar a compra.
-     * @param products lista de objetos PurchaseProductRequestDto
+     * @param products lista de objetos PurchaseProduct
      * @return Um objeto PurchaseResponseDto contendo todas informações dos produtos na compra além do valor total.
      */
     @PostMapping

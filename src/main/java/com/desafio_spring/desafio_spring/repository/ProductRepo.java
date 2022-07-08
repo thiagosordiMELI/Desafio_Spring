@@ -61,6 +61,11 @@ public class ProductRepo {
         return productsList;
     }
 
+    /**
+     * Metódo do Repository que recupera um produto pelo seu UUID.
+     * @param id UUID de um Product
+     * @return Um objeto Product.
+     */
     public Product findById(UUID id) {
         List<Product> products = getAllProducts();
         Product product =  products.stream().filter(p -> p.getProductId().equals(id)).findFirst().orElse(null);
@@ -70,6 +75,10 @@ public class ProductRepo {
         return product;
     }
 
+    /**
+     * Metódo do Repository que retorna uma lista de produtos ordenada pelo nome.
+     * @return Uma lista de objetos Product.
+     */
     public List<Product> getAllOrderByName() {
         return this.getAllProducts()
                 .stream()
@@ -77,6 +86,10 @@ public class ProductRepo {
                 .collect(Collectors.toList());
     }
 
+    /**
+     * Metódo do Repository que retorna uma lista de produtos ordenada pelo preço.
+     * @return Uma lista de objetos Product.
+     */
     public List<Product> getAllOrderByPrice() {
         return this.getAllProducts()
                 .stream()
@@ -84,6 +97,11 @@ public class ProductRepo {
                 .collect(Collectors.toList());
     }
 
+    /**
+     * Metódo do Repository que atualiza um produto existente dentro do arquivo JSON.
+     * @param product objeto Product com as informações novas
+     * @return O objeto Product que foi atualizado no arquivo JSON.
+     */
     public Product updateProduct(Product product) {
         if(findById(product.getProductId()) != null) {
             ObjectMapper mapper = new ObjectMapper();
