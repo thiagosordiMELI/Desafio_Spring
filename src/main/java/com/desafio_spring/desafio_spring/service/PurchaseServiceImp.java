@@ -1,13 +1,12 @@
 package com.desafio_spring.desafio_spring.service;
 
-import com.desafio_spring.desafio_spring.dto.CartResponseDto;
-import com.desafio_spring.desafio_spring.dto.PurchaseProductResponseDto;
-import com.desafio_spring.desafio_spring.dto.PurchaseResponseDto;
+import com.desafio_spring.desafio_spring.dto.*;
 import com.desafio_spring.desafio_spring.exception.CustomException;
 import com.desafio_spring.desafio_spring.exception.ParamInvalidException;
 import com.desafio_spring.desafio_spring.model.Product;
 import com.desafio_spring.desafio_spring.model.Purchase;
 import com.desafio_spring.desafio_spring.model.PurchaseProduct;
+import com.desafio_spring.desafio_spring.repository.CustomerRepo;
 import com.desafio_spring.desafio_spring.repository.ProductRepo;
 import com.desafio_spring.desafio_spring.repository.PurchaseRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,12 +31,15 @@ public class PurchaseServiceImp implements PurchaseService {
     @Autowired
     private ProductRepo productRepo;
 
+    @Autowired
+    private CustomerRepo customerRepo;
+
     @Override
-    public PurchaseResponseDto savePurchases(List<PurchaseProduct> purchaseProducts) {
+    public PurchaseResponseDto savePurchases(PurchaseRequestDto purchaseRequest) {
         // Lógica para controle de estoque
         Map<UUID, Product> productMap = getProductMap();
 
-        for (PurchaseProduct pp : purchaseProducts) {
+        for (PurchaseProduct pp : purchaseRequest.getProducts()) {
             Product product = productMap.get(pp.getProductId());
             if (product == null) {
                 throw new CustomException("Produto(s) inexistente(s)");
@@ -50,19 +52,20 @@ public class PurchaseServiceImp implements PurchaseService {
         }
 
         // Atualiza o registro de Produto no arquivo
-        purchaseProducts.forEach(p -> productRepo.updateProduct(productMap.get(p.getProductId())));
-        Purchase purchase = new Purchase(UUID.randomUUID(), purchaseProducts);
+        purchaseRequest.getProducts().forEach(p -> productRepo.updateProduct(productMap.get(p.getProductId())));
+        Purchase purchase = new Purchase(UUID.randomUUID(), purchaseRequest.getCustomerId(), purchaseRequest.getProducts());
         purchaseRepo.savePurchase(purchase);
 
         // Soma o total da compra
-        double total = purchaseProducts
+        double total = purchaseRequest.getProducts()
                 .stream()
                 .mapToDouble(p -> productMap.get(p.getProductId()).getPrice() * p.getQuantity())
                 .sum();
 
         return new PurchaseResponseDto(
                 purchase.getId(),
-                purchaseProducts
+                customerRepo.findById(purchaseRequest.getCustomerId()),
+                purchaseRequest.getProducts()
                         .stream()
                         .map(x -> new PurchaseProductResponseDto(productMap.get(x.getProductId()), x.getQuantity()))
                         .collect(Collectors.toList()),
@@ -70,12 +73,15 @@ public class PurchaseServiceImp implements PurchaseService {
     }
 
     @Override
-    public CartResponseDto getTotalInCart() {
+    public CartResponseDto getTotalInCart(UUID customerId) {
+        customerRepo.findById(customerId);
+
         Map<UUID, Product> map = getProductMap();
 
         double total = purchaseRepo
                 .getAllPurchases()
                 .stream()
+                .filter(p -> p.getClientId().equals(customerId))
                 .flatMap(x -> x.getProducts().stream())
                 .mapToDouble(x -> x.getQuantity() * map.get(x.getProductId()).getPrice())
                 .sum();

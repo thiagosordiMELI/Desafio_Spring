@@ -20,5 +20,6 @@ import java.util.UUID;
 @AllArgsConstructor
 public class Purchase {
     private UUID id;
+    private UUID clientId;
     private List<PurchaseProduct> products;
 }

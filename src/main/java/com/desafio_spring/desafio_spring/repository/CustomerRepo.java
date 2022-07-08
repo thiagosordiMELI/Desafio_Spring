@@ -1,6 +1,8 @@
 package com.desafio_spring.desafio_spring.repository;
 
+import com.desafio_spring.desafio_spring.exception.CustomException;
 import com.desafio_spring.desafio_spring.model.Customer;
+import com.desafio_spring.desafio_spring.model.Product;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import org.springframework.stereotype.Repository;
@@ -9,6 +11,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * Repository do Customer.
@@ -32,6 +35,20 @@ public class CustomerRepo {
         } catch (IOException e) {
             throw new RuntimeException("Erro ao pegar lista de clientes");
         }
+    }
+
+    /**
+     * Metódo do Repository que recupera um cliente pelo seu UUID.
+     * @param id UUID de um Customer
+     * @return Um objeto Customer.
+     */
+    public Customer findById(UUID id) {
+        List<Customer> customers = getAllCustomers();
+        Customer customer = customers.stream().filter(c -> c.getId().equals(id)).findFirst().orElse(null);
+        if (customer == null) {
+            throw new CustomException("Não foi achado cliente com id " + id);
+        }
+        return customer;
     }
 
     /**
