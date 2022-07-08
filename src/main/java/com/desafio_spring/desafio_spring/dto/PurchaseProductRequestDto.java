@@ -9,6 +9,10 @@ import java.util.UUID;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+/** DTO de requisição para compra
+ * @version 1.0
+ * @since 1.0
+ */
 public class PurchaseProductRequestDto {
     private UUID id;
     private int quantity;

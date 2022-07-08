@@ -12,6 +12,10 @@ import java.util.UUID;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+/** Representa uma compra
+ * @version 1.0
+ * @since 1.0
+ */
 public class Purchase {
     private UUID id;
     private List<PurchaseProduct> products;

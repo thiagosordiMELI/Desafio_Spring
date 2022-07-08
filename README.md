@@ -210,7 +210,9 @@ Adiciona um novo cliente. Devolve um objeto com os dados básicos do cliente.<br
     "state": "RS"
 }</code></pre>
 
+
 `GET /api/v1/articles`<br name="getCustomers">
+
 Lista de todos os clientes cadastrados.
 <br>
 <pre><code>Response:</b>

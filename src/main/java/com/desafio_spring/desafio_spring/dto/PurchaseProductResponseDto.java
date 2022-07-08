@@ -12,6 +12,10 @@ import java.util.UUID;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+/** DTO de resposta para produto(s) dentro da compra
+ * @version 1.0
+ * @since 1.0
+ */
 public class PurchaseProductResponseDto {
     private UUID productId;
     private String name;

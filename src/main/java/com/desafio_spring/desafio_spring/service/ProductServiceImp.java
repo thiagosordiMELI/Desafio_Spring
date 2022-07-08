@@ -15,6 +15,10 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
+/** Service do Product, implementa Interface ProductService.
+ * @version 1.0
+ * @since 1.0
+ */
 public class ProductServiceImp implements ProductService {
 
     @Autowired

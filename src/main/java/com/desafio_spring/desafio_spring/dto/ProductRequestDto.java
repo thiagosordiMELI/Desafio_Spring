@@ -10,6 +10,10 @@ import javax.validation.constraints.NotBlank;
 @Getter
 @Setter
 @NoArgsConstructor
+/** DTO de requisição para inserir/atualizar produto
+ * @version 1.0
+ * @since 1.0
+ */
 public class ProductRequestDto {
     private static final String notNullMessage = "Campo não pode ser nulo.";
     private static final String valueMessage = "Valor inválido.";
