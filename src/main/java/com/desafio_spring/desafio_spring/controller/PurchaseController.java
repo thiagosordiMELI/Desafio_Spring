@@ -1,6 +1,6 @@
 package com.desafio_spring.desafio_spring.controller;
 
-import com.desafio_spring.desafio_spring.dto.CartDto;
+import com.desafio_spring.desafio_spring.dto.CartResponseDto;
 import com.desafio_spring.desafio_spring.dto.PurchaseResponseDto;
 import com.desafio_spring.desafio_spring.model.PurchaseProduct;
 import com.desafio_spring.desafio_spring.service.PurchaseService;
@@ -33,7 +33,7 @@ public class PurchaseController {
     }
 
     @GetMapping("cart")
-    public ResponseEntity<CartDto> getTotalInCart() {
+    public ResponseEntity<CartResponseDto> getTotalInCart() {
         return ResponseEntity.ok(service.getTotalInCart());
     }
 }

@@ -1,6 +1,6 @@
 package com.desafio_spring.desafio_spring.service;
 
-import com.desafio_spring.desafio_spring.dto.CustomerDto;
+import com.desafio_spring.desafio_spring.dto.CustomerRequestDto;
 import com.desafio_spring.desafio_spring.model.Customer;
 
 import java.util.List;
@@ -22,8 +22,8 @@ public interface CustomerService {
 
     /**
      * Metódo do Service que cuida da lógica de salvar um novo cliente.
-     * @param customerDto objeto Customer a ser salvo.
+     * @param customerDto objeto CustomerRequestDto a ser salvo.
      * @return O objeto Customer que foi criado.
      */
-    Customer saveCustomer(CustomerDto customerDto);
+    Customer saveCustomer(CustomerRequestDto customerRequestDto);
 }

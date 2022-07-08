@@ -1,6 +1,6 @@
 package com.desafio_spring.desafio_spring.service;
 
-import com.desafio_spring.desafio_spring.dto.CartDto;
+import com.desafio_spring.desafio_spring.dto.CartResponseDto;
 import com.desafio_spring.desafio_spring.dto.PurchaseProductResponseDto;
 import com.desafio_spring.desafio_spring.dto.PurchaseResponseDto;
 import com.desafio_spring.desafio_spring.exception.CustomException;
@@ -68,7 +68,7 @@ public class PurchaseServiceImp implements PurchaseService {
     }
 
     @Override
-    public CartDto getTotalInCart() {
+    public CartResponseDto getTotalInCart() {
         Map<UUID, Product> map = getProductMap();
 
         double total = purchaseRepo
@@ -78,7 +78,7 @@ public class PurchaseServiceImp implements PurchaseService {
                 .mapToDouble(x -> x.getQuantity() * map.get(x.getProductId()).getPrice())
                 .sum();
 
-        return new CartDto(total);
+        return new CartResponseDto(total);
     }
 
     private Map<UUID, Product> getProductMap() {

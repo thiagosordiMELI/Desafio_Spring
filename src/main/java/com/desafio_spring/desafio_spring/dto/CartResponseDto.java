@@ -9,6 +9,6 @@ import lombok.Data;
  * @version 1.0
  * @since 1.0
  */
-public class CartDto {
+public class CartResponseDto {
     private double total;
 }

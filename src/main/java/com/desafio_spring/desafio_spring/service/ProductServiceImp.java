@@ -1,6 +1,6 @@
 package com.desafio_spring.desafio_spring.service;
 
-import com.desafio_spring.desafio_spring.dto.ProductDto;
+import com.desafio_spring.desafio_spring.dto.ProductResponseDto;
 import com.desafio_spring.desafio_spring.dto.ProductRequestDto;
 import com.desafio_spring.desafio_spring.exception.ParamInvalidException;
 import com.desafio_spring.desafio_spring.model.Product;
@@ -25,7 +25,7 @@ public class ProductServiceImp implements ProductService {
     private ProductRepo productRepo;
 
     @Override
-    public List<ProductDto> saveProducts(List<ProductRequestDto> productList) {
+    public List<ProductResponseDto> saveProducts(List<ProductRequestDto> productList) {
         if (productList.size() == 0) {
             throw new ParamInvalidException("Lista não pode ser vazia.");
         }
@@ -33,20 +33,20 @@ public class ProductServiceImp implements ProductService {
                 .map(Product::new)
                 .collect(Collectors.toUnmodifiableList());
         List<Product> savedProducts = productRepo.saveProducts(newProducts);
-        List<ProductDto> productDto = new ArrayList<>();
-        savedProducts.forEach(product -> productDto.add(new ProductDto(product)));
-        return productDto;
+        List<ProductResponseDto> productResponseDto = new ArrayList<>();
+        savedProducts.forEach(product -> productResponseDto.add(new ProductResponseDto(product)));
+        return productResponseDto;
     }
 
     @Override
-    public List<ProductDto> getAllProducts() {
+    public List<ProductResponseDto> getAllProducts() {
         List<Product> productList = productRepo.getAllProducts();
         return productList.stream()
-                .map(ProductDto::new).collect(Collectors.toList());
+                .map(ProductResponseDto::new).collect(Collectors.toList());
     }
 
     @Override
-    public List<ProductDto> filterMultiples(String category, Boolean freeShipping, String prestige, Integer order) {
+    public List<ProductResponseDto> filterMultiples(String category, Boolean freeShipping, String prestige, Integer order) {
         List<Product> products = productRepo.getAllProducts();
         if (category != null && !category.equals("")) {
             products = products.stream()
@@ -66,14 +66,14 @@ public class ProductServiceImp implements ProductService {
         if (order != null) {
             products = orderProducts(products, order);
         }
-        return products.stream().map(ProductDto::new).collect(Collectors.toList());
+        return products.stream().map(ProductResponseDto::new).collect(Collectors.toList());
     }
 
 
-    public List<ProductDto> getAllProductsByCategory(String category) {
+    public List<ProductResponseDto> getAllProductsByCategory(String category) {
         List<Product> productsCategory = productRepo.getAllProductsByCategory(category);
-        List<ProductDto> lista = productsCategory.stream()
-                .map(ProductDto::new)
+        List<ProductResponseDto> lista = productsCategory.stream()
+                .map(ProductResponseDto::new)
                 .collect(Collectors.toList());
         return lista;
     }
@@ -107,9 +107,9 @@ public class ProductServiceImp implements ProductService {
         }
     }
 
-    public ProductDto updateProduct(UUID id, ProductRequestDto productDto) {
+    public ProductResponseDto updateProduct(UUID id, ProductRequestDto productDto) {
         Product product = new Product(productDto);
         product.setProductId(id);
-        return new ProductDto(productRepo.updateProduct(product));
+        return new ProductResponseDto(productRepo.updateProduct(product));
     }
 }

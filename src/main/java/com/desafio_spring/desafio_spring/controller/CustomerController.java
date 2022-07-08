@@ -1,6 +1,6 @@
 package com.desafio_spring.desafio_spring.controller;
 
-import com.desafio_spring.desafio_spring.dto.CustomerDto;
+import com.desafio_spring.desafio_spring.dto.CustomerRequestDto;
 import com.desafio_spring.desafio_spring.model.Customer;
 import com.desafio_spring.desafio_spring.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,7 +39,7 @@ public class CustomerController {
      * @param customerDto objeto CustomerDto
      * @return O objeto Customer que foi salvo.
      */
-    public ResponseEntity<Customer> createCustomer(@RequestBody @Valid CustomerDto customerDto) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(service.saveCustomer(customerDto));
+    public ResponseEntity<Customer> createCustomer(@RequestBody @Valid CustomerRequestDto customerRequestDto) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(service.saveCustomer(customerRequestDto));
     }
 }

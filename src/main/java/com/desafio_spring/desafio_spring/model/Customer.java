@@ -1,6 +1,6 @@
 package com.desafio_spring.desafio_spring.model;
 
-import com.desafio_spring.desafio_spring.dto.CustomerDto;
+import com.desafio_spring.desafio_spring.dto.CustomerRequestDto;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -21,7 +21,7 @@ public class Customer {
     private String city;
     private String state;
 
-    public Customer(CustomerDto dto) {
+    public Customer(CustomerRequestDto dto) {
         setId(UUID.randomUUID());
         setName(dto.getName());
         setEmail(dto.getEmail());

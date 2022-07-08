@@ -1,6 +1,6 @@
 package com.desafio_spring.desafio_spring.service;
 
-import com.desafio_spring.desafio_spring.dto.CartDto;
+import com.desafio_spring.desafio_spring.dto.CartResponseDto;
 import com.desafio_spring.desafio_spring.dto.PurchaseResponseDto;
 import com.desafio_spring.desafio_spring.model.PurchaseProduct;
 
@@ -17,7 +17,7 @@ public interface PurchaseService {
 
     /**
      * Metódo do Service que retorna valor total no carrinho
-     * @return O objeto CartDto com o valor total.
+     * @return O objeto CartResponseDto com o valor total.
      */
-    CartDto getTotalInCart();
+    CartResponseDto getTotalInCart();
 }

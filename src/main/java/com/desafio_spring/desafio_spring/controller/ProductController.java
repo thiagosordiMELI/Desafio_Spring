@@ -1,6 +1,6 @@
 package com.desafio_spring.desafio_spring.controller;
 
-import com.desafio_spring.desafio_spring.dto.ProductDto;
+import com.desafio_spring.desafio_spring.dto.ProductResponseDto;
 import com.desafio_spring.desafio_spring.dto.ProductRequestDto;
 import com.desafio_spring.desafio_spring.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,12 +33,12 @@ public class ProductController {
      * @param order opção de ordenação (opcional)
      * @return Uma lista de objetos ProductDto filtrada e ordenada apenas com informações essenciais.
      */
-    public ResponseEntity<List<ProductDto>> multipleFilters
+    public ResponseEntity<List<ProductResponseDto>> multipleFilters
             (@RequestParam(required = false) String category,
              @RequestParam(required = false) Boolean freeShipping,
              @RequestParam(required = false) String prestige,
              @RequestParam(required = false) Integer order) {
-        List<ProductDto> filteredResult;
+        List<ProductResponseDto> filteredResult;
         filteredResult = service.filterMultiples(category, freeShipping, prestige, order);
         return ResponseEntity.ok(filteredResult);
     }
@@ -49,8 +49,8 @@ public class ProductController {
      * @param category categoria de produto para filtro
      * @return Uma lista de objetos ProductDto filtrada por categoria e apenas com informações essenciais.
      */
-    public ResponseEntity<List<ProductDto>> getAllProductsByCategory(@RequestParam String category) {
-        List<ProductDto> productsList = service.getAllProductsByCategory(category);
+    public ResponseEntity<List<ProductResponseDto>> getAllProductsByCategory(@RequestParam String category) {
+        List<ProductResponseDto> productsList = service.getAllProductsByCategory(category);
         return ResponseEntity.ok(productsList);
     }
 
@@ -60,7 +60,7 @@ public class ProductController {
      * @param products lista de objetos ProductRequestDto
      * @return Uma lista de objetos ProductDto apenas com informações essenciais.
      */
-    public ResponseEntity<List<ProductDto>> insertArticlesRequest(
+    public ResponseEntity<List<ProductResponseDto>> insertArticlesRequest(
             @RequestBody @Valid List<ProductRequestDto> products) {
         return ResponseEntity.ok(service.saveProducts(products));
     }
@@ -72,7 +72,7 @@ public class ProductController {
      * @param productDto objeto ProductRequestDto com os novos dados do produto.
      * @return Um objeto ProductDto com as novas informações básicas do produto que foi atualizado.
      */
-    public ResponseEntity<ProductDto> updateArticleRequest(@PathVariable UUID id, @RequestBody @Valid ProductRequestDto productDto) {
+    public ResponseEntity<ProductResponseDto> updateArticleRequest(@PathVariable UUID id, @RequestBody @Valid ProductRequestDto productDto) {
         return ResponseEntity.ok(service.updateProduct(id, productDto));
     }
 }

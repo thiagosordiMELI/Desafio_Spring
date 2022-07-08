@@ -14,7 +14,7 @@ import javax.validation.constraints.NotBlank;
  * @version 1.0
  * @since 1.0
  */
-public class CustomerDto {
+public class CustomerRequestDto {
     @NotBlank(message = "Campo nome não pode ser vazio")
     private String name;
 

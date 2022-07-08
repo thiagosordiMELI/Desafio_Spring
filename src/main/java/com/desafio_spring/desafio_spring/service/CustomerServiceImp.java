@@ -1,6 +1,6 @@
 package com.desafio_spring.desafio_spring.service;
 
-import com.desafio_spring.desafio_spring.dto.CustomerDto;
+import com.desafio_spring.desafio_spring.dto.CustomerRequestDto;
 import com.desafio_spring.desafio_spring.exception.CustomerAlreadyExistsException;
 import com.desafio_spring.desafio_spring.model.Customer;
 import com.desafio_spring.desafio_spring.repository.CustomerRepo;
@@ -34,17 +34,17 @@ public class CustomerServiceImp implements CustomerService {
     }
 
     @Override
-    public Customer saveCustomer(CustomerDto customerDto) {
+    public Customer saveCustomer(CustomerRequestDto customerRequestDto) {
         Optional<Customer> foundCustomer = getAllCustomers()
                 .stream()
-                .filter(x -> x.getEmail().equalsIgnoreCase(customerDto.getEmail()))
+                .filter(x -> x.getEmail().equalsIgnoreCase(customerRequestDto.getEmail()))
                 .findFirst();
 
         if (foundCustomer.isPresent()) {
             throw new CustomerAlreadyExistsException();
         }
 
-        return repo.saveCustomer(new Customer(customerDto));
+        return repo.saveCustomer(new Customer(customerRequestDto));
     }
 
     private static boolean statesAreEqual(String state1, String state2) {
