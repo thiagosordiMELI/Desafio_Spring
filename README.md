@@ -21,11 +21,25 @@ API REST desenvolvida para o Desafio Spring durante o Bootcamp IT Backend Java.
   <img src="https://avatars.githubusercontent.com/u/108010964?s=120&v=4" style="width: 50px">
 </a>
 
+# Sumário
+
+- [Observações](#observações)
+- [Funcionalidades](#funcionalidades)
+- [Produtos](#produtos)
+  - [Post - Adiciona nova lista de produtos](#postProduct)
+  - [Put - Atualiza um produto já cadastrado](#putProduct)
+  - [Get - Lista todos os produtos disponíveis](#getAllProduct)
+  - [Get - Filtra por parâmetro](#getFilters)
+- [Compras](#compras)
+  - [Post - Adiciona uma solicitação de compra a lista de produtos](#postPurchase)
+- [Clientes](#clientes)
+
 ## Observações
 
 # Funcionalidades
 
 ## Produtos
+<p name="postProduct"></p>
 `POST /api/v1/insert-articles-request`<br>
 Adiciona uma nova lista de produtos. Devolve uma lista com o resumo dos produtos cadastrados.<br>
 <pre><code><b>Payload example:</b>
@@ -64,6 +78,7 @@ Adiciona uma nova lista de produtos. Devolve uma lista com o resumo dos produtos
     }
 ]</code></pre>
 
+<p name="putProduct"></p>
 `PUT /api/v1/update-article-request/4f8da5ec-7dd0-456f-b0a7-1b5e3129ce36`<br>
 Atualiza as informações de um produto já cadastrado, enviando como parâmetro o ID do produto e no payload as novas informações do produto. Devolve um objeto com as novas informações básicas do produto.<br>
 <pre><code><b>Payload example:</b>
@@ -84,6 +99,7 @@ Atualiza as informações de um produto já cadastrado, enviando como parâmetro
     "quantity": 5
 }</code></pre>
 
+<p name="getAllProduct"></p>
 `GET /api/v1/articles`<br>
 Lista de todos os produtos disponíveis.
 <br>
@@ -101,6 +117,7 @@ Lista de todos os produtos disponíveis.
     }
 ]</code></pre>
 
+<p name="getFilters"></p>
 Permite também a utilização e combinação dos seguintes parâmetros no GET:
 `GET /api/v1/articles?category=Ferramentas`<br>
 Produtos filtrados por categoria.
@@ -119,6 +136,7 @@ Devolve uma lista de produtos ordenados.<br>
 3: Preço (menor ao maior).<br>
 
 ## Compras
+<p name="postPurchase"></p>
 `POST /api/v1/purchase-request`<br>
 Adiciona uma nova solicitação de compra com uma lista de produtos. Devolve a solicitação com o valor total da compra.<br>
 <pre><code><b>Payload example:</b>
