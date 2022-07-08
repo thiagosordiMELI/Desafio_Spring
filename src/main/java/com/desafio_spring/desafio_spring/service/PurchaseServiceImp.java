@@ -2,7 +2,8 @@ package com.desafio_spring.desafio_spring.service;
 
 import com.desafio_spring.desafio_spring.dto.PurchaseProductResponseDto;
 import com.desafio_spring.desafio_spring.dto.PurchaseResponseDto;
-import com.desafio_spring.desafio_spring.exception.ExceptionCustom;
+import com.desafio_spring.desafio_spring.exception.CustomException;
+import com.desafio_spring.desafio_spring.exception.ParamInvalidException;
 import com.desafio_spring.desafio_spring.model.Product;
 import com.desafio_spring.desafio_spring.model.Purchase;
 import com.desafio_spring.desafio_spring.model.PurchaseProduct;
@@ -11,6 +12,7 @@ import com.desafio_spring.desafio_spring.repository.PurchaseRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.security.InvalidParameterException;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
@@ -34,12 +36,12 @@ public class PurchaseServiceImp implements PurchaseService {
         for (PurchaseProduct pp : purchaseProducts) {
             Product product = productMap.get(pp.getProductId());
             if (product == null) {
-                throw new ExceptionCustom("Produto(s) inexistente(s)");
+                throw new CustomException("Produto(s) inexistente(s)");
             }
             if (product.getQuantity() >= pp.getQuantity()) {
                 product.setQuantity(product.getQuantity() - pp.getQuantity());
             } else {
-                throw new ExceptionCustom("Sem estoque para o produto: " + product.getName());
+                throw new ParamInvalidException("Sem estoque para o produto: " + product.getName() + " id: "+product.getProductId());
             }
         }
 
