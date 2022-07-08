@@ -1,7 +1,7 @@
 {
 	"info": {
-		"_postman_id": "719368d3-fdc1-4f1f-9d86-02afad79ed71",
-		"name": "Desafio Spring",
+		"_postman_id": "297d814a-8619-4a00-b4c4-eee89174a07c",
+		"name": "Desafio Spring Copy",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
@@ -75,10 +75,10 @@
 									]
 								}
 							},
-							"_postman_previewlanguage": null,
-							"header": null,
+							"_postman_previewlanguage": "Text",
+							"header": [],
 							"cookie": [],
-							"body": null
+							"body": ""
 						}
 					]
 				},
@@ -920,8 +920,8 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									"pm.test(\"Teste de status 200\", function() {",
-									"    pm.response.to.have.status(200);",
+									"pm.test(\"Teste de status 201\", function() {",
+									"    pm.response.to.have.status(201);",
 									"})"
 								],
 								"type": "text/javascript"
@@ -1279,12 +1279,8 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									"pm.test(\"Teste de status 201\", function() {",
-									"    pm.response.to.have.status(201);",
-									"})",
-									"",
-									"pm.test(\"Teste de total\", function() {",
-									"    pm.response.to.have.jsonBody(\"total\");",
+									"pm.test(\"Teste de status 404\", function() {",
+									"    pm.response.to.have.status(404);",
 									"})"
 								],
 								"type": "text/javascript"
