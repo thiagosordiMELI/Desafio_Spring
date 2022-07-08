@@ -21,10 +21,12 @@ API REST desenvolvida para o Desafio Spring durante o Bootcamp IT Backend Java.
   <img src="https://avatars.githubusercontent.com/u/108010964?s=120&v=4" style="width: 50px">
 </a>
 
+## Observações
+
 # Funcionalidades
 
 ## Produtos
-`POST /api/v1/articles`<br>
+`POST /api/v1/insert-articles-request`<br>
 Adiciona uma nova lista de produtos. Devolve uma lista com o resumo dos produtos cadastrados.<br>
 <pre><code><b>Payload example:</b>
 [
@@ -62,6 +64,26 @@ Adiciona uma nova lista de produtos. Devolve uma lista com o resumo dos produtos
     }
 ]</code></pre>
 
+`PUT /api/v1/update-article-request/4f8da5ec-7dd0-456f-b0a7-1b5e3129ce36`<br>
+Atualiza as informações de um produto já cadastrado, enviando como parâmetro o ID do produto e no payload as novas informações do produto. Devolve um objeto com as novas informações básicas do produto.<br>
+<pre><code><b>Payload example:</b>
+{
+    "name":"Serra de Bancada",
+    "category":"Ferramentas",
+    "brand":"FORTGPRO",
+    "price":1900.00,
+    "quantity":8,
+    "freeShipping":true,
+    "prestige":"****"
+}
+
+<b>Response:</b>
+{
+    "productId": "4f8da5ec-7dd0-456f-b0a7-1b5e3129ce36",
+    "name": "Serra de Bancada",
+    "quantity": 5
+}</code></pre>
+
 `GET /api/v1/articles`<br>
 Lista de todos os produtos disponíveis.
 <br>
@@ -79,16 +101,17 @@ Lista de todos os produtos disponíveis.
     }
 ]</code></pre>
 
-`GET /api/v1/articles?category=categoryName`<br>
-Lista de produtos filtrados por categoria.
+Permite também a utilização e combinação dos seguintes parâmetros no GET:<br>
+`GET /api/v1/articles?category=Ferramentas`<br>
+Produtos filtrados por categoria.
 
-`GET /api/v1/articles?category=categoryName&freeShipping=true`<br>
-Lista com filtro de produtos por categoria com frete grátis.
+`GET /api/v1/articles?freeShipping=true`<br>
+Produtos com frete grátis.
 
-`GET /api/v1/articles?freeShipping=true&prestige=prestige`<br>
-Lista com filtro de produtos com frete grátis e filtro por avaliação.
+`GET /api/v1/articles?prestige=*****`<br>
+Produtos filtrados por avaliação (* a *****).<br>
 
-`GET /api/v1/articles/?order=orderBy`<br>
+`GET /api/v1/articles/?order=2`<br>
 Devolve uma lista de produtos ordenados.<br>
 0: Alfabético crescente.<br>
 1: Alfabético descrescente.<br>
@@ -137,3 +160,47 @@ Adiciona uma nova solicitação de compra com uma lista de produtos. Devolve a s
     ],
     "total": 12500.0
 }</code></pre>
+
+`GET api/v1/purchase-request/cart`<br>
+Devolve o valor total dos produtos adicionados no carrinho de compras. 
+<br>
+<pre><code>Response:</b>
+{
+    "total": 9000.0
+}
+</code></pre>
+
+### Clientes
+`POST api/v1/customers`<br>
+Adiciona um novo cliente. Devolve um objeto com os dados básicos do cliente.<br>
+<pre><code><b>Payload example:</b>
+{
+  "name": "Pedro",
+  "email": "pedro@example.com",
+  "city": "Santo Ângelo",
+  "state": "RS"
+}
+
+<b>Response:</b>
+{
+    "id": "b93726e6-2e52-4932-a5e6-096e097a0a96",
+    "name": "Pedro",
+    "email": "pedro@example.com",
+    "city": "Santo Ângelo",
+    "state": "RS"
+}</code></pre>
+
+`GET /api/v1/articles`<br>
+Lista de todos os clientes cadastrados.
+<br>
+<pre><code>Response:</b>
+{
+    "id": "b93726e6-2e52-4932-a5e6-096e097a0a96",
+    "name": "Pedro",
+    "email": "pedro@example.com",
+    "city": "Santo Ângelo",
+    "state": "RS"
+}</code></pre>
+
+`GET /api/v1/customers?state=RS`<br>
+Clientes filtrados por Estado.
