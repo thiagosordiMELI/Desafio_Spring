@@ -161,10 +161,13 @@ Adiciona uma nova solicitação de compra com uma lista de produtos. Devolve a s
     "total": 12500.0
 }</code></pre>
 
-`GET /api/v1/cart`<br>
-Devolve uma lista com os produtos adicionados no carrinho de compras. 
+`GET api/v1/purchase-request/cart`<br>
+Devolve o valor total dos produtos adicionados no carrinho de compras. 
 <br>
 <pre><code>Response:</b>
+{
+    "total": 9000.0
+}
 </code></pre>
 
 ### Clientes
