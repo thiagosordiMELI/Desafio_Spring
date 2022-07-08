@@ -73,10 +73,6 @@ public class ProductRepo {
                     .filter(p -> p.getPrestige().equals(prestige))
                     .collect(Collectors.toList());
         }
-        if(productFiltered.size() == 0) {
-            // preciso mudar a forma do throw para status 200 com a msg abaixo
-            throw new ExceptionCustom("Não há produtos com os filtros selecionados");
-        }
         return productFiltered;
     }
 }
