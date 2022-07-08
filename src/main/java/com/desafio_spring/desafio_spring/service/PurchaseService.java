@@ -16,6 +16,10 @@ public interface PurchaseService {
      * @return O objeto PurchaseResponseDto que foi gerado, contendo todos os produtos em detalhes e o valor total da compra.
      */
     PurchaseResponseDto savePurchases(List<PurchaseProduct> products);
-    
+
+    /**
+     * Metódo do Service que retorna valor total no carrinho
+     * @return O objeto CartDto com o valor total.
+     */
     CartDto getTotalInCart();
 }
