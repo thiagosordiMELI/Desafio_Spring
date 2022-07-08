@@ -36,7 +36,7 @@ public class CustomerController {
     @PostMapping
     /**
      * Metódo do Controller que recebe um cliente e envia ao service para salvá-lo.
-     * @param customerDto objeto CustomerDto
+     * @param customerDto objeto CustomerRequestDto
      * @return O objeto Customer que foi salvo.
      */
     public ResponseEntity<Customer> createCustomer(@RequestBody @Valid CustomerRequestDto customerRequestDto) {

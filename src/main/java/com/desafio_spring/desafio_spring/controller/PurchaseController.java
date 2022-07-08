@@ -33,6 +33,10 @@ public class PurchaseController {
     }
 
     @GetMapping("cart")
+    /**
+     * Metódo do Controller que retorna o valor total do carrinho.
+     * @return Um objeto CartResponseDto contendo o valor total.
+     */
     public ResponseEntity<CartResponseDto> getTotalInCart() {
         return ResponseEntity.ok(service.getTotalInCart());
     }

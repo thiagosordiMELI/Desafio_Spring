@@ -31,7 +31,7 @@ public class ProductController {
      * @param freeShipping flag de frete grátis (opcional)
      * @param prestige avaliacao em "*" do produto (opcional)
      * @param order opção de ordenação (opcional)
-     * @return Uma lista de objetos ProductDto filtrada e ordenada apenas com informações essenciais.
+     * @return Uma lista de objetos ProductResponseDto filtrada e ordenada apenas com informações essenciais.
      */
     public ResponseEntity<List<ProductResponseDto>> multipleFilters
             (@RequestParam(required = false) String category,
@@ -47,7 +47,7 @@ public class ProductController {
     /**
      * Metódo do Controller que retorna a lista de produtos filtrados por categoria.
      * @param category categoria de produto para filtro
-     * @return Uma lista de objetos ProductDto filtrada por categoria e apenas com informações essenciais.
+     * @return Uma lista de objetos ProductResponseDto filtrada por categoria e apenas com informações essenciais.
      */
     public ResponseEntity<List<ProductResponseDto>> getAllProductsByCategory(@RequestParam String category) {
         List<ProductResponseDto> productsList = service.getAllProductsByCategory(category);
@@ -58,7 +58,7 @@ public class ProductController {
     /**
      * Metódo do Controller que recebe uma lista de produtos e envia ao service para salvá-los.
      * @param products lista de objetos ProductRequestDto
-     * @return Uma lista de objetos ProductDto apenas com informações essenciais.
+     * @return Uma lista de objetos ProductResponseDto apenas com informações essenciais.
      */
     public ResponseEntity<List<ProductResponseDto>> insertArticlesRequest(
             @RequestBody @Valid List<ProductRequestDto> products) {
@@ -70,7 +70,7 @@ public class ProductController {
      * Metódo do Controller que recebe um produto para ser atualizazado através de um método PUT.
      * @param id UUID do produto que será alterado.
      * @param productDto objeto ProductRequestDto com os novos dados do produto.
-     * @return Um objeto ProductDto com as novas informações básicas do produto que foi atualizado.
+     * @return Um objeto ProductResponseDto com as novas informações básicas do produto que foi atualizado.
      */
     public ResponseEntity<ProductResponseDto> updateArticleRequest(@PathVariable UUID id, @RequestBody @Valid ProductRequestDto productDto) {
         return ResponseEntity.ok(service.updateProduct(id, productDto));

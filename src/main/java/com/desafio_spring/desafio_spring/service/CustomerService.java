@@ -22,7 +22,7 @@ public interface CustomerService {
 
     /**
      * Metódo do Service que cuida da lógica de salvar um novo cliente.
-     * @param customerDto objeto CustomerRequestDto a ser salvo.
+     * @param customerRequestDto objeto CustomerRequestDto a ser salvo.
      * @return O objeto Customer que foi criado.
      */
     Customer saveCustomer(CustomerRequestDto customerRequestDto);
