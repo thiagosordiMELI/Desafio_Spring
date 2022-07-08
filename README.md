@@ -1,5 +1,5 @@
 # Desafio_Spring
-API REST desenvolvida para o Desafio Spring durante o Bootcamp IT Backend Java. 
+API REST desenvolvida pelo grupo Beta Campers para o Desafio Spring durante o IT Bootcamp Backend Java (wave 6). 
 
 ## Autores
 <a href="https://github.com/vfreitasmeli">
@@ -32,15 +32,32 @@ API REST desenvolvida para o Desafio Spring durante o Bootcamp IT Backend Java.
   - [Get - Filtra por parâmetro](#getFilters)
 - [Compras](#compras)
   - [Post - Adiciona uma solicitação de compra a lista de produtos](#postPurchase)
+  - [Get - Lista produtos adicionados ao carrinho](#getCart)
 - [Clientes](#clientes)
-
-## Observações
+  - [Post - Adiciona um novo cliente](#postCustomer)
+  - [Get - Lista todos os clientes](#getCustomers)
+  - [Get - Filtra clientes por estado](#getCustomersByState)
+# Observações
+**ID**<br>
+Considerando que não é aconselhável que o cliente defina qual será o ID de um determinado objeto, optamos por gerar o ID dos objetos nos métodos POST. Para isso utilizamos a classe UUID [(java.util.UUID)](https://docs.oracle.com/javase/7/docs/api/java/util/UUID.html), que gera um identificador único universal.<br>
+<br>
+**Validações**<br>
+Utilizamos o [Spring Validation](https://docs.spring.io/spring-framework/docs/4.1.x/spring-framework-reference/html/validation.html#validation-beanvalidation) para os atributos obrigatórios dos objetos, dessa forma a aplicação não aceitará a criação de objetos com informações faltantes.<br>
+<br>
+**Edição de produtos**<br>
+Acrescentamos a rota [update-article-request](#putProduct) que recebe um PUT para atualizar as informações de um determinado produto.<br>
+<br>
+**Filtros e ordenações**<br>
+Criamos a rota [articles](#getFilters) de forma que possa receber diversas combinações de filtros e ordenações definadas nos parâmetros da URL.<br>
+<br>
+**Solicitações de compras**<br>
+Adaptamos para que a [solicitação de compra](#postPurchase) seja enviada apenas com o ID do produto e sua quantidade. As demais informações do produto serão obtidas pelo próprio servidor.
 
 # Funcionalidades
 
 ## Produtos
-<p name="postProduct"></p>
-`POST /api/v1/insert-articles-request`<br>
+
+`POST /api/v1/insert-articles-request`<br name="postProduct">
 Adiciona uma nova lista de produtos. Devolve uma lista com o resumo dos produtos cadastrados.<br>
 <pre><code><b>Payload example:</b>
 [
@@ -78,8 +95,7 @@ Adiciona uma nova lista de produtos. Devolve uma lista com o resumo dos produtos
     }
 ]</code></pre>
 
-<p name="putProduct"></p>
-`PUT /api/v1/update-article-request/4f8da5ec-7dd0-456f-b0a7-1b5e3129ce36`<br>
+`PUT /api/v1/update-article-request/4f8da5ec-7dd0-456f-b0a7-1b5e3129ce36`<br name="putProduct">
 Atualiza as informações de um produto já cadastrado, enviando como parâmetro o ID do produto e no payload as novas informações do produto. Devolve um objeto com as novas informações básicas do produto.<br>
 <pre><code><b>Payload example:</b>
 {
@@ -99,8 +115,7 @@ Atualiza as informações de um produto já cadastrado, enviando como parâmetro
     "quantity": 5
 }</code></pre>
 
-<p name="getAllProduct"></p>
-`GET /api/v1/articles`<br>
+`GET /api/v1/articles`<br name="getAllProduct">
 Lista de todos os produtos disponíveis.
 <br>
 <pre><code><b>Response:</b>
@@ -117,9 +132,7 @@ Lista de todos os produtos disponíveis.
     }
 ]</code></pre>
 
-
-<p name="getFilters"></p>
-Permite também a utilização e combinação dos seguintes parâmetros no GET:<br>
+Permite também a utilização e diferentes combinações com os seguintes parâmetros no GET:<br name="getFilters">
 
 `GET /api/v1/articles?category=Ferramentas`<br>
 Produtos filtrados por categoria.
@@ -130,32 +143,79 @@ Produtos com frete grátis.
 `GET /api/v1/articles?prestige=*****`<br>
 Produtos filtrados por avaliação (* a *****).<br>
 
-`GET /api/v1/articles/?order=2`<br>
+`GET /api/v1/articles?order=2`<br>
 Devolve uma lista de produtos ordenados.<br>
 0: Alfabético crescente.<br>
 1: Alfabético descrescente.<br>
 2: Preço (maior ao menor).<br>
 3: Preço (menor ao maior).<br>
 
-## Compras
-<p name="postPurchase"></p>
-`POST /api/v1/purchase-request`<br>
-Adiciona uma nova solicitação de compra com uma lista de produtos. Devolve a solicitação com o valor total da compra.<br>
+## Clientes
+
+`POST api/v1/customers`<br name="postCustomer">
+Adiciona um novo cliente. Devolve um objeto com os dados básicos do cliente.<br>
 <pre><code><b>Payload example:</b>
-[
-    {
-        "id": "3e510112-db30-41dc-969e-95112b1110f0",
-        "quantity":5
-    },
-    {
-        "id":"ebc1f417-5e27-4e88-b484-8bc7c1685b8e",
-        "quantity":7
-    }
-]
+{
+  "name": "Pedro",
+  "email": "pedro@example.com",
+  "city": "Santo Ângelo",
+  "state": "RS"
+}
+
+<b>Response:</b>
+{
+    "id": "b93726e6-2e52-4932-a5e6-096e097a0a96",
+    "name": "Pedro",
+    "email": "pedro@example.com",
+    "city": "Santo Ângelo",
+    "state": "RS"
+}</code></pre>
+
+
+`GET /api/v1/customers`<br name="getCustomers">
+Lista de todos os clientes cadastrados.
+<br>
+<pre><code><b>Response:</b>
+{
+    "id": "b93726e6-2e52-4932-a5e6-096e097a0a96",
+    "name": "Pedro",
+    "email": "pedro@example.com",
+    "city": "Santo Ângelo",
+    "state": "RS"
+}</code></pre>
+
+`GET /api/v1/customers?state=RS`<br name="getCustomersByState">
+Clientes filtrados por Estado.
+
+## Compras
+
+`POST /api/v1/purchase-request`<br name="postPurchase">
+Adiciona uma nova solicitação de compra para um cliente com uma lista de produtos. Devolve a solicitação com o valor total da compra e o cliente.<br>
+<pre><code><b>Payload example:</b>
+{
+  "customerId": "b93726e6-2e52-4932-a5e6-096e097a0a96",
+  "products": [
+      {
+          "id": "3e510112-db30-41dc-969e-95112b1110f0",
+          "quantity":5
+      },
+      {
+          "id":"ebc1f417-5e27-4e88-b484-8bc7c1685b8e",
+          "quantity":7
+      }
+  ]
+}
 
 <b>Response:</b>
 {
     "id": "b51803ce-f6e7-4b49-84a6-eecfb86afe18",
+    "customer": {
+        "id": "b93726e6-2e52-4932-a5e6-096e097a0a96",
+        "name": "pedro",
+        "email": "pedro@example.com",
+        "city": "Santo Ângelo",
+        "state": "RS"
+    },
     "products": [
         {
             "productId": "3e510112-db30-41dc-969e-95112b1110f0",
@@ -181,46 +241,11 @@ Adiciona uma nova solicitação de compra com uma lista de produtos. Devolve a s
     "total": 12500.0
 }</code></pre>
 
-`GET api/v1/purchase-request/cart`<br>
-Devolve o valor total dos produtos adicionados no carrinho de compras. 
+`GET api/v1/purchase-request/cart/b93726e6-2e52-4932-a5e6-096e097a0a96`<br name="getCart">
+Devolve o valor total dos produtos adicionados no carrinho de compras de um cliente. 
 <br>
-<pre><code>Response:</b>
+<pre><code><b>Response:</b>
 {
     "total": 9000.0
 }
 </code></pre>
-
-### Clientes
-`POST api/v1/customers`<br>
-Adiciona um novo cliente. Devolve um objeto com os dados básicos do cliente.<br>
-<pre><code><b>Payload example:</b>
-{
-  "name": "Pedro",
-  "email": "pedro@example.com",
-  "city": "Santo Ângelo",
-  "state": "RS"
-}
-
-<b>Response:</b>
-{
-    "id": "b93726e6-2e52-4932-a5e6-096e097a0a96",
-    "name": "Pedro",
-    "email": "pedro@example.com",
-    "city": "Santo Ângelo",
-    "state": "RS"
-}</code></pre>
-
-`GET /api/v1/articles`<br>
-Lista de todos os clientes cadastrados.
-<br>
-<pre><code>Response:</b>
-{
-    "id": "b93726e6-2e52-4932-a5e6-096e097a0a96",
-    "name": "Pedro",
-    "email": "pedro@example.com",
-    "city": "Santo Ângelo",
-    "state": "RS"
-}</code></pre>
-
-`GET /api/v1/customers?state=RS`<br>
-Clientes filtrados por Estado.

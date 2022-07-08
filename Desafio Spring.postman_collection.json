@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "6fe1d352-a2c3-41f1-8a34-8ea29986cf13",
+		"_postman_id": "6cdec3a0-0731-4e2c-8a4c-6bcc451a8822",
 		"name": "Desafio Spring",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -1343,6 +1343,28 @@
 									"pm.sendRequest(echoPostRequest, function (err, response) {",
 									"    var data = response.json();",
 									"    pm.environment.set(\"productId\", data[0].productId);",
+									"});",
+									"",
+									"const echoPostCustomerRequest = {",
+									"  ",
+									"  url: 'localhost:8080/api/v1/customers',",
+									"  method: 'POST',",
+									"  header: {",
+									"        'content-type': 'application/json',",
+									"    },",
+									"  body: {",
+									"        mode: 'raw',",
+									"        raw: JSON.stringify({",
+									"                            \"name\": \"pedro\",",
+									"                            \"email\": \"pedro@example.com\",",
+									"                            \"city\": \"Santo Ângelo\",",
+									"                            \"state\": \"RS\"",
+									"                            })",
+									"    }",
+									"};",
+									"pm.sendRequest(echoPostCustomerRequest, function (err, response) {",
+									"    var data = response.json();",
+									"    pm.environment.set(\"customerId\", data.id);",
 									"});"
 								],
 								"type": "text/javascript"
@@ -1369,7 +1391,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "[\n    {\n        \"productId\":\"{{productId}}\",\n        \"quantity\": 5\n    }\n]",
+							"raw": "{\n    \"customerId\": \"{{customerId}}\",\n    \"products\": [\n        {\n            \"productId\":\"{{productId}}\",\n            \"quantity\": 5\n        }\n    ]\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1541,11 +1563,104 @@
 				},
 				{
 					"name": "Consultar total no carrinho",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"const echoPostRequest = {",
+									"  ",
+									"  url: 'localhost:8080/api/v1/insert-articles-request',",
+									"  method: 'POST',",
+									"  header: {",
+									"        'content-type': 'application/json',",
+									"    },",
+									"  body: {",
+									"        mode: 'raw',",
+									"        raw: JSON.stringify([{",
+									"            \"name\":\"Serra de Bancada\",",
+									"            \"category\":\"Ferramentas\",",
+									"            \"brand\":\"FORTGPRO\",",
+									"            \"price\":1800.00,",
+									"            \"quantity\":5,",
+									"            \"freeShipping\":true,",
+									"            \"prestige\":\"****\"",
+									"        }])",
+									"    }",
+									"};",
+									"pm.sendRequest(echoPostRequest, function (err, response) {",
+									"    var data = response.json();",
+									"    pm.environment.set(\"productId\", data[0].productId);",
+									"",
+									"    const echoPostCustomerRequest = {",
+									"  ",
+									"        url: 'localhost:8080/api/v1/customers',",
+									"        method: 'POST',",
+									"        header: {",
+									"                'content-type': 'application/json',",
+									"            },",
+									"        body: {",
+									"                mode: 'raw',",
+									"                raw: JSON.stringify({",
+									"                                    \"name\": \"thiago\",",
+									"                                    \"email\": \"thiago@example.com\",",
+									"                                    \"city\": \"Santa Maria\",",
+									"                                    \"state\": \"RS\"",
+									"                                    })",
+									"            }",
+									"        };",
+									"        pm.sendRequest(echoPostCustomerRequest, function (err, response) {",
+									"            var data = response.json();",
+									"            pm.environment.set(\"customerId\", data.id);",
+									"            const echoPostPurchaseRequest = {",
+									"        ",
+									"                url: 'localhost:8080/api/v1/purchase-request',",
+									"                method: 'POST',",
+									"                header: {",
+									"                        'content-type': 'application/json',",
+									"                    },",
+									"                body: {",
+									"                        mode: 'raw',",
+									"                        raw: JSON.stringify({",
+									"                                            \"customerId\": pm.environment.get(\"customerId\"),",
+									"                                            \"products\": [",
+									"                                                {",
+									"                                                    \"productId\":pm.environment.get(\"productId\"),",
+									"                                                    \"quantity\": 5",
+									"                                                }",
+									"                                            ]",
+									"                                        })",
+									"                    }",
+									"                };",
+									"                pm.sendRequest(echoPostPurchaseRequest, function (err, response) {",
+									"                    var data = response.json();",
+									"                    pm.environment.set(\"purchaseId\", data.id);",
+									"                });",
+									"",
+									"        });",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"",
+									"pm.test(\"Teste de total\", function() {",
+									"    console.log(pm.environment.get(\"customerId\"));",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base}}/api/v1/purchase-request/cart",
+							"raw": "{{base}}/api/v1/purchase-request/cart/{{customerId}}",
 							"host": [
 								"{{base}}"
 							],
@@ -1553,7 +1668,8 @@
 								"api",
 								"v1",
 								"purchase-request",
-								"cart"
+								"cart",
+								"{{customerId}}"
 							]
 						}
 					},
