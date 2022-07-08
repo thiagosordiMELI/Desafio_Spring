@@ -37,12 +37,12 @@ public class ProductServiceImp implements ProductService {
     @Override
     public List<ProductDto> filterMultiples(String category, Boolean freeShipping, String prestige, Integer order) {
         List<Product> products = productRepo.getAllProducts();
-        if (category != null) {
+        if (category != null && !category.equals("")) {
             products = products.stream()
                     .filter(p -> p.getCategory().equals(category))
                     .collect(Collectors.toList());
         }
-        if (prestige != null) {
+        if (prestige != null && !prestige.equals("")) {
             products = products.stream()
                     .filter(p -> p.getPrestige().equals(prestige))
                     .collect(Collectors.toList());
