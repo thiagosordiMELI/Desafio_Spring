@@ -197,7 +197,7 @@ Adiciona uma nova solicitação de compra com uma lista de produtos. Devolve a s
 `GET api/v1/purchase-request/cart`<br name="getCart">
 Devolve o valor total dos produtos adicionados no carrinho de compras. 
 <br>
-<pre><code>Response:</b>
+<pre><code><b>Response:</b>
 {
     "total": 9000.0
 }
@@ -229,7 +229,7 @@ Adiciona um novo cliente. Devolve um objeto com os dados básicos do cliente.<br
 
 Lista de todos os clientes cadastrados.
 <br>
-<pre><code>Response:</b>
+<pre><code><b>Response:</b>
 {
     "id": "b93726e6-2e52-4932-a5e6-096e097a0a96",
     "name": "Pedro",
