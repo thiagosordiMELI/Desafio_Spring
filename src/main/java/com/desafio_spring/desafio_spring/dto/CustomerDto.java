@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 
 @Data
@@ -14,6 +15,7 @@ public class CustomerDto {
     private String name;
 
     @NotBlank(message = "Campo e-mail não pode ser vazio")
+    @Email(message = "Campo e-mail inválido")
     private String email;
 
     @NotBlank(message = "Campo cidade não pode ser vazio")

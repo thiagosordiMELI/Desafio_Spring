@@ -28,6 +28,7 @@ public class Product {
 
     /**
      * Construtor Product personalizado
+     *
      * @param productRequest produto vindo da requisição
      */
     public Product(ProductRequestDto productRequest) {

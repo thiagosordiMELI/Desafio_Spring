@@ -9,8 +9,8 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 import org.springframework.stereotype.Repository;
 
 import java.io.File;
-import java.util.*;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
@@ -98,7 +98,7 @@ public class ProductRepo {
     * @param product objeto Product com as informações novas
     * @return O objeto Product que foi atualizado no arquivo JSON.
     */
-    public Product updateProduct (Product product){
+    public Product updateProduct(Product product) {
         if (findById(product.getProductId()) != null) {
             ObjectMapper mapper = new ObjectMapper();
             try {
@@ -118,4 +118,4 @@ public class ProductRepo {
         }
         throw new RuntimeException("Erro ao atualizar produto.");
     }
-    }
+}

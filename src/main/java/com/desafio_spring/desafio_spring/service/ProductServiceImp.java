@@ -2,12 +2,16 @@ package com.desafio_spring.desafio_spring.service;
 
 import com.desafio_spring.desafio_spring.dto.ProductDto;
 import com.desafio_spring.desafio_spring.dto.ProductRequestDto;
+import com.desafio_spring.desafio_spring.exception.ParamInvalidException;
 import com.desafio_spring.desafio_spring.model.Product;
 import com.desafio_spring.desafio_spring.repository.ProductRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
@@ -22,6 +26,9 @@ public class ProductServiceImp implements ProductService {
 
     @Override
     public List<ProductDto> saveProducts(List<ProductRequestDto> productList) {
+        if (productList.size() == 0) {
+            throw new ParamInvalidException("Lista não pode ser vazia.");
+        }
         List<Product> newProducts = productList.stream()
                 .map(Product::new)
                 .collect(Collectors.toUnmodifiableList());
@@ -41,12 +48,12 @@ public class ProductServiceImp implements ProductService {
     @Override
     public List<ProductDto> filterMultiples(String category, Boolean freeShipping, String prestige, Integer order) {
         List<Product> products = productRepo.getAllProducts();
-        if (category != null) {
+        if (category != null && !category.equals("")) {
             products = products.stream()
                     .filter(p -> p.getCategory().equals(category))
                     .collect(Collectors.toList());
         }
-        if (prestige != null) {
+        if (prestige != null && !prestige.equals("")) {
             products = products.stream()
                     .filter(p -> p.getPrestige().equals(prestige))
                     .collect(Collectors.toList());
@@ -56,7 +63,7 @@ public class ProductServiceImp implements ProductService {
                     .filter(p -> p.isFreeShipping() == freeShipping)
                     .collect(Collectors.toList());
         }
-        if(order != null) {
+        if (order != null) {
             products = orderProducts(products, order);
         }
         return products.stream().map(ProductDto::new).collect(Collectors.toList());

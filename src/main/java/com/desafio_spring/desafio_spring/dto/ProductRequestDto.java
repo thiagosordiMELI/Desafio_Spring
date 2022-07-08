@@ -23,10 +23,10 @@ public class ProductRequestDto {
     @NotBlank(message = notNullMessage)
     private String brand;
 
-    @Min(value= 0, message = valueMessage)
+    @Min(value = 0, message = valueMessage)
     private double price;
 
-    @Min(value= 1, message = valueMessage)
+    @Min(value = 1, message = valueMessage)
     private int quantity;
 
     private boolean freeShipping;
