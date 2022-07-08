@@ -1,6 +1,5 @@
 package com.desafio_spring.desafio_spring.dto;
 
-import com.desafio_spring.desafio_spring.model.Product;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

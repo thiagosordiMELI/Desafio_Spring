@@ -23,7 +23,7 @@ public class PurchaseProductResponseDto {
     private String prestige;
 
 
-    public PurchaseProductResponseDto(Product product, int quantityPurchased){
+    public PurchaseProductResponseDto(Product product, int quantityPurchased) {
         this.productId = product.getProductId();
         this.name = product.getName();
         this.category = product.getCategory();

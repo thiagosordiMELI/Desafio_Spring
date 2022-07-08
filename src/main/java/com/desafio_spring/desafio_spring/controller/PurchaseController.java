@@ -1,6 +1,5 @@
 package com.desafio_spring.desafio_spring.controller;
 
-import com.desafio_spring.desafio_spring.dto.PurchaseProductRequestDto;
 import com.desafio_spring.desafio_spring.dto.PurchaseResponseDto;
 import com.desafio_spring.desafio_spring.model.PurchaseProduct;
 import com.desafio_spring.desafio_spring.service.PurchaseService;

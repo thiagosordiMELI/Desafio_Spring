@@ -9,8 +9,8 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 import org.springframework.stereotype.Repository;
 
 import java.io.File;
-import java.util.*;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
@@ -71,24 +71,24 @@ public class ProductRepo {
         return productCategory;
     }
 
-        public Product updateProduct (Product product){
-            if (findById(product.getProductId()) != null) {
-                ObjectMapper mapper = new ObjectMapper();
-                try {
-                    List<Product> products = Arrays.asList(mapper.readValue(new File(productsFile), Product[].class));
-                    products = products.stream().map(p -> {
-                                if (p.getProductId().equals(product.getProductId()))
-                                    return product;
-                                return p;
-                            }
-                    ).collect(Collectors.toList());
-                    mapper.enable(SerializationFeature.INDENT_OUTPUT);
-                    mapper.writeValue(new File(productsFile), products);
-                    return product;
-                } catch (Exception err) {
-                    System.out.println("Erro ao acessar o arquivo de produtos.");
-                }
+    public Product updateProduct(Product product) {
+        if (findById(product.getProductId()) != null) {
+            ObjectMapper mapper = new ObjectMapper();
+            try {
+                List<Product> products = Arrays.asList(mapper.readValue(new File(productsFile), Product[].class));
+                products = products.stream().map(p -> {
+                            if (p.getProductId().equals(product.getProductId()))
+                                return product;
+                            return p;
+                        }
+                ).collect(Collectors.toList());
+                mapper.enable(SerializationFeature.INDENT_OUTPUT);
+                mapper.writeValue(new File(productsFile), products);
+                return product;
+            } catch (Exception err) {
+                System.out.println("Erro ao acessar o arquivo de produtos.");
             }
-            throw new RuntimeException("Erro ao atualizar produto.");
         }
+        throw new RuntimeException("Erro ao atualizar produto.");
     }
+}
