@@ -1,6 +1,9 @@
 package com.desafio_spring.desafio_spring.handler;
 
-import com.desafio_spring.desafio_spring.exception.*;
+import com.desafio_spring.desafio_spring.exception.CustomException;
+import com.desafio_spring.desafio_spring.exception.CustomExceptionDetails;
+import com.desafio_spring.desafio_spring.exception.CustomerAlreadyExistsException;
+import com.desafio_spring.desafio_spring.exception.ParamInvalidException;
 import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

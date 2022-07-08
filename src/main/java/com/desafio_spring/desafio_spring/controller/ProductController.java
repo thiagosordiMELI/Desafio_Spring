@@ -7,12 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -31,7 +25,7 @@ public class ProductController {
             (@RequestParam(required = false) String category,
              @RequestParam(required = false) Boolean freeShipping,
              @RequestParam(required = false) String prestige,
-            @RequestParam(required= false) Integer order) {
+             @RequestParam(required = false) Integer order) {
         List<ProductDto> filteredResult;
         filteredResult = service.filterMultiples(category, freeShipping, prestige, order);
         return ResponseEntity.ok(filteredResult);

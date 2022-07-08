@@ -39,7 +39,7 @@ public class PurchaseServiceImp implements PurchaseService {
             if (product.getQuantity() >= pp.getQuantity()) {
                 product.setQuantity(product.getQuantity() - pp.getQuantity());
             } else {
-                throw new ParamInvalidException("Sem estoque para o produto: " + product.getName() + " id: "+product.getProductId());
+                throw new ParamInvalidException("Sem estoque para o produto: " + product.getName() + " id: " + product.getProductId());
             }
         }
 

@@ -1037,6 +1037,116 @@
 					"response": []
 				},
 				{
+					"name": "Cadastro de cliente com email repetido",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Teste de status 400\", function() {",
+									"    pm.response.to.have.status(400);",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"const echoPostRequest = {",
+									"  ",
+									"  url: 'localhost:8080/api/v1/customers',",
+									"  method: 'POST',",
+									"  header: {",
+									"        'content-type': 'application/json',",
+									"    },",
+									"  body: {",
+									"        mode: 'raw',",
+									"        raw: JSON.stringify({",
+									"            \"name\": \"Bruna\",",
+									"            \"email\": \"bruna@example.com\",",
+									"            \"city\": \"São José\",",
+									"            \"state\": \"SC\"",
+									"        })",
+									"    }",
+									"};",
+									"pm.sendRequest(echoPostRequest, function (err, response) {",
+									"    var data = response.json();",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Bruna Donadel\",\n    \"email\": \"bruna@example.com\",\n    \"city\": \"São José\",\n    \"state\": \"SC\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base}}/api/v1/customers",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"customers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cadastro de cliente com email inválido",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Teste de status 400\", function() {",
+									"    pm.response.to.have.status(400);",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Viviane\",\n  \"email\": \"vivianeemail.com\",\n  \"city\": \"São Paulo\",\n  \"state\": \"SP\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base}}/api/v1/customers",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"customers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "Cadastro de cliente sem city",
 					"event": [
 						{
@@ -1098,6 +1208,47 @@
 						"body": {
 							"mode": "raw",
 							"raw": "{\n  \"name\": \"pedro\",\n  \"email\": \"pedro@example.com\",\n  \"city\": \"Santo Ângelo\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base}}/api/v1/customers",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"customers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cadastro de cliente sem body",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Teste de status 400\", function() {",
+									"    pm.response.to.have.status(400);",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1279,8 +1430,8 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									"pm.test(\"Teste de status 404\", function() {",
-									"    pm.response.to.have.status(404);",
+									"pm.test(\"Teste de status 400\", function() {",
+									"    pm.response.to.have.status(400);",
 									"})"
 								],
 								"type": "text/javascript"
